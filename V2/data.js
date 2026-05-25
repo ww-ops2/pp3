@@ -1,0 +1,2076 @@
+window.TOUR_DATA = [
+  {
+    "id": "proj_1778468987860",
+    "name": "YJMH-越南-20260110 南宁",
+    "productType": "越南",
+    "operator": "",
+    "startDate": "2026-01-01",
+    "incomes": [
+      {
+        "id": "income_1778477803837",
+        "name": "线上",
+        "amount": 1884355
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778477812132",
+        "name": "车票款",
+        "amount": 360000
+      },
+      {
+        "id": "cost_1778477818476",
+        "name": "地接款",
+        "amount": 679228
+      },
+      {
+        "id": "cost_1778477844404",
+        "name": "代订费用",
+        "amount": 133287
+      },
+      {
+        "id": "cost_1778477856660",
+        "name": "导服费",
+        "amount": 48200
+      },
+      {
+        "id": "cost_1778477867292",
+        "name": "其他",
+        "amount": 5584
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 336
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778468995018",
+    "name": "YJMH-冰雪专列-20260113-A线",
+    "productType": "冰雪专列",
+    "operator": "",
+    "startDate": "2026-01-01",
+    "incomes": [
+      {
+        "id": "income_1778477895862",
+        "name": "线上",
+        "amount": 191066
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778477910132",
+        "name": "地接款",
+        "amount": 142100
+      },
+      {
+        "id": "cost_1778477915853",
+        "name": "代订费用",
+        "amount": 4177
+      },
+      {
+        "id": "cost_1778477920932",
+        "name": "导服费",
+        "amount": 2600
+      },
+      {
+        "id": "cost_1778477926348",
+        "name": "其他",
+        "amount": 171
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 30
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778469000914",
+    "name": "YJMH-越南-20260120 南宁",
+    "productType": "越南",
+    "operator": "",
+    "startDate": "2026-01-01",
+    "incomes": [
+      {
+        "id": "income_1778477955591",
+        "name": "线上",
+        "amount": 309171
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778477970253",
+        "name": "地接款",
+        "amount": 170520
+      },
+      {
+        "id": "cost_1778477975292",
+        "name": "代订费用",
+        "amount": 25963
+      },
+      {
+        "id": "cost_1778477980166",
+        "name": "导服费",
+        "amount": 7600
+      },
+      {
+        "id": "cost_1778477984877",
+        "name": "其他",
+        "amount": 800
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 56
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778469008378",
+    "name": "YJMH-冰雪专列-20260124-B线",
+    "productType": "冰雪专列",
+    "operator": "",
+    "startDate": "2026-01-01",
+    "incomes": [
+      {
+        "id": "income_1778478012996",
+        "name": "线上",
+        "amount": 60432
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778478024461",
+        "name": "地接款",
+        "amount": 43820
+      },
+      {
+        "id": "cost_1778478031732",
+        "name": "其他",
+        "amount": 44
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 9
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778478180812",
+    "name": "YJMH-南北疆-20260516-上海车",
+    "productType": "南北疆",
+    "operator": "彭菲",
+    "startDate": "2026-05-01",
+    "incomes": [
+      {
+        "id": "inc_1778478180812_1",
+        "name": "线上收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478180812_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478180812_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778478180812_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478180812_2",
+        "name": "地接款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478180812_3",
+        "name": "代订费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478180812_4",
+        "name": "导服费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478180812_5",
+        "name": "其他费用",
+        "amount": 0
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 0
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778478204084",
+    "name": "YJMH-中亚-20260522-新疆",
+    "productType": "中亚",
+    "operator": "祝云星",
+    "startDate": "2026-05-01",
+    "incomes": [
+      {
+        "id": "inc_1778478204084_1",
+        "name": "线上收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478204084_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478204084_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778478204084_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478204084_2",
+        "name": "地接款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478204084_3",
+        "name": "代订费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478204084_4",
+        "name": "导服费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478204084_5",
+        "name": "其他费用",
+        "amount": 0
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 0
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778478220980",
+    "name": "YJMH-西沙邮轮2026·祥龙号0511",
+    "productType": "邮轮",
+    "operator": "郭梦云",
+    "startDate": "2026-05-01",
+    "incomes": [
+      {
+        "id": "inc_1778478220980_1",
+        "name": "线上收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478220980_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478220980_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778478220980_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478220980_2",
+        "name": "地接款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478220980_3",
+        "name": "代订费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478220980_4",
+        "name": "导服费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478220980_5",
+        "name": "其他费用",
+        "amount": 0
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 0
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778478242960",
+    "name": "YJMH-东北-20260520-广东车",
+    "productType": "东北",
+    "operator": "赵祯",
+    "startDate": "2026-05-01",
+    "incomes": [
+      {
+        "id": "inc_1778478242960_1",
+        "name": "线上收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478242960_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478242960_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778478242960_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478242960_2",
+        "name": "地接款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478242960_3",
+        "name": "代订费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478242960_4",
+        "name": "导服费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478242960_5",
+        "name": "其他费用",
+        "amount": 0
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 0
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778478256747",
+    "name": "YJMH-长江贰号·三峡游轮（汉渝航次）-20260506",
+    "productType": "邮轮",
+    "operator": "杨冰雁",
+    "startDate": "2026-05-01",
+    "incomes": [
+      {
+        "id": "inc_1778478256747_1",
+        "name": "线上收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478256747_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478256747_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778478256747_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478256747_2",
+        "name": "地接款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478256747_3",
+        "name": "代订费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478256747_4",
+        "name": "导服费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478256747_5",
+        "name": "其他费用",
+        "amount": 0
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 0
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778478267895",
+    "name": "YJMH-中亚-20260508-新疆",
+    "productType": "中亚",
+    "operator": "祝云星",
+    "startDate": "2026-05-01",
+    "incomes": [
+      {
+        "id": "inc_1778478267895_1",
+        "name": "线上收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478267895_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478267895_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778478267895_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478267895_2",
+        "name": "地接款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478267895_3",
+        "name": "代订费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478267895_4",
+        "name": "导服费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478267895_5",
+        "name": "其他费用",
+        "amount": 0
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 0
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778478280700",
+    "name": "YJMH-西沙邮轮2026·祥龙号0503",
+    "productType": "邮轮",
+    "operator": "郭梦云",
+    "startDate": "2026-05-01",
+    "incomes": [
+      {
+        "id": "inc_1778478280700_1",
+        "name": "线上收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478280700_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478280700_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778478280700_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478280700_2",
+        "name": "地接款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478280700_3",
+        "name": "代订费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478280700_4",
+        "name": "导服费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478280700_5",
+        "name": "其他费用",
+        "amount": 0
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 0
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778478302916",
+    "name": "YJMH-东北-20260522-南宁接广州车",
+    "productType": "东北",
+    "operator": "赵祯",
+    "startDate": "2026-05-01",
+    "incomes": [
+      {
+        "id": "inc_1778478302916_1",
+        "name": "线上收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478302916_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778478302916_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778478302916_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478302916_2",
+        "name": "地接款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478302916_3",
+        "name": "代订费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478302916_4",
+        "name": "导服费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778478302916_5",
+        "name": "其他费用",
+        "amount": 0
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 0
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778552573501",
+    "name": "YJMH-冰雪专列-20260203-A线",
+    "productType": "冰雪专列",
+    "operator": "",
+    "startDate": "2026-02-01",
+    "incomes": [
+      {
+        "id": "inc_1778552573501_1",
+        "name": "线上收入",
+        "amount": 718121
+      },
+      {
+        "id": "inc_1778552573502_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778552573502_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778552573502_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778552573502_2",
+        "name": "地接款",
+        "amount": 476600
+      },
+      {
+        "id": "cost_1778552573502_3",
+        "name": "代订费用",
+        "amount": 72487
+      },
+      {
+        "id": "cost_1778552573502_4",
+        "name": "导服费用",
+        "amount": 8302
+      },
+      {
+        "id": "cost_1778552573502_5",
+        "name": "其他费用",
+        "amount": 1256
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 97
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778552581701",
+    "name": "YJMH-冰雪专列-20260218-B线",
+    "productType": "冰雪专列",
+    "operator": "",
+    "startDate": "2026-02-01",
+    "incomes": [
+      {
+        "id": "inc_1778552581701_1",
+        "name": "线上收入",
+        "amount": 197226
+      },
+      {
+        "id": "inc_1778552581701_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778552581701_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778552581701_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778552581701_2",
+        "name": "地接款",
+        "amount": 141160
+      },
+      {
+        "id": "cost_1778552581701_3",
+        "name": "代订费用",
+        "amount": 4927
+      },
+      {
+        "id": "cost_1778552581701_4",
+        "name": "导服费用",
+        "amount": 2800
+      },
+      {
+        "id": "cost_1778552581701_5",
+        "name": "其他费用",
+        "amount": 302
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 29
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778552792245",
+    "name": "YJMH-西藏-20260305-CS",
+    "productType": "西藏",
+    "operator": "",
+    "startDate": "2026-03-01",
+    "incomes": [
+      {
+        "id": "inc_1778552792245_1",
+        "name": "线上收入",
+        "amount": 44977
+      },
+      {
+        "id": "inc_1778552792245_2",
+        "name": "线下收入",
+        "amount": 26480
+      },
+      {
+        "id": "inc_1778552792245_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778552792245_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778552792245_2",
+        "name": "地接款",
+        "amount": 1535
+      },
+      {
+        "id": "cost_1778552792245_3",
+        "name": "代订费用",
+        "amount": 41929
+      },
+      {
+        "id": "cost_1778552792245_4",
+        "name": "导服费用",
+        "amount": 2678
+      },
+      {
+        "id": "cost_1778552792245_5",
+        "name": "其他费用",
+        "amount": 0
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 13
+      },
+      {
+        "name": "线下",
+        "count": 10
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778552799653",
+    "name": "YJMH-西沙邮轮·祥龙号0309",
+    "productType": "邮轮",
+    "operator": "",
+    "startDate": "2026-03-01",
+    "incomes": [
+      {
+        "id": "inc_1778552799653_1",
+        "name": "线上收入",
+        "amount": 6254
+      },
+      {
+        "id": "inc_1778552799653_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778552799653_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778552799653_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778552799653_2",
+        "name": "地接款",
+        "amount": 5628
+      },
+      {
+        "id": "cost_1778552799653_3",
+        "name": "代订费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778552799653_4",
+        "name": "导服费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778552799653_5",
+        "name": "其他费用",
+        "amount": 3
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 1
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778552804829",
+    "name": "YJMH-西藏-20260310-山南号",
+    "productType": "西藏",
+    "operator": "",
+    "startDate": "2026-03-01",
+    "incomes": [
+      {
+        "id": "inc_1778552804829_1",
+        "name": "线上收入",
+        "amount": 89472
+      },
+      {
+        "id": "inc_1778552804829_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778552804829_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778552804829_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778552804829_2",
+        "name": "地接款",
+        "amount": 56244
+      },
+      {
+        "id": "cost_1778552804829_3",
+        "name": "代订费用",
+        "amount": 4374
+      },
+      {
+        "id": "cost_1778552804829_4",
+        "name": "导服费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778552804829_5",
+        "name": "其他费用",
+        "amount": 120
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 17
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778552809207",
+    "name": "YJMH-越南-20260310 南宁",
+    "productType": "越南",
+    "operator": "",
+    "startDate": "2026-03-01",
+    "incomes": [
+      {
+        "id": "inc_1778552809207_1",
+        "name": "线上收入",
+        "amount": 1475308
+      },
+      {
+        "id": "inc_1778552809207_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778552809207_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778552809207_1",
+        "name": "车票款",
+        "amount": 340000
+      },
+      {
+        "id": "cost_1778552809207_2",
+        "name": "地接款",
+        "amount": 462474
+      },
+      {
+        "id": "cost_1778552809207_3",
+        "name": "代订费用",
+        "amount": 115330
+      },
+      {
+        "id": "cost_1778552809207_4",
+        "name": "导服费用",
+        "amount": 36979
+      },
+      {
+        "id": "cost_1778552809207_5",
+        "name": "其他费用",
+        "amount": 4000
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 257
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778552813198",
+    "name": "YJMH-越南-20260316 南宁",
+    "productType": "越南",
+    "operator": "",
+    "startDate": "2026-03-01",
+    "incomes": [
+      {
+        "id": "inc_1778552813198_1",
+        "name": "线上收入",
+        "amount": 842283
+      },
+      {
+        "id": "inc_1778552813198_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778552813198_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778552813198_1",
+        "name": "车票款",
+        "amount": 170000
+      },
+      {
+        "id": "cost_1778552813198_2",
+        "name": "地接款",
+        "amount": 348334
+      },
+      {
+        "id": "cost_1778552813198_3",
+        "name": "代订费用",
+        "amount": 60131
+      },
+      {
+        "id": "cost_1778552813198_4",
+        "name": "导服费用",
+        "amount": 21600
+      },
+      {
+        "id": "cost_1778552813198_5",
+        "name": "其他费用",
+        "amount": 2384
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 156
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778552819375",
+    "name": "YJMH-西沙邮轮·祥龙号0318",
+    "productType": "邮轮",
+    "operator": "",
+    "startDate": "2026-03-01",
+    "incomes": [
+      {
+        "id": "inc_1778552819375_1",
+        "name": "线上收入",
+        "amount": 27920
+      },
+      {
+        "id": "inc_1778552819375_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778552819375_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778552819375_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778552819375_2",
+        "name": "地接款",
+        "amount": 24520
+      },
+      {
+        "id": "cost_1778552819375_3",
+        "name": "代订费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778552819375_4",
+        "name": "导服费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778552819375_5",
+        "name": "其他费用",
+        "amount": 13
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 4
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778552824390",
+    "name": "YJMH-三峡游轮（恩施）-20260318",
+    "productType": "邮轮",
+    "operator": "",
+    "startDate": "2026-03-01",
+    "incomes": [
+      {
+        "id": "inc_1778552824390_1",
+        "name": "线上收入",
+        "amount": 56998
+      },
+      {
+        "id": "inc_1778552824390_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778552824390_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778552824390_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778552824390_2",
+        "name": "地接款",
+        "amount": 42752
+      },
+      {
+        "id": "cost_1778552824390_3",
+        "name": "代订费用",
+        "amount": 1949
+      },
+      {
+        "id": "cost_1778552824390_4",
+        "name": "导服费用",
+        "amount": 2500
+      },
+      {
+        "id": "cost_1778552824390_5",
+        "name": "其他费用",
+        "amount": 179
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 16
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778553394192",
+    "name": "YJMH-西沙邮轮·祥龙号0412",
+    "productType": "邮轮",
+    "operator": "",
+    "startDate": "2026-04-01",
+    "incomes": [
+      {
+        "id": "inc_1778553394192_1",
+        "name": "线上收入",
+        "amount": 44116
+      },
+      {
+        "id": "inc_1778553394192_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778553394192_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778553394192_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778553394192_2",
+        "name": "地接款",
+        "amount": 37816
+      },
+      {
+        "id": "cost_1778553394192_3",
+        "name": "代订费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778553394192_4",
+        "name": "导服费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778553394192_5",
+        "name": "其他费用",
+        "amount": 23
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 7
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778553406836",
+    "name": "YJMH-遇见美好号*云贵-20260415",
+    "productType": "遇见美好号",
+    "operator": "",
+    "startDate": "2026-04-01",
+    "incomes": [
+      {
+        "id": "inc_1778553406836_1",
+        "name": "线上收入",
+        "amount": 2267706
+      },
+      {
+        "id": "inc_1778553406836_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778553406836_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778553406836_1",
+        "name": "车票款",
+        "amount": 770000
+      },
+      {
+        "id": "cost_1778553406836_2",
+        "name": "地接款",
+        "amount": 716076
+      },
+      {
+        "id": "cost_1778553406836_3",
+        "name": "代订费用",
+        "amount": 9518
+      },
+      {
+        "id": "cost_1778553406836_4",
+        "name": "导服费用",
+        "amount": 36600
+      },
+      {
+        "id": "cost_1778553406836_5",
+        "name": "其他费用",
+        "amount": 3000
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 184
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778553412828",
+    "name": "YJMH-西藏-20260416-CS",
+    "productType": "西藏",
+    "operator": "",
+    "startDate": "2026-04-01",
+    "incomes": [
+      {
+        "id": "inc_1778553412828_1",
+        "name": "线上收入",
+        "amount": 104358
+      },
+      {
+        "id": "inc_1778553412828_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778553412828_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778553412828_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778553412828_2",
+        "name": "地接款",
+        "amount": 3250
+      },
+      {
+        "id": "cost_1778553412828_3",
+        "name": "代订费用",
+        "amount": 49845
+      },
+      {
+        "id": "cost_1778553412828_4",
+        "name": "导服费用",
+        "amount": 2000
+      },
+      {
+        "id": "cost_1778553412828_5",
+        "name": "其他费用",
+        "amount": 243
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 25
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778553427676",
+    "name": "YJMH-爱达·东南亚五国-20260418",
+    "productType": "邮轮",
+    "operator": "",
+    "startDate": "2026-04-01",
+    "incomes": [
+      {
+        "id": "inc_1778553427676_1",
+        "name": "线上收入",
+        "amount": 564101
+      },
+      {
+        "id": "inc_1778553427676_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778553427676_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778553427676_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778553427676_2",
+        "name": "地接款",
+        "amount": 513917
+      },
+      {
+        "id": "cost_1778553427676_3",
+        "name": "代订费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778553427676_4",
+        "name": "导服费用",
+        "amount": 5969
+      },
+      {
+        "id": "cost_1778553427676_5",
+        "name": "其他费用",
+        "amount": 368
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 45
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778553432668",
+    "name": "YJMH-西藏-20260418-山南号",
+    "productType": "西藏",
+    "operator": "",
+    "startDate": "2026-04-01",
+    "incomes": [
+      {
+        "id": "inc_1778553432668_1",
+        "name": "线上收入",
+        "amount": 65274
+      },
+      {
+        "id": "inc_1778553432668_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778553432668_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778553432668_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778553432668_2",
+        "name": "地接款",
+        "amount": 39500
+      },
+      {
+        "id": "cost_1778553432668_3",
+        "name": "代订费用",
+        "amount": 6716
+      },
+      {
+        "id": "cost_1778553432668_4",
+        "name": "导服费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778553432668_5",
+        "name": "其他费用",
+        "amount": 121
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 13
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778553437388",
+    "name": "YJMH-南北疆-20260422-杭州车",
+    "productType": "南北疆",
+    "operator": "",
+    "startDate": "2026-04-01",
+    "incomes": [
+      {
+        "id": "inc_1778553437388_1",
+        "name": "线上收入",
+        "amount": 1523383
+      },
+      {
+        "id": "inc_1778553437388_2",
+        "name": "线下收入",
+        "amount": 27488
+      },
+      {
+        "id": "inc_1778553437388_3",
+        "name": "切位收入",
+        "amount": 876235
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778553437388_1",
+        "name": "车票款",
+        "amount": 1795848
+      },
+      {
+        "id": "cost_1778553437388_2",
+        "name": "地接款",
+        "amount": 239900
+      },
+      {
+        "id": "cost_1778553437388_3",
+        "name": "代订费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778553437388_4",
+        "name": "导服费用",
+        "amount": 55200
+      },
+      {
+        "id": "cost_1778553437388_5",
+        "name": "其他费用",
+        "amount": 6250
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 272
+      },
+      {
+        "name": "线下",
+        "count": 6
+      },
+      {
+        "name": "切位",
+        "count": 425
+      }
+    ]
+  },
+  {
+    "id": "proj_1778553442404",
+    "name": "YJMH-东北-20260422-湖北接华东车",
+    "productType": "东北",
+    "operator": "",
+    "startDate": "2026-04-01",
+    "incomes": [
+      {
+        "id": "inc_1778553442404_1",
+        "name": "线上收入",
+        "amount": 2275145
+      },
+      {
+        "id": "inc_1778553442404_2",
+        "name": "线下收入",
+        "amount": 357130
+      },
+      {
+        "id": "inc_1778553442404_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778553442404_1",
+        "name": "车票款",
+        "amount": 1477142
+      },
+      {
+        "id": "cost_1778553442404_2",
+        "name": "地接款",
+        "amount": 428615
+      },
+      {
+        "id": "cost_1778553442404_3",
+        "name": "代订费用",
+        "amount": 51402
+      },
+      {
+        "id": "cost_1778553442404_4",
+        "name": "导服费用",
+        "amount": 81550
+      },
+      {
+        "id": "cost_1778553442404_5",
+        "name": "其他费用",
+        "amount": 10829
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 504
+      },
+      {
+        "name": "线下",
+        "count": 127
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  },
+  {
+    "id": "proj_1778553449855",
+    "name": "YJMH-南北疆-20260424-广州车",
+    "productType": "南北疆",
+    "operator": "",
+    "startDate": "2026-04-01",
+    "incomes": [
+      {
+        "id": "inc_1778553449855_1",
+        "name": "线上收入",
+        "amount": 2624595
+      },
+      {
+        "id": "inc_1778553449855_2",
+        "name": "线下收入",
+        "amount": 100442
+      },
+      {
+        "id": "inc_1778553449855_3",
+        "name": "切位收入",
+        "amount": 285975
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778553449855_1",
+        "name": "车票款",
+        "amount": 1698790
+      },
+      {
+        "id": "cost_1778553449855_2",
+        "name": "地接款",
+        "amount": 446530
+      },
+      {
+        "id": "cost_1778553449855_3",
+        "name": "代订费用",
+        "amount": 55692
+      },
+      {
+        "id": "cost_1778553449855_4",
+        "name": "导服费用",
+        "amount": 81800
+      },
+      {
+        "id": "cost_1778553449855_5",
+        "name": "其他费用",
+        "amount": 9113
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 505
+      },
+      {
+        "name": "线下",
+        "count": 29
+      },
+      {
+        "name": "切位",
+        "count": 150
+      }
+    ]
+  },
+  {
+    "id": "proj_1778553454127",
+    "name": "YJMH-东北-20260424-广东车",
+    "productType": "东北",
+    "operator": "",
+    "startDate": "2026-04-01",
+    "incomes": [
+      {
+        "id": "inc_1778553454127_1",
+        "name": "线上收入",
+        "amount": 1213108
+      },
+      {
+        "id": "inc_1778553454127_2",
+        "name": "线下收入",
+        "amount": 198032
+      },
+      {
+        "id": "inc_1778553454127_3",
+        "name": "切位收入",
+        "amount": 775311
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778553454127_1",
+        "name": "车票款",
+        "amount": 1472501
+      },
+      {
+        "id": "cost_1778553454127_2",
+        "name": "地接款",
+        "amount": 225775
+      },
+      {
+        "id": "cost_1778553454127_3",
+        "name": "代订费用",
+        "amount": 35289
+      },
+      {
+        "id": "cost_1778553454127_4",
+        "name": "导服费用",
+        "amount": 48500
+      },
+      {
+        "id": "cost_1778553454127_5",
+        "name": "其他费用",
+        "amount": 3557
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 288
+      },
+      {
+        "name": "线下",
+        "count": 54
+      },
+      {
+        "name": "切位",
+        "count": 419
+      }
+    ]
+  },
+  {
+    "id": "proj_1778553464020",
+    "name": "YJMH-中俄蒙-20260426-CS",
+    "productType": "中俄蒙",
+    "operator": "",
+    "startDate": "2026-04-01",
+    "incomes": [
+      {
+        "id": "inc_1778553464020_1",
+        "name": "线上收入",
+        "amount": 124980
+      },
+      {
+        "id": "inc_1778553464020_2",
+        "name": "线下收入",
+        "amount": 0
+      },
+      {
+        "id": "inc_1778553464020_3",
+        "name": "切位收入",
+        "amount": 0
+      }
+    ],
+    "costs": [
+      {
+        "id": "cost_1778553464020_1",
+        "name": "车票款",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778553464020_2",
+        "name": "地接款",
+        "amount": 104500
+      },
+      {
+        "id": "cost_1778553464020_3",
+        "name": "代订费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778553464020_4",
+        "name": "导服费用",
+        "amount": 0
+      },
+      {
+        "id": "cost_1778553464020_5",
+        "name": "其他费用",
+        "amount": 48
+      }
+    ],
+    "profitItems": [],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "peopleDetails": [
+      {
+        "name": "线上",
+        "count": 5
+      },
+      {
+        "name": "线下",
+        "count": 0
+      },
+      {
+        "name": "切位",
+        "count": 0
+      }
+    ]
+  }
+];
