@@ -16,27 +16,32 @@
       {
         "id": "cost_1778477812132",
         "name": "车票款",
-        "amount": 360000
+        "amount": 360000,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778477818476",
         "name": "地接款",
-        "amount": 679228
+        "amount": 679228,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778477844404",
         "name": "代订费用",
-        "amount": 133287
+        "amount": 133287,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778477856660",
         "name": "导服费",
-        "amount": 48200
+        "amount": 48200,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778477867292",
         "name": "其他",
-        "amount": 5584
+        "amount": 5584,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -56,7 +61,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778468995018",
@@ -75,22 +82,26 @@
       {
         "id": "cost_1778477910132",
         "name": "地接款",
-        "amount": 142100
+        "amount": 142100,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778477915853",
         "name": "代订费用",
-        "amount": 4177
+        "amount": 4177,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778477920932",
         "name": "导服费",
-        "amount": 2600
+        "amount": 2600,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778477926348",
         "name": "其他",
-        "amount": 171
+        "amount": 171,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -110,7 +121,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778469000914",
@@ -129,22 +142,26 @@
       {
         "id": "cost_1778477970253",
         "name": "地接款",
-        "amount": 170520
+        "amount": 170520,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778477975292",
         "name": "代订费用",
-        "amount": 25963
+        "amount": 25963,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778477980166",
         "name": "导服费",
-        "amount": 7600
+        "amount": 7600,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778477984877",
         "name": "其他",
-        "amount": 800
+        "amount": 800,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -164,7 +181,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778469008378",
@@ -183,12 +202,14 @@
       {
         "id": "cost_1778478024461",
         "name": "地接款",
-        "amount": 43820
+        "amount": 43820,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778478031732",
         "name": "其他",
-        "amount": 44
+        "amount": 44,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -208,7 +229,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478180812",
@@ -237,27 +260,32 @@
       {
         "id": "cost_1778478180812_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478180812_2",
         "name": "地接款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778478180812_3",
         "name": "代订费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478180812_4",
         "name": "导服费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778478180812_5",
         "name": "其他费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -277,7 +305,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478204084",
@@ -306,27 +336,32 @@
       {
         "id": "cost_1778478204084_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478204084_2",
         "name": "地接款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778478204084_3",
         "name": "代订费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478204084_4",
         "name": "导服费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778478204084_5",
         "name": "其他费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -346,7 +381,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478220980",
@@ -375,27 +412,32 @@
       {
         "id": "cost_1778478220980_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478220980_2",
         "name": "地接款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778478220980_3",
         "name": "代订费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478220980_4",
         "name": "导服费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778478220980_5",
         "name": "其他费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -415,7 +457,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478242960",
@@ -444,27 +488,32 @@
       {
         "id": "cost_1778478242960_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478242960_2",
         "name": "地接款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778478242960_3",
         "name": "代订费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478242960_4",
         "name": "导服费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778478242960_5",
         "name": "其他费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -484,7 +533,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478256747",
@@ -513,27 +564,32 @@
       {
         "id": "cost_1778478256747_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478256747_2",
         "name": "地接款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778478256747_3",
         "name": "代订费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478256747_4",
         "name": "导服费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778478256747_5",
         "name": "其他费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -553,7 +609,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478267895",
@@ -582,27 +640,32 @@
       {
         "id": "cost_1778478267895_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478267895_2",
         "name": "地接款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778478267895_3",
         "name": "代订费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478267895_4",
         "name": "导服费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778478267895_5",
         "name": "其他费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -622,7 +685,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478280700",
@@ -651,27 +716,32 @@
       {
         "id": "cost_1778478280700_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478280700_2",
         "name": "地接款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778478280700_3",
         "name": "代订费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478280700_4",
         "name": "导服费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778478280700_5",
         "name": "其他费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -691,7 +761,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478302916",
@@ -720,27 +792,32 @@
       {
         "id": "cost_1778478302916_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478302916_2",
         "name": "地接款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778478302916_3",
         "name": "代订费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778478302916_4",
         "name": "导服费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778478302916_5",
         "name": "其他费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -760,7 +837,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552573501",
@@ -789,27 +868,32 @@
       {
         "id": "cost_1778552573502_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552573502_2",
         "name": "地接款",
-        "amount": 476600
+        "amount": 476600,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778552573502_3",
         "name": "代订费用",
-        "amount": 72487
+        "amount": 72487,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552573502_4",
         "name": "导服费用",
-        "amount": 8302
+        "amount": 8302,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778552573502_5",
         "name": "其他费用",
-        "amount": 1256
+        "amount": 1256,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -829,7 +913,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552581701",
@@ -858,27 +944,32 @@
       {
         "id": "cost_1778552581701_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552581701_2",
         "name": "地接款",
-        "amount": 141160
+        "amount": 141160,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778552581701_3",
         "name": "代订费用",
-        "amount": 4927
+        "amount": 4927,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552581701_4",
         "name": "导服费用",
-        "amount": 2800
+        "amount": 2800,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778552581701_5",
         "name": "其他费用",
-        "amount": 302
+        "amount": 302,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -898,7 +989,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552792245",
@@ -927,27 +1020,32 @@
       {
         "id": "cost_1778552792245_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552792245_2",
         "name": "地接款",
-        "amount": 1535
+        "amount": 1535,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778552792245_3",
         "name": "代订费用",
-        "amount": 41929
+        "amount": 41929,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552792245_4",
         "name": "导服费用",
-        "amount": 2678
+        "amount": 2678,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778552792245_5",
         "name": "其他费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -967,7 +1065,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552799653",
@@ -996,27 +1096,32 @@
       {
         "id": "cost_1778552799653_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552799653_2",
         "name": "地接款",
-        "amount": 5628
+        "amount": 5628,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778552799653_3",
         "name": "代订费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552799653_4",
         "name": "导服费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778552799653_5",
         "name": "其他费用",
-        "amount": 3
+        "amount": 3,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -1036,7 +1141,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552804829",
@@ -1065,27 +1172,32 @@
       {
         "id": "cost_1778552804829_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552804829_2",
         "name": "地接款",
-        "amount": 56244
+        "amount": 56244,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778552804829_3",
         "name": "代订费用",
-        "amount": 4374
+        "amount": 4374,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552804829_4",
         "name": "导服费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778552804829_5",
         "name": "其他费用",
-        "amount": 120
+        "amount": 120,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -1105,7 +1217,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552809207",
@@ -1134,27 +1248,32 @@
       {
         "id": "cost_1778552809207_1",
         "name": "车票款",
-        "amount": 340000
+        "amount": 340000,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552809207_2",
         "name": "地接款",
-        "amount": 462474
+        "amount": 462474,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778552809207_3",
         "name": "代订费用",
-        "amount": 115330
+        "amount": 115330,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552809207_4",
         "name": "导服费用",
-        "amount": 36979
+        "amount": 36979,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778552809207_5",
         "name": "其他费用",
-        "amount": 4000
+        "amount": 4000,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -1174,7 +1293,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552813198",
@@ -1203,27 +1324,32 @@
       {
         "id": "cost_1778552813198_1",
         "name": "车票款",
-        "amount": 170000
+        "amount": 170000,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552813198_2",
         "name": "地接款",
-        "amount": 348334
+        "amount": 348334,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778552813198_3",
         "name": "代订费用",
-        "amount": 60131
+        "amount": 60131,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552813198_4",
         "name": "导服费用",
-        "amount": 21600
+        "amount": 21600,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778552813198_5",
         "name": "其他费用",
-        "amount": 2384
+        "amount": 2384,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -1243,7 +1369,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552819375",
@@ -1272,27 +1400,32 @@
       {
         "id": "cost_1778552819375_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552819375_2",
         "name": "地接款",
-        "amount": 24520
+        "amount": 24520,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778552819375_3",
         "name": "代订费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552819375_4",
         "name": "导服费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778552819375_5",
         "name": "其他费用",
-        "amount": 13
+        "amount": 13,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -1312,7 +1445,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552824390",
@@ -1341,27 +1476,32 @@
       {
         "id": "cost_1778552824390_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552824390_2",
         "name": "地接款",
-        "amount": 42752
+        "amount": 42752,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778552824390_3",
         "name": "代订费用",
-        "amount": 1949
+        "amount": 1949,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778552824390_4",
         "name": "导服费用",
-        "amount": 2500
+        "amount": 2500,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778552824390_5",
         "name": "其他费用",
-        "amount": 179
+        "amount": 179,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -1381,7 +1521,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553394192",
@@ -1389,54 +1531,53 @@
     "productType": "邮轮",
     "operator": "",
     "startDate": "2026-04-01",
+    "remark": "",
     "incomes": [
       {
-        "id": "inc_1778553394192_1",
         "name": "线上收入",
         "amount": 44116
       },
       {
-        "id": "inc_1778553394192_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 22222
       },
       {
-        "id": "inc_1778553394192_3",
         "name": "切位收入",
         "amount": 0
       }
     ],
     "costs": [
       {
-        "id": "cost_1778553394192_1",
+        "id": "cost_1779706758443_0",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
-        "id": "cost_1778553394192_2",
+        "id": "cost_1779706758443_1",
         "name": "地接款",
-        "amount": 37816
+        "amount": 37816,
+        "_supplierId": "sup_1"
       },
       {
-        "id": "cost_1778553394192_3",
+        "id": "cost_1779706758443_2",
         "name": "代订费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
-        "id": "cost_1778553394192_4",
+        "id": "cost_1779706758443_3",
         "name": "导服费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_4"
       },
       {
-        "id": "cost_1778553394192_5",
+        "id": "cost_1779706758443_4",
         "name": "其他费用",
-        "amount": 23
+        "amount": 23,
+        "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -1479,27 +1620,32 @@
       {
         "id": "cost_1778553406836_1",
         "name": "车票款",
-        "amount": 770000
+        "amount": 770000,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553406836_2",
         "name": "地接款",
-        "amount": 716076
+        "amount": 716076,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778553406836_3",
         "name": "代订费用",
-        "amount": 9518
+        "amount": 9518,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553406836_4",
         "name": "导服费用",
-        "amount": 36600
+        "amount": 36600,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778553406836_5",
         "name": "其他费用",
-        "amount": 3000
+        "amount": 3000,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -1519,7 +1665,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553412828",
@@ -1548,27 +1696,32 @@
       {
         "id": "cost_1778553412828_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553412828_2",
         "name": "地接款",
-        "amount": 3250
+        "amount": 3250,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778553412828_3",
         "name": "代订费用",
-        "amount": 49845
+        "amount": 49845,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553412828_4",
         "name": "导服费用",
-        "amount": 2000
+        "amount": 2000,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778553412828_5",
         "name": "其他费用",
-        "amount": 243
+        "amount": 243,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -1588,7 +1741,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553427676",
@@ -1617,27 +1772,32 @@
       {
         "id": "cost_1778553427676_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553427676_2",
         "name": "地接款",
-        "amount": 513917
+        "amount": 513917,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778553427676_3",
         "name": "代订费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553427676_4",
         "name": "导服费用",
-        "amount": 5969
+        "amount": 5969,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778553427676_5",
         "name": "其他费用",
-        "amount": 368
+        "amount": 368,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -1657,7 +1817,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553432668",
@@ -1686,27 +1848,32 @@
       {
         "id": "cost_1778553432668_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553432668_2",
         "name": "地接款",
-        "amount": 39500
+        "amount": 39500,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778553432668_3",
         "name": "代订费用",
-        "amount": 6716
+        "amount": 6716,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553432668_4",
         "name": "导服费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778553432668_5",
         "name": "其他费用",
-        "amount": 121
+        "amount": 121,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -1726,7 +1893,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553437388",
@@ -1755,27 +1924,32 @@
       {
         "id": "cost_1778553437388_1",
         "name": "车票款",
-        "amount": 1795848
+        "amount": 1795848,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553437388_2",
         "name": "地接款",
-        "amount": 239900
+        "amount": 239900,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778553437388_3",
         "name": "代订费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553437388_4",
         "name": "导服费用",
-        "amount": 55200
+        "amount": 55200,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778553437388_5",
         "name": "其他费用",
-        "amount": 6250
+        "amount": 6250,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -1795,7 +1969,9 @@
         "name": "切位",
         "count": 425
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553442404",
@@ -1824,27 +2000,32 @@
       {
         "id": "cost_1778553442404_1",
         "name": "车票款",
-        "amount": 1477142
+        "amount": 1477142,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553442404_2",
         "name": "地接款",
-        "amount": 428615
+        "amount": 428615,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778553442404_3",
         "name": "代订费用",
-        "amount": 51402
+        "amount": 51402,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553442404_4",
         "name": "导服费用",
-        "amount": 81550
+        "amount": 81550,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778553442404_5",
         "name": "其他费用",
-        "amount": 10829
+        "amount": 10829,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -1864,7 +2045,9 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553449855",
@@ -1893,27 +2076,32 @@
       {
         "id": "cost_1778553449855_1",
         "name": "车票款",
-        "amount": 1698790
+        "amount": 1698790,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553449855_2",
         "name": "地接款",
-        "amount": 446530
+        "amount": 446530,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778553449855_3",
         "name": "代订费用",
-        "amount": 55692
+        "amount": 55692,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553449855_4",
         "name": "导服费用",
-        "amount": 81800
+        "amount": 81800,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778553449855_5",
         "name": "其他费用",
-        "amount": 9113
+        "amount": 9113,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -1933,7 +2121,9 @@
         "name": "切位",
         "count": 150
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553454127",
@@ -1962,27 +2152,32 @@
       {
         "id": "cost_1778553454127_1",
         "name": "车票款",
-        "amount": 1472501
+        "amount": 1472501,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553454127_2",
         "name": "地接款",
-        "amount": 225775
+        "amount": 225775,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778553454127_3",
         "name": "代订费用",
-        "amount": 35289
+        "amount": 35289,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553454127_4",
         "name": "导服费用",
-        "amount": 48500
+        "amount": 48500,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778553454127_5",
         "name": "其他费用",
-        "amount": 3557
+        "amount": 3557,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -2002,7 +2197,9 @@
         "name": "切位",
         "count": 419
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553464020",
@@ -2031,27 +2228,32 @@
       {
         "id": "cost_1778553464020_1",
         "name": "车票款",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553464020_2",
         "name": "地接款",
-        "amount": 104500
+        "amount": 104500,
+        "_supplierId": "sup_1"
       },
       {
         "id": "cost_1778553464020_3",
         "name": "代订费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_3"
       },
       {
         "id": "cost_1778553464020_4",
         "name": "导服费用",
-        "amount": 0
+        "amount": 0,
+        "_supplierId": "sup_4"
       },
       {
         "id": "cost_1778553464020_5",
         "name": "其他费用",
-        "amount": 48
+        "amount": 48,
+        "_supplierId": "sup_6"
       }
     ],
     "profitItems": [],
@@ -2071,6 +2273,8 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   }
 ]
