@@ -351,7 +351,7 @@
         </div>
       </div>
       <div class="card">
-        <div class="card-title">☁️ Supabase 连接信息</div>
+        <div class="card-title">☁️ GitHub 连接信息</div>
         <div style="font-size:13px;color:var(--text-secondary);line-height:1.8;">
           <p><strong>Project URL:</strong> <code id="showUrl" style="word-break:break-all;">-</code></p>
           <p><strong>状态:</strong> <span id="connStatus" class="status-badge status-warn">未测试</span></p>
@@ -405,6 +405,7 @@ window.onerror = function(msg, url, line) {
 };
 </script>
 
+<script src="gh-config.js"></script>
 <script>
 
 // 用 addEventListener 绑定所有事件（必须等 DOM 就绪）
@@ -459,10 +460,7 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('[DOM] all events bound OK');
 });
 
-// ==================== 配置 ====================
-var SUPABASE_URL = 'https://vnhvjahlvqodgsadjw.supabase.co';
-var SUPABASE_ANON_KEY = 'sb_publishable_z06qPVHQAOHZuNiSxHXOyw_IL2-G7Bf';
-var SUPABASE_REST_URL = SUPABASE_URL + '/rest/v1';
+// ==================== 配置（GITHUB_* 变量来自 gh-config.js） ====================
 var ADMIN_PASSWORD_KEY = 'tour_admin_pwd';
 var currentData = [];
 var editPage = 1;
@@ -510,73 +508,39 @@ function changePassword() {
   document.getElementById('newPasswordInput').value = '';
 }
 
-// ==================== Supabase REST API ====================
-function sbHeaders() {
-  return {
-    'apikey': SUPABASE_ANON_KEY,
-    'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
-    'Content-Type': 'application/json'
-  };
-}
+// ==================== GitHub API ====================
+function utf8ToBase64(str) { return btoa(unescape(encodeURIComponent(str))); }
 
-async function supabaseSelect(tableName, options) {
-  var url = SUPABASE_REST_URL + '/' + tableName;
-  var params = [];
-  if (options && options.order) params.push('order=' + encodeURIComponent(options.order));
-  if (options && options.limit !== undefined) params.push('limit=' + options.limit);
-  if (params.length) url += '?' + params.join('&');
+async function githubLoadAll() {
   try {
-    var resp = await fetch(url, { headers: sbHeaders() });
-    if (!resp.ok) throw new Error('HTTP ' + resp.status + ': ' + await resp.text());
-    return await resp.json();
-  } catch(e) { console.error('Supabase select error:', e); return null; }
-}
-
-async function supabaseInsert(tableName, data) {
-  try {
-    var resp = await fetch(SUPABASE_REST_URL + '/' + tableName, {
-      method: 'POST',
-      headers: Object.assign({}, sbHeaders(), { 'Prefer': 'return=representation' }),
-      body: JSON.stringify(data)
-    });
-    if (!resp.ok) throw new Error('HTTP ' + resp.status + ': ' + await resp.text());
-    return await resp.json();
-  } catch(e) { console.error('Supabase insert error:', e); return null; }
-}
-
-async function supabaseUpdate(tableName, id, data) {
-  try {
-    var resp = await fetch(SUPABASE_REST_URL + '/' + tableName + '?id=eq.' + id, {
-      method: 'PATCH',
-      headers: sbHeaders(),
-      body: JSON.stringify(data)
-    });
+    var resp = await fetch(GITHUB_RAW_URL, { cache: 'no-cache' });
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
-    return true;
-  } catch(e) { console.error('Supabase update error:', e); return false; }
+    return await resp.json();
+  } catch(e) { console.error('GitHub load error:', e); return null; }
 }
 
-async function supabaseDelete(tableName, id) {
+async function githubSaveAll(projectsArray) {
   try {
-    var resp = await fetch(SUPABASE_REST_URL + '/' + tableName + '?id=eq.' + id, {
-      method: 'DELETE', headers: sbHeaders()
+    var getResp = await fetch(GITHUB_API_URL, {
+      headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Accept': 'application/vnd.github+json' }
     });
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
-    return true;
-  } catch(e) { console.error('Supabase delete error:', e); return false; }
-}
+    var fileInfo = getResp.ok ? await getResp.json() : {};
+    var sha = fileInfo.sha;
 
-async function clearAllTable(tableName) {
-  try {
-    // 先获取所有记录ID
-    var rows = await supabaseSelect(tableName, {});
-    if (!rows || rows.length === 0) return true;
-    // 逐个删除
-    for (var i = 0; i < rows.length; i++) {
-      await supabaseDelete(tableName, rows[i].id);
-    }
+    var body = {
+      message: 'Update data.json from admin panel',
+      content: utf8ToBase64(JSON.stringify(projectsArray, null, 2))
+    };
+    if (sha) body.sha = sha;
+
+    var putResp = await fetch(GITHUB_API_URL, {
+      method: 'PUT',
+      headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Content-Type': 'application/json' },
+      body: JSON.stringify(body)
+    });
+    if (!putResp.ok) throw new Error('HTTP ' + putResp.status + ': ' + await putResp.text());
     return true;
-  } catch(e) { return false; }
+  } catch(e) { console.error('GitHub save error:', e); return false; }
 }
 
 // ==================== 日志工具 ====================
@@ -627,9 +591,9 @@ function formatJson() {
 /** 加载当前数据到编辑器 */
 async function loadCurrentData() {
   log('🔄 正在加载当前云端数据...');
-  var rows = await supabaseSelect('tour_projects', { order: 'id.asc', limit: 999 });
-  if (rows && Array.isArray(rows)) {
-    currentData = rows.map(function(r) { return r.data || r; }).filter(Boolean);
+  var data = await githubLoadAll();
+  if (data && Array.isArray(data)) {
+    currentData = data;
     document.getElementById('jsonEditor').value = JSON.stringify(currentData, null, 2);
     log('✅ 已加载 ' + currentData.length + ' 条团期数据');
   } else {
@@ -720,87 +684,38 @@ function validateAndPreview() {
   }
 }
 
-/** 保存到 Supabase */
+/** 保存到 GitHub */
 async function saveToSupabase() {
   var btn = document.getElementById('publishBtn');
-  if (btn && btn.disabled) return; // 防止重复点击
+  if (btn && btn.disabled) return;
 
   var raw = document.getElementById('jsonEditor').value.trim();
-  if (!raw) {
-    showToast('❌ 编辑器为空，请先粘贴或上传数据', 'err');
-    log('❌ 编辑器为空，无法保存');
-    return;
-  }
+  if (!raw) { showToast('❌ 编辑器为空，请先粘贴或上传数据', 'err'); log('❌ 编辑器为空，无法保存'); return; }
 
+  var data;
   try {
-    var data = JSON.parse(raw);
+    data = JSON.parse(raw);
     if (!Array.isArray(data)) throw new Error('必须是 JSON 数组');
     if (data.length === 0) throw new Error('数组不能为空');
-  } catch(e) {
-    showToast('❌ JSON 格式错误: ' + e.message, 'err');
-    log('❌ JSON 格式错误: ' + e.message);
-    return;
-  }
+  } catch(e) { showToast('❌ JSON 格式错误: ' + e.message, 'err'); log('❌ JSON 格式错误: ' + e.message); return; }
 
-  // ====== 按钮进入加载态 ======
-  if (btn) {
-    btn.disabled = true;
-    btn.setAttribute('data-old-text', btn.textContent);
-    btn.textContent = '⏳ 正在发布...';
-  }
+  if (btn) { btn.disabled = true; btn.setAttribute('data-old-text', btn.textContent); btn.textContent = '⏳ 正在发布...'; }
   showToast('⏳ 正在发布 ' + data.length + ' 条数据到云端...', 'info');
-
-  log('☁️ 开始保存 ' + data.length + ' 条数据到 Supabase...');
+  log('☁️ 开始保存 ' + data.length + ' 条数据到 GitHub...');
 
   try {
-    // 1. 先清空
-    var cleared = await clearAllTable('tour_projects');
-    if (!cleared) {
-      showToast('❌ 清空旧数据失败，终止保存', 'err');
-      log('❌ 清空旧数据失败，终止保存');
-      if (btn) { btn.disabled = false; btn.textContent = btn.getAttribute('data-old-text') || '☁️ 发布到云端'; }
-      return;
-    }
-    log('🗑️ 已清空旧数据');
-
-    // 2. 批量插入
-    var batchSize = 100;
-    var successCount = 0;
-    for (var start = 0; start < data.length; start += batchSize) {
-      var batch = data.slice(start, start + batchSize).map(function(item) {
-        return { data: item };
-      });
-      var result = await supabaseInsert('tour_projects', batch);
-      if (result) {
-        successCount += batch.length;
-        log('  ✅ 插入批次 ' + Math.floor(start/batchSize+1) + ': +' + batch.length + ' 条');
-      } else {
-        log('  ❌ 插入批次 ' + Math.floor(start/batchSize+1) + ' 失败!');
-      }
-      // 更新弹窗进度
-      showToast('⏳ 发布中... ' + successCount + '/' + data.length, 'info');
-      if (start + batchSize < data.length) await new Promise(function(r){setTimeout(r,300)});
-    }
-
-    log('');
-    log('🎉 保存完成! 共 ' + successCount + '/' + data.length + ' 条数据已写入云端');
-    log('→ 其他人刷新看板页面即可看到最新数据');
-
-    showToast('✅ 发布完成！共 ' + successCount + '/' + data.length + ' 条数据已写入云端', 'ok');
-
-    // 更新云端状态
+    var ok = await githubSaveAll(data);
+    if (!ok) throw new Error('GitHub写入失败');
+    log(''); log('🎉 保存完成! 共 ' + data.length + ' 条数据已写入云端');
+    log('→ 其他人刷新看板页面即可看到最新数据（约等1分钟同步）');
+    showToast('✅ 发布完成！共 ' + data.length + ' 条数据已写入云端', 'ok');
     checkCloudStatus();
-
   } catch(e) {
     showToast('❌ 保存失败: ' + e.message, 'err');
     log('❌ 保存失败: ' + e.message);
   }
 
-  // ====== 恢复按钮 ======
-  if (btn) {
-    btn.disabled = false;
-    btn.textContent = btn.getAttribute('data-old-text') || '☁️ 发布到云端';
-  }
+  if (btn) { btn.disabled = false; btn.textContent = btn.getAttribute('data-old-text') || '☁️ 发布到云端'; }
 }
 
 // 文件上传（延后绑定，在 DOMContentLoaded 中处理）
@@ -827,11 +742,9 @@ function handleFile(file) {
 async function checkCloudStatus() {
   var el = document.getElementById('cloudStatus');
   try {
-    var rows = await supabaseSelect('tour_projects', { limit: 1 });
-    if (rows && rows.length > 0) {
-      var countResult = await fetch(SUPABASE_REST_URL + '/tour_projects?select=id', { headers: sbHeaders() });
-      var countRows = await countResult.json();
-      el.innerHTML = '<span class="status-badge status-ok">✅ 连接正常</span> · 共 ' + countRows.length + ' 条团期数据';
+    var data = await githubLoadAll();
+    if (data && Array.isArray(data) && data.length > 0) {
+      el.innerHTML = '<span class="status-badge status-ok">✅ 连接正常</span> · 共 ' + data.length + ' 条团期数据';
     } else {
       el.innerHTML = '<span class="status-badge status-warn">⚠️ 表为空</span> · 请先导入数据';
     }
@@ -1070,7 +983,7 @@ window.deleteProject = async function(id) {
 
 // ==================== TAB 3: 设置 ====================
 function loadSettings() {
-  document.getElementById('showUrl').textContent = SUPABASE_URL;
+  document.getElementById('showUrl').textContent = GITHUB_RAW_URL;
 }
 
 window.testConnection = async function() {
@@ -1078,10 +991,10 @@ window.testConnection = async function() {
   el.className = 'status-badge status-warn';
   el.textContent = '测试中...';
   try {
-    var rows = await supabaseSelect('tour_projects', { limit: 1 });
+    var data = await githubLoadAll();
     el.className = 'status-badge status-ok';
-    el.textContent = '✅ 连接成功 (' + (rows?rows.length:0) + '条)';
-    log('🔗 Supabase 连接成功');
+    el.textContent = '✅ 连接成功 (' + (data?data.length:0) + '条)';
+    log('🔗 GitHub 连接成功');
   } catch(e) {
     el.className = 'status-badge status-err';
     el.textContent = '❌ 连接失败: ' + e.message;
@@ -1102,7 +1015,7 @@ window.exportBackup = function() {
 
 window.clearCloudData = async function() {
   log('🗑️ 开始清空云端数据...');
-  var ok = await clearAllTable('tour_projects');
+  var ok = await githubSaveAll([]);
   if(ok) {
     log('✅ 云端数据已清空');
     currentData = [];
@@ -1116,7 +1029,7 @@ window.clearCloudData = async function() {
 // ==================== 初始化 ====================
 async function initAdmin() {
   log('🚀 管理后台初始化...');
-  document.getElementById('showUrl').textContent = SUPABASE_URL;
+  document.getElementById('showUrl').textContent = GITHUB_RAW_URL;
   await checkCloudStatus();
 
   // 自动加载当前数据
