@@ -366,8 +366,17 @@
   /* Payment quick modal */
   #payModalOverlay { position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:300;display:none;align-items:center;justify-content:center; }
   #payModalOverlay.show { display:flex; }
-  #payModalBox { background:var(--bg-secondary);border:1px solid var(--border);border-radius:20px;padding:24px;width:90%;max-width:480px; }
+  #payModalBox { background:var(--bg-secondary);border:1px solid var(--border);border-radius:20px;padding:24px;width:90%;max-width:640px;max-height:85vh;overflow-y:auto; }
   #payModalBox h3 { font-size:15px;margin-bottom:14px; }
+  .pay-sup-row { display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border-light); }
+  .pay-sup-row .sup-info { flex:1;min-width:0; }
+  .pay-sup-row .sup-name { font-size:13px;font-weight:600;color:var(--text-primary); }
+  .pay-sup-row .sup-detail { font-size:10px;color:var(--text-muted);margin-top:2px; }
+  .pay-sup-row .sup-payable { font-size:13px;color:var(--danger);min-width:80px;text-align:right; }
+  .pay-sup-row .sup-input-wrap { display:flex;align-items:center;gap:4px; }
+  .pay-sup-row .sup-input-wrap span { font-size:11px;color:var(--info); }
+  .pay-sup-row .sup-input-wrap input { width:90px;padding:6px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:13px;font-family:inherit;text-align:right; }
+  .pay-sup-row .sup-input-wrap input:focus { border-color:var(--accent);outline:none; }
   .pay-modal-amount { display:flex;gap:10px;align-items:center;margin-bottom:14px; }
   .pay-modal-amount input { flex:1;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:16px;font-family:inherit; }
 
@@ -561,7 +570,7 @@
 <div class="main-area">
   <header class="main-header">
     <div class="page-title" id="pageTitle">📈 总览面板</div>
-    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250526e</small>
+    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250526f</small>
     <small id="filterStatus" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:6px;">等待筛选...</small>
     <div class="header-actions">
       <div style="position:relative;">
@@ -1558,78 +1567,96 @@ async function githubSaveData(projectsArray) {
     '</div>';
   }
 
-  // 打开付款登记弹窗
+  // 打开付款登记弹窗（V2：按供应商聚合，直接修改已付金额）
   window.openPayModal = function(projId) {
     var p = projects.find(function(x){return x.id===projId;});
     if (!p) return;
     var totalCost = sumCost(p);
-    var totalPaid = sumProjectPayments(p.id);
-    var remaining = totalCost - totalPaid;
 
-    // 已有付款记录
-    var payHistory = '';
-    var projPayments = payments.filter(function(pp){return pp.projectId===projId;}).sort(function(a,b){return (b.date||'').localeCompare(a.date||'');});
-    if (projPayments.length > 0) {
-      payHistory = '<h4 style="font-size:12px;color:var(--text-muted);margin-bottom:6px;">📋 付款记录</h4>';
-      projPayments.forEach(function(pm){
-        var cost = (p.costs||[]).find(function(c){return c.id===pm.costId;});
-        var sup = suppliers.find(function(s){return s.id===pm.supplierId;});
-        payHistory += '<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:11px;border-bottom:1px solid var(--border-light);">';
-        payHistory += '<span>'+(cost?escHtml(cost.name):'全部')+ (sup?' · '+escHtml(sup.name):'') + (pm.date?' · '+pm.date:'') + '</span>';
-        payHistory += '<span style="color:var(--success);font-weight:600;">'+fmt(pm.amount)+'</span>';
-        payHistory += '<button onclick="deletePayment(\''+pm.id+'\',\''+projId+'\')" style="background:var(--danger-bg);color:var(--danger);border:none;border-radius:3px;cursor:pointer;font-size:10px;margin-left:4px;">✕</button>';
-        payHistory += '</div>';
-      });
-    }
-
-    var costOpts = '<option value="">[统筹付款]</option>';
-    (p.costs||[]).forEach(function(c,idx){
-      var cPaid = sumCostPayments(p.id, c.id);
-      var cRem = c.amount - cPaid;
-      var sup = suppliers.find(function(s){return s.id===c._supplierId;});
-      costOpts += '<option value="'+c.id+'">'+escHtml(c.name)+(sup?' · '+sup.name:'')+' (剩余'+fmt(cRem)+')</option>';
+    // 按供应商聚合成本项
+    var bySupplier = {}; // key=sid, val={supplierId, totalPayable, currentPaid, costNames[]}
+    (p.costs||[]).forEach(function(c){
+      var sid = c._supplierId || 'sup_6';
+      if (!bySupplier[sid]) bySupplier[sid] = { supplierId: sid, totalPayable: 0, currentPaid: 0, costNames: [], costIds: [] };
+      bySupplier[sid].totalPayable += c.amount;
+      if (bySupplier[sid].costNames.indexOf(c.name) === -1) bySupplier[sid].costNames.push(c.name);
+      bySupplier[sid].costIds.push(c.id);
     });
 
+    // 补入供应商已付金额
+    Object.keys(bySupplier).forEach(function(sid){
+      bySupplier[sid].currentPaid = payments.filter(function(pm){ return pm.projectId===projId&&pm.supplierId===sid; }).reduce(function(s,pm){return s+pm.amount;},0);
+    });
+
+    var supEntries = Object.values(bySupplier).filter(function(x){return x.totalPayable>0||x.currentPaid>0;});
+    var totalPaid = supEntries.reduce(function(s,x){return s+x.currentPaid;},0);
+
     var html = '<button class="close-btn" onclick="closePayModal()">✕</button>';
-    html += '<h3>💳 付款登记 · '+escHtml(p.name)+'</h3>';
-    html += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">应付总额 '+fmt(totalCost)+' · 已付 '+fmt(totalPaid)+' · 剩余 '+fmt(remaining)+'</div>';
-    html += payHistory;
-    html += '<div style="margin-bottom:10px;"><label style="font-size:11px;color:var(--text-muted);">成本项</label><select id="payCostSelect" style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:13px;font-family:inherit;">'+costOpts+'</select></div>';
-    html += '<div style="margin-bottom:10px;"><label style="font-size:11px;color:var(--text-muted);">付款金额</label></div>';
-    html += '<div class="pay-modal-amount"><input type="number" id="payAmountInput" placeholder="请输入付款金额" value="'+(remaining>0?remaining:0)+'" step="0.01" min="0.01"></div>';
-    html += '<div style="margin-bottom:10px;"><label style="font-size:11px;color:var(--text-muted);">付款日期</label><input type="date" id="payDateInput" style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:13px;font-family:inherit;" value="'+new Date().toISOString().slice(0,10)+'"></div>';
-    html += '<div style="margin-bottom:10px;"><label style="font-size:11px;color:var(--text-muted);">供应商</label><select id="paySupSelect" style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:13px;font-family:inherit;">';
-    suppliers.forEach(function(s){ html += '<option value="'+s.id+'">'+s.name+'</option>'; });
-    html += '</select></div>';
+    html += '<h3>💳 登记付款 · '+escHtml(p.name)+'</h3>';
+    html += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">'+p.productType+' | 应付总额 '+fmt(totalCost)+' | 已付合计 '+fmt(totalPaid)+'</div>';
+    html += '<div style="font-size:11px;color:var(--warning);margin-bottom:10px;">💡 直接修改"已付"金额，保存后自动按今天日期生成付款记录</div>';
+
+    supEntries.forEach(function(se){
+      var sup = suppliers.find(function(s){return s.id===se.supplierId;});
+      var supName = sup ? sup.name : '未关联';
+      var cat = sup ? sup.category : '';
+      html += '<div class="pay-sup-row">';
+      html += '<div class="sup-info"><div class="sup-name">'+supName;
+      if (cat) html += ' <span style="font-size:10px;color:var(--text-muted);font-weight:400;">('+cat+')</span>';
+      html += '</div><div class="sup-detail">'+se.costNames.join(' / ')+'</div></div>';
+      html += '<div class="sup-payable">应付 '+fmt(se.totalPayable)+'</div>';
+      html += '<div class="sup-input-wrap"><span>已付</span><input type="number" class="pay-sup-input" data-sid="'+se.supplierId+'" data-cost-id="'+(se.costIds[0]||'')+'" value="'+se.currentPaid+'" step="0.01" min="0"></div>';
+      html += '</div>';
+    });
+
+    html += '<div style="display:flex;justify-content:space-between;padding:10px 0;font-size:13px;font-weight:600;border-top:2px solid var(--border);margin-top:8px;">';
+    html += '<span style="color:var(--text-secondary);">已付合计</span>';
+    html += '<span id="payTotalPreview" style="color:var(--info);">'+fmt(totalPaid)+'</span>';
+    html += '</div>';
     html += '<div class="modal-save-bar">';
     html += '<button class="btn btn-outline" onclick="closePayModal()">取消</button>';
-    html += '<button class="btn btn-accent" onclick="submitPayment(\''+projId+'\')">✅ 确认付款</button>';
+    html += '<button class="btn btn-accent" onclick="submitPayment(\''+projId+'\')">💾 保存</button>';
     html += '</div>';
 
     document.getElementById('payModalBox').innerHTML = html;
     document.getElementById('payModalOverlay').classList.add('show');
+
+    // 实时合计
+    var updateTotal = function(){
+      var t = 0;
+      document.querySelectorAll('.pay-sup-input').forEach(function(inp){ t += parseFloat(inp.value)||0; });
+      var el = document.getElementById('payTotalPreview');
+      if (el) { el.textContent = fmt(t); el.style.color = t >= totalCost ? 'var(--success)' : 'var(--info)'; }
+    };
+    document.querySelectorAll('.pay-sup-input').forEach(function(inp){ inp.addEventListener('input', updateTotal); });
   };
 
   window.closePayModal = function() { document.getElementById('payModalOverlay').classList.remove('show'); };
 
+  // 保存付款（按供应商聚合，批量更新）
   window.submitPayment = function(projId) {
-    var costId = document.getElementById('payCostSelect').value;
-    var amount = parseFloat(document.getElementById('payAmountInput').value) || 0;
-    var date = document.getElementById('payDateInput').value;
-    var supId = document.getElementById('paySupSelect').value;
-    if (amount <= 0) { alert('请输入有效的付款金额'); return; }
+    var p = projects.find(function(x){return x.id===projId;});
+    if (!p) return;
 
-    payments.push({ id: 'pmt_'+Date.now(), projectId: projId, costId: costId, supplierId: supId, amount: amount, date: date });
+    // 删除此团期所有旧付款记录
+    payments = payments.filter(function(pm){return pm.projectId !== projId;});
+
+    // 遍历每个供应商输入框，创建新记录
+    document.querySelectorAll('.pay-sup-input').forEach(function(inp){
+      var sid = inp.getAttribute('data-sid');
+      var cid = inp.getAttribute('data-cost-id');
+      var amt = parseFloat(inp.value) || 0;
+      if (amt > 0) {
+        payments.push({
+          id: 'pmt_'+Date.now()+'_'+Math.random().toString(36).substr(2,4),
+          projectId: projId, costId: cid, supplierId: sid, amount: amt,
+          date: new Date().toISOString().slice(0,10)
+        });
+      }
+    });
+
     localStorage.setItem('tour_payments', JSON.stringify(payments));
     closePayModal();
-    renderPayables();
-    alert('✅ 付款已登记：'+fmt(amount));
-  };
-
-  window.deletePayment = function(pmtId, projId) {
-    if (!confirm('确定删除这条付款记录吗？')) return;
-    payments = payments.filter(function(p){return p.id !== pmtId;});
-    localStorage.setItem('tour_payments', JSON.stringify(payments));
     renderPayables();
   };
 
@@ -2960,10 +2987,10 @@ async function githubSaveData(projectsArray) {
 
     renderDashboard();
     // 页面可见版本号（方便判断是否加载了最新代码）
-    document.getElementById('pageVer').textContent = 'v20250526e loaded ' + new Date().toLocaleTimeString();
+    document.getElementById('pageVer').textContent = 'v20250526f loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250526e 已加载，团期明细筛选级联联动修复');
+    console.log('[版本] v20250526f 已加载，登记付款改为按供应商直接修改已付金额');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
   }
 
