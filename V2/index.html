@@ -168,7 +168,9 @@
   .kpi-value.gross { color: var(--info); } .kpi-value.margin { color: var(--purple); }
   .kpi-value.people { color: var(--warning); } .kpi-value.warning { color: var(--warning); }
   .kpi-change { font-size: 11px; margin-top: 3px; color: var(--text-muted); }
-  .kpi-clickable { cursor: pointer; }
+  .kpi-clickable { cursor: pointer; transition: var(--transition); }
+  .kpi-clickable:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
+  .kpi-clickable.active { border-color: var(--accent) !important; box-shadow: 0 0 0 2px rgba(99,102,241,0.3); }
 
   /* ===== PANELS/CARDS ===== */
   .panel {
@@ -362,6 +364,26 @@
   }
   .pay-analysis-card h4 { font-size:13px; color:var(--text-secondary); margin-bottom:10px; }
   .pay-chart-wrap { height:260px; position:relative; }
+
+  /* 应付KPI明细联动面板 */
+  .pay-detail-panel {
+    background:var(--bg-card); border:1px solid var(--border);
+    border-radius:var(--radius); padding:16px; margin-top:14px;
+    animation: fadeIn 0.25s ease;
+  }
+  .pay-detail-panel h4 { font-size:13px; color:var(--text-secondary); margin-bottom:10px; display:flex; align-items:center; gap:6px; }
+  .pay-detail-panel h4 .badge { font-size:10px; background:var(--accent); color:#fff; padding:2px 8px; border-radius:10px; }
+  .pay-detail-table { width:100%; border-collapse: collapse; font-size:12px; }
+  .pay-detail-table th {
+    background:rgba(30,41,59,0.6); padding:8px 10px; text-align:left;
+    font-weight:600; color:var(--text-secondary); border-bottom:2px solid var(--border);
+    font-size:10px; white-space:nowrap;
+  }
+  .pay-detail-table td { padding:7px 10px; border-bottom:1px solid var(--border-light); }
+  .pay-detail-table tr:hover td { background:rgba(99,102,241,0.04); }
+  .pay-detail-table .bar-wrap { background:var(--border-light); border-radius:6px; height:6px; width:80px; margin-left:6px; overflow:hidden; display:inline-block; vertical-align:middle; }
+  .pay-detail-table .bar-fill { height:100%; border-radius:6px; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(-4px);} to{opacity:1;transform:translateY(0);} }
 
   /* Payment quick modal */
   #payModalOverlay { position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:300;display:none;align-items:center;justify-content:center; }
@@ -570,7 +592,7 @@
 <div class="main-area">
   <header class="main-header">
     <div class="page-title" id="pageTitle">📈 总览面板</div>
-    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250526f</small>
+    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250526g</small>
     <small id="filterStatus" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:6px;">等待筛选...</small>
     <div class="header-actions">
       <div style="position:relative;">
@@ -764,6 +786,8 @@
 
       <!-- 下半部分：综合分析 -->
       <div class="pay-analysis-grid" id="payAnalysisArea"></div>
+      <!-- KPI联动明细面板 -->
+      <div id="payKPIDetailArea"></div>
     </div>
 
     <!-- ===== MODULE 5: SUPPLIERS ===== -->
@@ -1450,6 +1474,7 @@ async function githubSaveData(projectsArray) {
 
   // ==================== MODULE 4: PAYABLES (V3 卡片+月度+分析) ====================
   var payMonthFilter = 'all';
+  var payKPIDetail = null; // null | 'paid' | 'unpaid' | 'unsettled'
 
   function renderPayables() {
     const allList = getFilteredProjects('payables').filter(p => sumCost(p) > 0);
@@ -1461,9 +1486,9 @@ async function githubSaveData(projectsArray) {
 
     document.getElementById('payableKPI').innerHTML = `
       <div class="kpi-card cost"><div class="kpi-label">应付总额</div><div class="kpi-value cost">${fmt(totalAP)}</div></div>
-      <div class="kpi-card"><div class="kpi-label">已付总额</div><div class="kpi-value" style="color:var(--info);">${fmt(totalPd)}</div><div class="kpi-change">付款率 ${fmtPct(totalPd,totalAP)}</div></div>
-      <div class="kpi-card cost"><div class="kpi-label">未付总额</div><div class="kpi-value cost">${fmt(totalAP - totalPd)}</div></div>
-      <div class="kpi-card people"><div class="kpi-label">未结清团期</div><div class="kpi-value people">${unpaidCount}</div></div>`;
+      <div class="kpi-card kpi-clickable${payKPIDetail==='paid'?' active':''}" onclick="window._togglePayKPIDetail('paid')"><div class="kpi-label">已付总额 ▾</div><div class="kpi-value" style="color:var(--info);">${fmt(totalPd)}</div><div class="kpi-change">付款率 ${fmtPct(totalPd,totalAP)}</div></div>
+      <div class="kpi-card kpi-clickable cost${payKPIDetail==='unpaid'?' active':''}" onclick="window._togglePayKPIDetail('unpaid')"><div class="kpi-label">未付总额 ▾</div><div class="kpi-value cost">${fmt(totalAP - totalPd)}</div></div>
+      <div class="kpi-card kpi-clickable people${payKPIDetail==='unsettled'?' active':''}" onclick="window._togglePayKPIDetail('unsettled')"><div class="kpi-label">未结清团期 ▾</div><div class="kpi-value people">${unpaidCount}</div></div>`;
 
     // 月份滑块
     const months = [...new Set(allList.map(p => p.startDate ? p.startDate.substring(0,7) : null).filter(Boolean))].sort();
@@ -1516,6 +1541,8 @@ async function githubSaveData(projectsArray) {
 
     // 综合分析
     renderPayAnalysis(allList, list);
+    // KPI联动明细
+    renderPayKPIDetail(allList, list);
   }
 
   // 渲染单个团期应付卡片（简约展开式）
@@ -1683,13 +1710,30 @@ async function githubSaveData(projectsArray) {
     var sortedMonths = Object.keys(monthAgg).sort();
 
     // 供应商应付排行（基于当前分析范围）
+    // 预计算每个项目-供应商组合的已付款，避免costId匹配问题
+    var supPaidByProj = {};
+    analysisList.forEach(function(p){
+      supPaidByProj[p.id] = {};
+      payments.forEach(function(pm){
+        if (pm.projectId === p.id) {
+          supPaidByProj[p.id][pm.supplierId] = (supPaidByProj[p.id][pm.supplierId] || 0) + pm.amount;
+        }
+      });
+    });
+
     var supAgg = {};
+    var supPaidProcessed = {};
     analysisList.forEach(function(p){
       (p.costs||[]).forEach(function(c){
         var sid = c._supplierId || 'sup_6';
         if (!supAgg[sid]) { var s = suppliers.find(function(x){return x.id===sid;}); supAgg[sid] = { name: s?s.name:sid, payable:0, paid:0 }; }
         supAgg[sid].payable += c.amount;
-        supAgg[sid].paid += sumCostPayments(p.id, c.id);
+        var key = p.id + '__' + sid;
+        if (!supPaidProcessed[key]) {
+          supPaidProcessed[key] = true;
+          var paid = (supPaidByProj[p.id] && supPaidByProj[p.id][sid]) ? supPaidByProj[p.id][sid] : 0;
+          supAgg[sid].paid += paid;
+        }
       });
     });
     var supRank = Object.values(supAgg).sort(function(a,b){return b.payable - a.payable;});
@@ -1792,6 +1836,84 @@ async function githubSaveData(projectsArray) {
         });
       }, 100);
     }
+  }
+
+  // KPI 明细联动：切换显示
+  window._togglePayKPIDetail = function(type) {
+    if (payKPIDetail === type) { payKPIDetail = null; }
+    else { payKPIDetail = type; }
+    renderPayables();
+  };
+
+  // KPI 明细联动：渲染明细面板
+  function renderPayKPIDetail(allList, list) {
+    if (!payKPIDetail) { document.getElementById('payKPIDetailArea').innerHTML = ''; return; }
+
+    var dataList = payMonthFilter === 'all' ? allList : list;
+    if (dataList.length === 0) { document.getElementById('payKPIDetailArea').innerHTML = ''; return; }
+
+    var title = '', color = '', rows = '';
+    var projData = dataList.map(function(p){
+      var cost = sumCost(p);
+      var paid = sumProjectPayments(p.id);
+      var unpaid = cost - paid;
+      var status = getPayableStatus(p);
+      var supNames = (p.costs||[]).map(function(c){
+        var s = suppliers.find(function(x){return x.id===c._supplierId;});
+        return s ? s.name : '未关联';
+      }).filter(function(v,i,a){return a.indexOf(v)===i;}).join('、');
+      return { id:p.id, name:p.name, productType:p.productType||'未分类',
+        cost:cost, paid:paid, unpaid:unpaid,
+        status:status, operator:p.operator||'-', supNames:supNames||'-',
+        startDate:p.startDate||'-' };
+    });
+
+    if (payKPIDetail === 'paid') {
+      title = '💰 已付总额明细'; color = 'var(--info)';
+      projData = projData.filter(function(x){return x.paid>0;}).sort(function(a,b){return b.paid - a.paid;});
+    } else if (payKPIDetail === 'unpaid') {
+      title = '⚠️ 未付总额明细'; color = 'var(--danger)';
+      projData = projData.filter(function(x){return x.unpaid>0;}).sort(function(a,b){return b.unpaid - a.unpaid;});
+    } else if (payKPIDetail === 'unsettled') {
+      title = '📋 未结清团期明细'; color = 'var(--warning)';
+      projData = projData.filter(function(x){return x.status!=='paid';}).sort(function(a,b){return b.unpaid - a.unpaid;});
+    }
+    if (projData.length === 0) {
+      document.getElementById('payKPIDetailArea').innerHTML = '<div class="pay-detail-panel"><h4 style="color:var(--text-muted);">暂无相关数据</h4></div>';
+      return;
+    }
+
+    var maxVal = payKPIDetail === 'paid' ? projData[0].paid : projData[0].unpaid;
+    var totalCostAll = projData.reduce(function(s,x){return s+x.cost;},0);
+    var totalPaidAll = projData.reduce(function(s,x){return s+x.paid;},0);
+
+    rows = projData.map(function(x, idx){
+      var barVal = payKPIDetail === 'paid' ? x.paid : x.unpaid;
+      var barPct = maxVal > 0 ? ((barVal/maxVal)*100) : 0;
+      var barColor = payKPIDetail === 'paid' ? 'var(--info)' : (payKPIDetail==='unpaid' ? 'var(--danger)' : 'var(--warning)');
+      return '<tr>' +
+        '<td>'+(idx+1)+'</td>' +
+        '<td><strong>'+escHtml(x.name)+'</strong><br><span style="font-size:10px;color:var(--text-muted);">'+escHtml(x.productType)+' · '+escHtml(x.operator)+'</span></td>' +
+        '<td style="font-size:10px;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+escHtml(x.supNames)+'</td>' +
+        '<td style="color:var(--danger);font-weight:600;">'+fmt(x.cost)+'</td>' +
+        '<td style="color:var(--success);font-weight:600;">'+fmt(x.paid)+'</td>' +
+        '<td style="color:'+(x.unpaid>0?'var(--danger)':'var(--text-muted)')+';font-weight:600;">'+fmt(x.unpaid)+'</td>' +
+        '<td><span style="display:inline-flex;align-items:center;gap:4px;">'+fmt(barVal)+'<span class="bar-wrap"><span class="bar-fill" style="width:'+barPct+'%;background:'+barColor+';"></span></span></span></td>' +
+        '</tr>';
+    }).join('');
+
+    document.getElementById('payKPIDetailArea').innerHTML =
+      '<div class="pay-detail-panel">' +
+        '<h4 style="color:'+color+';">'+title+' <span class="badge">'+projData.length+'个团期</span></h4>' +
+        '<div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">合计应付 '+fmt(totalCostAll)+' · 已付 '+fmt(totalPaidAll)+' · 未付 '+fmt(totalCostAll-totalPaidAll)+'</div>' +
+        '<div style="max-height:320px;overflow-y:auto;">' +
+          '<table class="pay-detail-table"><thead><tr>' +
+            '<th>#</th><th>团期名称</th><th>涉及供应商</th>' +
+            '<th>应付</th><th>已付</th><th>未付</th>' +
+            '<th>'+(payKPIDetail==='paid'?'已付金额':'未付金额')+'</th>' +
+          '</tr></thead><tbody>'+rows+'</tbody></table>' +
+        '</div>' +
+      '</div>';
   }
 
   // ==================== MODULE 5: SUPPLIERS ====================
@@ -2987,10 +3109,10 @@ async function githubSaveData(projectsArray) {
 
     renderDashboard();
     // 页面可见版本号（方便判断是否加载了最新代码）
-    document.getElementById('pageVer').textContent = 'v20250526f loaded ' + new Date().toLocaleTimeString();
+    document.getElementById('pageVer').textContent = 'v20250526g loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250526f 已加载，登记付款改为按供应商直接修改已付金额');
+    console.log('[版本] v20250526g 已加载，修复供应商排行已付金额 + KPI联动明细');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
   }
 
