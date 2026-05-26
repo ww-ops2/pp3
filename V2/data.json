@@ -14,31 +14,31 @@
     ],
     "costs": [
       {
-        "id": "cost_1779783999704_0",
+        "id": "cost_1779786052898_0",
         "name": "车票款",
         "amount": 360000,
         "_supplierId": "sup_7_1779783999704"
       },
       {
-        "id": "cost_1779783999704_1",
+        "id": "cost_1779786052898_1",
         "name": "地接款",
         "amount": 679228,
         "_supplierId": "sup_7_1779783999704"
       },
       {
-        "id": "cost_1779783999705_2",
+        "id": "cost_1779786052898_2",
         "name": "代订费用",
         "amount": 133287,
         "_supplierId": "sup_8_1779783999704"
       },
       {
-        "id": "cost_1779783999705_3",
+        "id": "cost_1779786052899_3",
         "name": "导服费",
-        "amount": 48200,
+        "amount": 48199.5,
         "_supplierId": "sup_9_1779783999705"
       },
       {
-        "id": "cost_1779783999705_4",
+        "id": "cost_1779786052899_4",
         "name": "其他",
         "amount": 5584,
         "_supplierId": "sup_10_1779783999705"
@@ -111,7 +111,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778469000914",
@@ -165,7 +170,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778469008378",
@@ -207,7 +217,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478180812",
