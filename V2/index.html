@@ -1305,9 +1305,9 @@ async function githubSaveData(projectsArray) {
     list.forEach(p => { totalIncome += sumIncome(p); totalCost += sumCost(p); });
     const totalGross = totalIncome - totalCost;
 
-    // KPI 标题显示当前筛选状态
+    // KPI 标题显示当前筛选状态 - 使用 window._resetProductLine 避免作用域问题
     var kpiTitle = selectedProductType 
-      ? '<div style="display:flex;align-items:center;gap:6px;"><div class="kpi-card income"><div class="kpi-label">产品线</div><div class="kpi-value" style="color:var(--accent);font-size:14px;">' + escHtml(selectedProductType) + '</div></div><a href="#" onclick="selectedProductType=null;renderProductLines();return false;" style="font-size:11px;color:var(--info);cursor:pointer;text-decoration:none;">← 返回全部</a></div>'
+      ? '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;"><div class="kpi-card income" style="min-width:auto;"><div class="kpi-label">当前产品线</div><div class="kpi-value" style="color:var(--accent);font-size:14px;">' + escHtml(selectedProductType) + '</div></div><span onclick="window._resetProductLine&&window._resetProductLine()" style="font-size:12px;color:var(--info);cursor:pointer;text-decoration:none;padding:2px 10px;border:1px solid var(--info);border-radius:4px;">← 返回全部</span></div>'
       : '';
     document.getElementById('productLineKPI').innerHTML = (kpiTitle || '') + `
       <div class="kpi-card income"><div class="kpi-label">产品线总数</div><div class="kpi-value" style="color:var(--info);">${entries.length}</div></div>
@@ -1337,20 +1337,42 @@ async function githubSaveData(projectsArray) {
       }
     });
 
-    document.getElementById('productCards').innerHTML = entries.map(([type,d]) => {
-      const gross = d.income - d.cost;
-      const margin = d.income ? (gross/d.income*100) : 0;
-      var isActive = (type === selectedProductType) ? 'style="box-shadow:0 0 0 2px var(--accent);"' : '';
-      return `<div class="product-card" ${isActive} onclick="selectedProductType='${escHtml(type)}';renderProductLines();" style="cursor:pointer;" title="点击查看${escHtml(type)}详情">
-        <div class="line-name">${escHtml(type)} <span style="font-size:11px;color:var(--text-muted);font-weight:400;">${d.count}个团期 ${isActive?'(已选中)':''}</span></div>
-        <div class="line-stats">
-          <div class="line-stat">收入<span class="val income">${fmt(d.income)}</span></div>
-          <div class="line-stat">成本<span class="val cost">${fmt(d.cost)}</span></div>
-          <div class="line-stat">毛利<span class="val" style="color:var(--info);">${fmt(gross)}</span></div>
-          <div class="line-stat">毛利率<span class="val" style="color:${margin>=marginThreshold?'var(--success)':'var(--danger)'};">${margin.toFixed(1)}%</span></div>
-        </div></div>`;
+    var cardHtml = entries.map(([type,d]) => {
+      var gross = d.income - d.cost;
+      var margin = d.income ? (gross/d.income*100) : 0;
+      var isActive = (type === selectedProductType);
+      return '<div class="product-card' + (isActive ? ' active-card' : '') + '" data-pl-type="' + escHtml(type).replace(/"/g,'&quot;') + '" style="cursor:pointer;" title="点击查看' + escHtml(type) + '详情">' +
+        '<div class="line-name">' + escHtml(type) + ' <span style="font-size:11px;color:var(--text-muted);font-weight:400;">' + d.count + '个团期' + (isActive ? ' (已选中)' : '') + '</span></div>' +
+        '<div class="line-stats">' +
+          '<div class="line-stat">收入<span class="val income">' + fmt(d.income) + '</span></div>' +
+          '<div class="line-stat">成本<span class="val cost">' + fmt(d.cost) + '</span></div>' +
+          '<div class="line-stat">毛利<span class="val" style="color:var(--info);">' + fmt(gross) + '</span></div>' +
+          '<div class="line-stat">毛利率<span class="val" style="color:' + (margin>=marginThreshold?'var(--success)':'var(--danger)') + ';">' + margin.toFixed(1) + '%</span></div>' +
+        '</div></div>';
     }).join('');
+    
+    document.getElementById('productCards').innerHTML = cardHtml;
+    
+    // 使用事件委托绑定点击（避免内联onclick找不到函数的问题）
+    document.getElementById('productCards').addEventListener('click', function(e) {
+      var card = e.target.closest('.product-card');
+      if (!card) return;
+      var t = card.getAttribute('data-pl-type');
+      if (!t) return;
+      if (selectedProductType === t) {
+        selectedProductType = null; // 再次点击取消选中
+      } else {
+        selectedProductType = t;
+      }
+      renderProductLines();
+    });
   }
+  
+  // 暴露到 window 供 HTML 内联事件使用
+  window._resetProductLine = function() {
+    selectedProductType = null;
+    renderProductLines();
+  };
 
   // ==================== MODULE 3: RECEIVABLES ====================
   let recPage = 1, recStatusFilter = 'all', recTypeFilter = 'all';
