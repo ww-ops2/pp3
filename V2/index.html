@@ -561,7 +561,7 @@
 <div class="main-area">
   <header class="main-header">
     <div class="page-title" id="pageTitle">📈 总览面板</div>
-    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250526b</small>
+    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250526c</small>
     <small id="filterStatus" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:6px;">等待筛选...</small>
     <div class="header-actions">
       <div style="position:relative;">
@@ -571,17 +571,76 @@
         </button>
         <div class="date-range-popover" id="dateRangePopover">
           <div class="preset-row">
-            <button class="preset-btn" data-preset="thisMonth" onclick="window._presetDate&&window._presetDate('thisMonth')">本月</button>
-            <button class="preset-btn" data-preset="thisQuarter" onclick="window._presetDate&&window._presetDate('thisQuarter')">本季度</button>
-            <button class="preset-btn" data-preset="thisYear" onclick="window._presetDate&&window._presetDate('thisYear')">本年度</button>
-            <button class="preset-btn" data-preset="last3" onclick="window._presetDate&&window._presetDate('last3')">近3个月</button>
-            <button class="preset-btn" data-preset="all" onclick="window._presetDate&&window._presetDate('all')">全部数据</button>
+            <button class="preset-btn" data-preset="thisMonth" onclick="
+              var d=new Date(),y=d.getFullYear(),m=d.getMonth()+1,s=y+'-'+String(m).padStart(2,'0');
+              document.getElementById('rangeStart').value=s;document.getElementById('rangeEnd').value=s;
+              var pr=(typeof getPaneRange==='function')?getPaneRange():null;
+              if(pr){pr.start=s;pr.end=s;}
+              if(typeof updateDateRangeLabel==='function')updateDateRangeLabel();
+              if(document.getElementById('dateRangePopover'))document.getElementById('dateRangePopover').classList.remove('show');
+              if(document.getElementById('dateRangeBtn'))document.getElementById('dateRangeBtn').classList.remove('open');
+              if(typeof renderCurrentPane==='function')renderCurrentPane();
+            ">本月</button>
+            <button class="preset-btn" data-preset="thisQuarter" onclick="
+              var d=new Date(),y=d.getFullYear(),m=d.getMonth()+1,q=Math.ceil(m/3);
+              var s=y+'-'+String((q-1)*3+1).padStart(2,'0'),e=y+'-'+String(q*3).padStart(2,'0');
+              document.getElementById('rangeStart').value=s;document.getElementById('rangeEnd').value=e;
+              var pr=(typeof getPaneRange==='function')?getPaneRange():null;
+              if(pr){pr.start=s;pr.end=e;}
+              if(typeof updateDateRangeLabel==='function')updateDateRangeLabel();
+              if(document.getElementById('dateRangePopover'))document.getElementById('dateRangePopover').classList.remove('show');
+              if(document.getElementById('dateRangeBtn'))document.getElementById('dateRangeBtn').classList.remove('open');
+              if(typeof renderCurrentPane==='function')renderCurrentPane();
+            ">本季度</button>
+            <button class="preset-btn" data-preset="thisYear" onclick="
+              var d=new Date(),y=d.getFullYear();
+              var s=y+'-01',e=y+'-12';
+              document.getElementById('rangeStart').value=s;document.getElementById('rangeEnd').value=e;
+              var pr=(typeof getPaneRange==='function')?getPaneRange():null;
+              if(pr){pr.start=s;pr.end=e;}
+              if(typeof updateDateRangeLabel==='function')updateDateRangeLabel();
+              if(document.getElementById('dateRangePopover'))document.getElementById('dateRangePopover').classList.remove('show');
+              if(document.getElementById('dateRangeBtn'))document.getElementById('dateRangeBtn').classList.remove('open');
+              if(typeof renderCurrentPane==='function')renderCurrentPane();
+            ">本年度</button>
+            <button class="preset-btn" data-preset="last3" onclick="
+              var d=new Date(),y=d.getFullYear(),m=d.getMonth()+1;
+              var d2=new Date(y,m-1,1);d2.setMonth(d2.getMonth()-2);
+              var s=d2.getFullYear()+'-'+String(d2.getMonth()+1).padStart(2,'0'),e=y+'-'+String(m).padStart(2,'0');
+              document.getElementById('rangeStart').value=s;document.getElementById('rangeEnd').value=e;
+              var pr=(typeof getPaneRange==='function')?getPaneRange():null;
+              if(pr){pr.start=s;pr.end=e;}
+              if(typeof updateDateRangeLabel==='function')updateDateRangeLabel();
+              if(document.getElementById('dateRangePopover'))document.getElementById('dateRangePopover').classList.remove('show');
+              if(document.getElementById('dateRangeBtn'))document.getElementById('dateRangeBtn').classList.remove('open');
+              if(typeof renderCurrentPane==='function')renderCurrentPane();
+            ">近3个月</button>
+            <button class="preset-btn" data-preset="all" onclick="
+              var s='2024-01',e='2027-12';
+              document.getElementById('rangeStart').value=s;document.getElementById('rangeEnd').value=e;
+              var pr=(typeof getPaneRange==='function')?getPaneRange():null;
+              if(pr){pr.start=s;pr.end=e;}
+              if(typeof updateDateRangeLabel==='function')updateDateRangeLabel();
+              if(document.getElementById('dateRangePopover'))document.getElementById('dateRangePopover').classList.remove('show');
+              if(document.getElementById('dateRangeBtn'))document.getElementById('dateRangeBtn').classList.remove('open');
+              if(typeof renderCurrentPane==='function')renderCurrentPane();
+            ">全部数据</button>
           </div>
           <div class="custom-row">
             <label>自定义</label>
-            <input type="month" id="rangeStart" value="2026-01" title="开始月份" onchange="window._updateRange&&window._updateRange('start',this.value)">
+            <input type="month" id="rangeStart" value="2026-01" title="开始月份" onchange="
+              this.value&&(typeof getPaneRange==='function')&&(getPaneRange().start=this.value);
+              (typeof updateDateRangeLabel==='function')&&updateDateRangeLabel();
+              (document.getElementById('dateRangePopover'))&&document.getElementById('dateRangePopover').classList.remove('show');
+              (typeof renderCurrentPane==='function')&&renderCurrentPane();
+            ">
             <span style="color:var(--text-muted);">→</span>
-            <input type="month" id="rangeEnd" value="2026-12" title="结束月份" onchange="window._updateRange&&window._updateRange('end',this.value)">
+            <input type="month" id="rangeEnd" value="2026-12" title="结束月份" onchange="
+              this.value&&(typeof getPaneRange==='function')&&(getPaneRange().end=this.value);
+              (typeof updateDateRangeLabel==='function')&&updateDateRangeLabel();
+              (document.getElementById('dateRangePopover'))&&document.getElementById('dateRangePopover').classList.remove('show');
+              (typeof renderCurrentPane==='function')&&renderCurrentPane();
+            ">
           </div>
         </div>
       </div>
@@ -2820,10 +2879,10 @@ async function githubSaveData(projectsArray) {
 
     renderDashboard();
     // 页面可见版本号（方便判断是否加载了最新代码）
-    document.getElementById('pageVer').textContent = 'v20250526b loaded ' + new Date().toLocaleTimeString();
+    document.getElementById('pageVer').textContent = 'v20250526c loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250526b 已加载，时间筛选已启用 inline+JS 双触发+状态指示器');
+    console.log('[版本] v20250526c 已加载，预设按钮使用完全内联onclick逻辑');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
   }
 
