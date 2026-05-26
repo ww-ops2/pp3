@@ -57,7 +57,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778468995018",
@@ -170,7 +175,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778469008378",
@@ -836,51 +846,42 @@
     "remark": "",
     "incomes": [
       {
-        "id": "inc_1778552573501_1",
         "name": "线上收入",
         "amount": 718121
       },
       {
-        "id": "inc_1778552573502_2",
         "name": "线下收入",
         "amount": 0
       },
       {
-        "id": "inc_1778552573502_3",
         "name": "切位收入",
         "amount": 0
       }
     ],
     "costs": [
       {
-        "id": "cost_1778552573502_1",
-        "name": "车票款",
-        "amount": 0,
-        "_supplierId": "sup_3"
-      },
-      {
-        "id": "cost_1778552573502_2",
+        "id": "cost_1779786470057_0",
         "name": "地接款",
         "amount": 476600,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_11_1779784073557"
       },
       {
-        "id": "cost_1778552573502_3",
+        "id": "cost_1779786470057_1",
         "name": "代订费用",
         "amount": 72487,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_8_1779783999704"
       },
       {
-        "id": "cost_1778552573502_4",
+        "id": "cost_1779786470057_2",
         "name": "导服费用",
         "amount": 8302,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_9_1779783999705"
       },
       {
-        "id": "cost_1778552573502_5",
+        "id": "cost_1779786470057_3",
         "name": "其他费用",
         "amount": 1256,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_10_1779783999705"
       }
     ],
     "peopleDetails": [
@@ -896,12 +897,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778552581701",
