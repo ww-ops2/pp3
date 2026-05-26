@@ -176,23 +176,22 @@
     "remark": "",
     "incomes": [
       {
-        "id": "income_1778478012996",
         "name": "线上",
         "amount": 60432
       }
     ],
     "costs": [
       {
-        "id": "cost_1778478024461",
+        "id": "cost_1779784162184_0",
         "name": "地接款",
         "amount": 43820,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_11_1779784073557"
       },
       {
-        "id": "cost_1778478031732",
+        "id": "cost_1779784162184_1",
         "name": "其他",
         "amount": 44,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_10_1779783999705"
       }
     ],
     "peopleDetails": [
@@ -208,12 +207,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778478180812",
