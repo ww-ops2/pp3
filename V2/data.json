@@ -5,6 +5,7 @@
     "productType": "越南",
     "operator": "",
     "startDate": "2026-01-01",
+    "remark": "",
     "incomes": [
       {
         "id": "income_1778477803837",
@@ -44,10 +45,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -61,9 +58,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778468995018",
@@ -71,6 +66,7 @@
     "productType": "冰雪专列",
     "operator": "",
     "startDate": "2026-01-01",
+    "remark": "",
     "incomes": [
       {
         "id": "income_1778477895862",
@@ -104,10 +100,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -121,9 +113,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778469000914",
@@ -131,6 +121,7 @@
     "productType": "越南",
     "operator": "",
     "startDate": "2026-01-01",
+    "remark": "",
     "incomes": [
       {
         "id": "income_1778477955591",
@@ -164,10 +155,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -181,9 +168,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778469008378",
@@ -191,6 +176,7 @@
     "productType": "冰雪专列",
     "operator": "",
     "startDate": "2026-01-01",
+    "remark": "",
     "incomes": [
       {
         "id": "income_1778478012996",
@@ -212,10 +198,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -229,9 +211,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778478180812",
@@ -239,6 +219,7 @@
     "productType": "南北疆",
     "operator": "彭菲",
     "startDate": "2026-05-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778478180812_1",
@@ -288,10 +269,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -305,9 +282,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778478204084",
@@ -315,6 +290,7 @@
     "productType": "中亚",
     "operator": "祝云星",
     "startDate": "2026-05-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778478204084_1",
@@ -364,10 +340,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -381,9 +353,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778478220980",
@@ -391,6 +361,7 @@
     "productType": "邮轮",
     "operator": "郭梦云",
     "startDate": "2026-05-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778478220980_1",
@@ -440,10 +411,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -457,9 +424,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778478242960",
@@ -467,6 +432,7 @@
     "productType": "东北",
     "operator": "赵祯",
     "startDate": "2026-05-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778478242960_1",
@@ -516,10 +482,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -533,9 +495,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778478256747",
@@ -543,6 +503,7 @@
     "productType": "邮轮",
     "operator": "杨冰雁",
     "startDate": "2026-05-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778478256747_1",
@@ -592,10 +553,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -609,9 +566,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778478267895",
@@ -619,6 +574,7 @@
     "productType": "中亚",
     "operator": "祝云星",
     "startDate": "2026-05-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778478267895_1",
@@ -668,10 +624,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -685,9 +637,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778478280700",
@@ -695,6 +645,7 @@
     "productType": "邮轮",
     "operator": "郭梦云",
     "startDate": "2026-05-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778478280700_1",
@@ -744,10 +695,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -761,9 +708,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778478302916",
@@ -771,6 +716,7 @@
     "productType": "东北",
     "operator": "赵祯",
     "startDate": "2026-05-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778478302916_1",
@@ -820,10 +766,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -837,9 +779,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778552573501",
@@ -847,6 +787,7 @@
     "productType": "冰雪专列",
     "operator": "",
     "startDate": "2026-02-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778552573501_1",
@@ -896,10 +837,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -913,9 +850,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778552581701",
@@ -923,6 +858,7 @@
     "productType": "冰雪专列",
     "operator": "",
     "startDate": "2026-02-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778552581701_1",
@@ -972,10 +908,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -989,9 +921,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778552792245",
@@ -999,6 +929,7 @@
     "productType": "西藏",
     "operator": "",
     "startDate": "2026-03-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778552792245_1",
@@ -1048,10 +979,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -1065,9 +992,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778552799653",
@@ -1075,6 +1000,7 @@
     "productType": "邮轮",
     "operator": "",
     "startDate": "2026-03-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778552799653_1",
@@ -1124,10 +1050,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -1141,9 +1063,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778552804829",
@@ -1151,6 +1071,7 @@
     "productType": "西藏",
     "operator": "",
     "startDate": "2026-03-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778552804829_1",
@@ -1200,10 +1121,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -1217,9 +1134,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778552809207",
@@ -1227,6 +1142,7 @@
     "productType": "越南",
     "operator": "",
     "startDate": "2026-03-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778552809207_1",
@@ -1276,10 +1192,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -1293,9 +1205,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778552813198",
@@ -1303,6 +1213,7 @@
     "productType": "越南",
     "operator": "",
     "startDate": "2026-03-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778552813198_1",
@@ -1352,10 +1263,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -1369,9 +1276,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778552819375",
@@ -1379,6 +1284,7 @@
     "productType": "邮轮",
     "operator": "",
     "startDate": "2026-03-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778552819375_1",
@@ -1428,10 +1334,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -1445,9 +1347,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778552824390",
@@ -1455,6 +1355,7 @@
     "productType": "邮轮",
     "operator": "",
     "startDate": "2026-03-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778552824390_1",
@@ -1504,10 +1405,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -1521,9 +1418,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778553394192",
@@ -1599,6 +1494,7 @@
     "productType": "遇见美好号",
     "operator": "",
     "startDate": "2026-04-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778553406836_1",
@@ -1648,10 +1544,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -1665,9 +1557,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778553412828",
@@ -1675,6 +1565,7 @@
     "productType": "西藏",
     "operator": "",
     "startDate": "2026-04-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778553412828_1",
@@ -1724,10 +1615,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -1741,9 +1628,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778553427676",
@@ -1751,6 +1636,7 @@
     "productType": "邮轮",
     "operator": "",
     "startDate": "2026-04-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778553427676_1",
@@ -1800,10 +1686,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -1817,9 +1699,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778553432668",
@@ -1827,6 +1707,7 @@
     "productType": "西藏",
     "operator": "",
     "startDate": "2026-04-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778553432668_1",
@@ -1876,10 +1757,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -1893,9 +1770,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778553437388",
@@ -1903,6 +1778,7 @@
     "productType": "南北疆",
     "operator": "",
     "startDate": "2026-04-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778553437388_1",
@@ -1952,10 +1828,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -1969,9 +1841,7 @@
         "name": "切位",
         "count": 425
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778553442404",
@@ -1979,6 +1849,7 @@
     "productType": "东北",
     "operator": "",
     "startDate": "2026-04-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778553442404_1",
@@ -2028,10 +1899,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -2045,9 +1912,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778553449855",
@@ -2055,6 +1920,7 @@
     "productType": "南北疆",
     "operator": "",
     "startDate": "2026-04-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778553449855_1",
@@ -2104,10 +1970,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -2121,9 +1983,7 @@
         "name": "切位",
         "count": 150
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778553454127",
@@ -2131,6 +1991,7 @@
     "productType": "东北",
     "operator": "",
     "startDate": "2026-04-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778553454127_1",
@@ -2180,10 +2041,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -2197,9 +2054,7 @@
         "name": "切位",
         "count": 419
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778553464020",
@@ -2207,6 +2062,7 @@
     "productType": "中俄蒙",
     "operator": "",
     "startDate": "2026-04-01",
+    "remark": "",
     "incomes": [
       {
         "id": "inc_1778553464020_1",
@@ -2256,10 +2112,6 @@
         "_supplierId": "sup_6"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -2273,8 +2125,22 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
+  },
+  {
+    "id": "YJMH-长江贰号·三峡游轮（汉渝航次）-20260506",
+    "name": "",
+    "productType": "游轮",
+    "operator": "杨冰雁",
+    "startDate": "46148",
+    "remark": "",
+    "incomes": [],
+    "costs": [],
+    "peopleDetails": [
+      {
+        "name": "成人",
+        "count": 2
+      }
+    ]
   }
 ]
