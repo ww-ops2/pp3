@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>遇见美好 · 财务数据看板 V3 (GitHub)</title>
+<title>遇见美好 · 财务数据看板 2.0</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <style>
@@ -35,19 +35,16 @@
     --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
   }
   * { margin:0; padding:0; box-sizing:border-box; }
-  /* body 固定100vh，左栏定高、右栏滚动 */
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
     background: var(--bg-primary); color: var(--text-primary);
-    display: flex; height: 100vh; max-height: 100vh;
-    overflow: hidden;
+    display: flex; min-height: 100vh; overflow: hidden;
     -webkit-font-smoothing: antialiased;
   }
 
   /* ===== SIDEBAR ===== */
   .sidebar {
     width: 220px; min-width: 220px;
-    height: 100vh; flex-shrink: 0;
     background: var(--bg-secondary);
     border-right: 1px solid var(--border);
     display: flex; flex-direction: column;
@@ -102,7 +99,7 @@
   @keyframes pulse-dot { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
 
   /* ===== MAIN ===== */
-  .main-area { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+  .main-area { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
   .main-header {
     padding: 10px 20px; background: var(--bg-secondary);
     border-bottom: 1px solid var(--border);
@@ -272,102 +269,6 @@
   .detail-row { display: flex; justify-content: space-between; padding: 5px 0; font-size: 13px; border-bottom: 1px solid var(--border-light); }
   .detail-row:last-child { border-bottom: none; }
 
-  /* ===== INLINE EDIT MODAL ===== */
-  .edit-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:14px; }
-  @media (max-width:600px) { .edit-grid { grid-template-columns:1fr; } }
-  .edit-field label { display:block; font-size:11px; color:var(--text-muted); margin-bottom:4px; font-weight:600; }
-  .edit-field input {
-    width:100%; padding:7px 10px; border-radius:6px;
-    border:1px solid var(--border); background:var(--bg-input);
-    color:var(--text-primary); font-size:13px; outline:none; font-family:inherit;
-    box-sizing:border-box;
-  }
-  .edit-field input:focus { border-color:var(--accent); }
-  .sub-item-list { margin-top:6px; }
-  .sub-item {
-    display:flex; gap:8px; align-items:center; padding:7px 10px;
-    background:var(--bg-input); border-radius:8px; margin-bottom:5px;
-  }
-  .sub-item input { flex:1; padding:5px 9px; border-radius:6px; border:1px solid var(--border-light);
-    background:var(--bg-secondary); color:var(--text-primary); font-size:12px; font-family:inherit; }
-  .sub-item button { padding:3px 7px; border-radius:4px; cursor:pointer; font-size:11px;
-    background:var(--danger-bg); color:var(--danger); border:none; white-space:nowrap; }
-  .modal-save-bar { display:flex; gap:10px; justify-content:flex-end; margin-top:18px; padding-top:14px; border-top:1px solid var(--border); }
-
-  /* ===== PAYABLE CARDS & MONTH SWIPER ===== */
-  .month-swiper {
-    display:flex; gap:8px; overflow-x:auto; padding:6px 0 10px;
-    scroll-behavior:smooth; -webkit-overflow-scrolling:touch;
-  }
-  .month-swiper::-webkit-scrollbar { height:3px; }
-  .month-swiper::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
-  .month-chip {
-    flex:0 0 auto; padding:8px 16px; border-radius:20px;
-    border:1px solid var(--border); background:var(--bg-card);
-    color:var(--text-secondary); font-size:12px; font-weight:600;
-    cursor:pointer; transition:var(--transition); white-space:nowrap;
-    user-select:none;
-  }
-  .month-chip:hover { border-color:var(--accent); color:var(--text-primary); }
-  .month-chip.active { background:var(--accent); border-color:var(--accent); color:#fff; }
-  .month-chip .chip-count { font-size:10px; opacity:0.7; display:block; font-weight:400; }
-
-  .pay-card {
-    background:var(--bg-card); border:1px solid var(--border);
-    border-radius:10px; padding:8px 10px; transition:all 0.35s ease;
-    display:flex; flex-direction:column; gap:4px; cursor:pointer;
-    position:relative; overflow:hidden;
-    width:260px; min-height:90px;
-  }
-  .pay-card:hover { border-color:var(--accent); }
-  .pay-card.expanded { border-color:var(--accent); box-shadow:0 6px 24px rgba(99,102,241,0.18); padding:14px 16px; gap:8px; width:340px; }
-  .pay-card-header { display:flex; justify-content:space-between; align-items:center; }
-  .pay-card-title { font-size:12px; font-weight:700; color:var(--text-primary); flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-  .pay-card-tag { font-size:9px; padding:1px 6px; border-radius:8px; font-weight:600; white-space:nowrap; flex-shrink:0; }
-  .pay-card-meta { font-size:10px; color:var(--text-muted); display:flex; gap:8px; flex-wrap:wrap; }
-  .pay-card-amounts { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4px; }
-  .pay-amt-item { text-align:center; padding:4px 2px; border-radius:5px; background:var(--bg-secondary); }
-  .pay-amt-item .label { font-size:9px; color:var(--text-muted); }
-  .pay-amt-item .value { font-size:13px; font-weight:700; }
-  /* 展开指示箭头 */
-  .pay-card-expand-hint { position:absolute; bottom:3px; right:8px; font-size:9px; color:var(--text-muted); opacity:0.4; transition:transform 0.35s ease; }
-  .pay-card.expanded .pay-card-expand-hint { transform:rotate(180deg); opacity:0.8; }
-  /* 可展开区域 */
-  .pay-card-detail { max-height:0; overflow:hidden; transition:max-height 0.45s ease, margin 0.35s ease, opacity 0.25s ease; opacity:0; }
-  .pay-card.expanded .pay-card-detail { max-height:500px; margin-top:2px; opacity:1; }
-  .pay-card-costs { max-height:160px; overflow-y:auto; }
-  .pay-card-costs::-webkit-scrollbar { width:4px; }
-  .pay-card-costs::-webkit-scrollbar-thumb { background:var(--border); border-radius:3px; }
-  .pay-cost-row {
-    display:flex; justify-content:space-between; align-items:center;
-    padding:4px 7px; border-radius:5px; margin-bottom:2px;
-    background:var(--bg-secondary); font-size:11px;
-  }
-  .pay-cost-row .cost-info { flex:1; display:flex; flex-direction:column; gap:0; }
-  .pay-cost-row .cost-name { color:var(--text-primary); font-weight:500; }
-  .pay-cost-row .cost-supplier { font-size:9px; color:var(--text-muted); }
-  .pay-cost-row .cost-amounts { text-align:right; font-size:10px; }
-  .pay-cost-row .cost-paid { color:var(--success); }
-  .pay-cost-row .cost-unpaid { color:var(--danger); font-weight:600; }
-  .pay-card-actions { display:flex; gap:4px; justify-content:flex-end; padding-top:4px; border-top:1px solid var(--border-light); }
-
-  .pay-analysis-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  @media (max-width:900px) { .pay-analysis-grid { grid-template-columns:1fr; } }
-  .pay-analysis-card {
-    background:var(--bg-card); border:1px solid var(--border);
-    border-radius:var(--radius); padding:16px;
-  }
-  .pay-analysis-card h4 { font-size:13px; color:var(--text-secondary); margin-bottom:10px; }
-  .pay-chart-wrap { height:260px; position:relative; }
-
-  /* Payment quick modal */
-  #payModalOverlay { position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:300;display:none;align-items:center;justify-content:center; }
-  #payModalOverlay.show { display:flex; }
-  #payModalBox { background:var(--bg-secondary);border:1px solid var(--border);border-radius:20px;padding:24px;width:90%;max-width:480px; }
-  #payModalBox h3 { font-size:15px;margin-bottom:14px; }
-  .pay-modal-amount { display:flex;gap:10px;align-items:center;margin-bottom:14px; }
-  .pay-modal-amount input { flex:1;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:16px;font-family:inherit; }
-
   /* ===== PAGINATION ===== */
   .pagination { display: flex; justify-content: center; gap: 4px; margin-top: 12px; }
   .pagination button {
@@ -529,7 +430,7 @@
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-logo">
     <div class="icon">📊</div>
-    <div class="text">遇见美好<span>财务数据看板 V3</span></div>
+    <div class="text">遇见美好<span>财务数据看板 2.0</span></div>
   </div>
   <nav class="sidebar-nav">
     <div class="nav-section">
@@ -550,7 +451,7 @@
     </div>
   </nav>
   <div class="nav-bottom">
-    <div class="status-dot"></div> 数据来源：GitHub 云存储
+    <div class="status-dot"></div> 数据来源：data.js + 遇见美好系统
   </div>
 </aside>
 
@@ -584,7 +485,6 @@
       <span id="dataSourceBadge" style="display:inline-block;font-size:11px;padding:3px 8px;border-radius:10px;background:rgba(239,68,68,0.15);color:#f87171;margin-left:4px;" title="当前数据源">📁 本地</span>
       <button class="btn" id="unitBtn">单位：元</button>
       <button class="btn btn-accent" id="exportBtn">📤 导出Excel</button>
-      <button class="btn btn-outline" id="adminBtn" style="display:none;font-size:10px;padding:4px 8px;" onclick="window.location.href='admin.html'">⚙️ 管理</button>
     </div>
   </header>
 
@@ -667,30 +567,21 @@
       </div>
     </div>
 
-    <!-- ===== MODULE 4: PAYABLES (卡片+月度+分析) ===== -->
+    <!-- ===== MODULE 4: PAYABLES ===== -->
     <div class="module-pane" id="pane-payables">
       <div class="kpi-grid" id="payableKPI"></div>
-
-      <!-- 月份滑动选择器 -->
-      <div class="panel" style="padding:12px 16px;">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-          <span style="font-size:12px;font-weight:600;color:var(--text-secondary);">📅 选择月份</span>
-          <button class="btn btn-sm btn-outline" id="payMonthAll" style="font-size:11px;padding:3px 10px;">全部</button>
-          <span style="font-size:11px;color:var(--text-muted);">← 左右滑动 →</span>
+      <div class="panel">
+        <div class="panel-header">
+          <div class="panel-title"><span class="dot" style="background:var(--danger);"></span>团期应付款明细</div>
+          <div class="filter-bar">
+            <select id="payableStatusFilter"><option value="all">全部状态</option><option value="unpaid">未付款</option><option value="partial">部分付款</option><option value="paid">已结清</option></select>
+            <select id="payableSupplierFilter"><option value="all">全部供应商</option></select>
+            <select id="payableMonthFilter"><option value="all">全部月份</option></select>
+          </div>
         </div>
-        <div class="month-swiper" id="payMonthSwiper"></div>
+        <div class="table-scroll"><table class="data-table" id="payableTable"><thead><tr><th>团号</th><th>成本项</th><th>供应商</th><th>应付金额</th><th>已付金额</th><th>未付金额</th><th>付款状态</th></tr></thead><tbody></tbody></table></div>
+        <div class="pagination" id="payablePagination"></div>
       </div>
-
-      <!-- 团期应付卡片 -->
-      <div id="payCardArea" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;max-height:420px;overflow-y:auto;align-items:flex-start;"></div>
-
-      <!-- 付款登记弹窗 -->
-      <div class="modal-overlay" id="payModalOverlay">
-        <div class="modal" id="payModalBox"></div>
-      </div>
-
-      <!-- 下半部分：综合分析 -->
-      <div class="pay-analysis-grid" id="payAnalysisArea"></div>
     </div>
 
     <!-- ===== MODULE 5: SUPPLIERS ===== -->
@@ -711,18 +602,6 @@
           <div class="hint">📊<br>应付分布图表</div>
         </div>
       </div>
-      <!-- 供应商增删改 -->
-      <div class="panel" style="margin-top:14px;">
-        <div class="panel-header"><div class="panel-title"><span class="dot" style="background:var(--warning);"></span>供应商库管理</div></div>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px;">
-          <input type="text" id="newSupName" placeholder="供应商名称" style="flex:1;min-width:140px;padding:7px 10px;border-radius:6px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:12px;font-family:inherit;">
-          <input type="text" id="newSupCat" placeholder="供应类型(如地接/车票)" style="width:130px;padding:7px 10px;border-radius:6px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:12px;font-family:inherit;">
-          <button class="btn btn-accent btn-sm" id="addSupBtn">＋ 新增</button>
-        </div>
-        <div id="supplierEditList" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
-      </div>
-      <!-- datalist for supplier autocomplete -->
-      <datalist id="supplierList"></datalist>
     </div>
 
     <!-- ===== MODULE 6: PROJECTS ===== -->
@@ -746,11 +625,7 @@
       <div class="grid-2">
         <div class="panel" style="text-align:center;">
           <div class="panel-title" style="justify-content:center;margin-bottom:4px;">📂 Excel / CSV 批量导入</div>
-          <p style="font-size:13px;color:var(--text-muted);margin-bottom:8px;">支持从系统导出的Excel文件拖拽上传，与导出的模板格式兼容</p>
-          <div style="display:flex;gap:8px;justify-content:center;margin-bottom:10px;">
-            <button class="btn btn-outline btn-sm" onclick="downloadTemplate()">📥 下载导入模板</button>
-            <button class="btn btn-accent btn-sm" id="importToSupabaseBtn" style="display:none;">☁️ 导入到云端</button>
-          </div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">支持从系统导出的Excel文件拖拽上传</p>
           <div class="import-zone" id="importZone">
             <div class="icon">📁</div>
             <p style="font-size:15px;font-weight:600;">拖拽文件到此处 或 点击选择</p>
@@ -795,83 +670,46 @@
   <div class="modal" id="modalBox"></div>
 </div>
 
-<script src="gh-config.js"></script>
 <script src="data.js"></script>
 <script>
 /* ==========================================================================
-   遇见美好 · 财务数据看板 V3 — 核心引擎 (Supabase 数据源)
+   遇见美好 · 财务数据看板 2.0 — 核心引擎
    数据勾稽关系：
      项目(Project) 1──N 收入项(Incomes)     →  应收账款(Receivable) = 收入 - 已收
      项目(Project) 1──N 成本项(Costs)       →  应付账款(Payable)    = 成本 - 已付
      成本项(Costs) N──1 供应商(Supplier)    →  供应商应付汇总
      产品线(ProductLine) 1──N 项目(Project) →  产品线收入/利润分析
-
-   V3 变更: 数据源从 GitHub JSON 改为 Supabase 云数据库
-   优先级: Supabase > GitHub > 本地 data.js
 ========================================================================== */
 
-/* ---------- GitHub 数据存储（配置见 gh-config.js） ---------- */
-
-function utf8ToBase64(str) {
-  return btoa(unescape(encodeURIComponent(str)));
-}
-
-/* 从 GitHub 加载数据 */
-async function githubLoadData() {
-  try {
-    var resp = await fetch(GITHUB_RAW_URL, { cache: 'no-cache' });
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
-    return await resp.json();
-  } catch(e) { console.warn('GitHub load error:', e); return null; }
-}
-
-/* 保存完整 projects 数组到 GitHub data.json */
-async function githubSaveData(projectsArray) {
-  try {
-    var getResp = await fetch(GITHUB_API_URL, {
-      headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Accept': 'application/vnd.github+json' }
-    });
-    var fileInfo = getResp.ok ? await getResp.json() : {};
-    var sha = fileInfo.sha;
-
-    var body = {
-      message: 'Update data.json from web panel',
-      content: utf8ToBase64(JSON.stringify(projectsArray, null, 2))
-    };
-    if (sha) body.sha = sha;
-
-    var putResp = await fetch(GITHUB_API_URL, {
-      method: 'PUT',
-      headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
-    if (!putResp.ok) throw new Error('HTTP ' + putResp.status + ': ' + await putResp.text());
-    return true;
-  } catch(e) { console.error('GitHub save error:', e); return false; }
-}
+/* ---------- 远程数据源配置 ----------
+   将 data.json 上传到 GitHub 仓库后，修改下方 URL：
+   格式: https://raw.githubusercontent.com/你的用户名/仓库名/main/data.json
+   不上传则使用本地 data.js 作为数据源
+-------------------------------------------------- */
+const REMOTE_DATA_URL = 'https://raw.githubusercontent.com/ww-ops2/pp3/main/data.json';
 
 (async function() {
   'use strict';
 
-  // ==================== 多级数据加载 ====================
-  // 优先级: GitHub → 本地 data.js
-  var dataSource = 'local';
-
-  // 1️⃣ 尝试从 GitHub 加载
-  try {
-    var ghData = await githubLoadData();
-    if (ghData && Array.isArray(ghData) && ghData.length > 0) {
-      window.TOUR_DATA = ghData;
-      dataSource = 'github';
-      updateDataSourceBadge('github');
-      console.log('✅ 已从 GitHub 加载数据，共 ' + ghData.length + ' 条团期记录');
+  // ==================== 远程数据加载 ====================
+  if (REMOTE_DATA_URL && REMOTE_DATA_URL.trim()) {
+    try {
+      const resp = await fetch(REMOTE_DATA_URL.trim(), { cache: 'no-cache' });
+      if (resp.ok) {
+        const remoteData = await resp.json();
+        if (Array.isArray(remoteData) && remoteData.length > 0) {
+          window.TOUR_DATA = remoteData;
+          updateDataSourceBadge(true);
+          console.log('✅ 已加载远程数据，共 ' + remoteData.length + ' 条团期记录');
+        } else {
+          console.warn('⚠️ 远程数据为空，使用本地 data.js');
+        }
+      } else {
+        console.warn('⚠️ 远程加载失败(' + resp.status + ')，使用本地 data.js');
+      }
+    } catch(e) {
+      console.warn('⚠️ 远程加载异常，使用本地 data.js', e);
     }
-  } catch(ghErr) {
-    console.warn('⚠️ GitHub 加载失败', ghErr);
-  }
-  if (dataSource === 'local') {
-    updateDataSourceBadge('local');
-    console.log('📁 使用本地 data.js 数据源');
   }
 
   // ==================== 数据层 ====================
@@ -880,60 +718,14 @@ async function githubSaveData(projectsArray) {
   let projects = (window.TOUR_DATA || []).map(p => normalizeProject(p));
 
   /** 供应商主数据（模拟，后续从系统同步或手动维护） */
-  let suppliers = JSON.parse(localStorage.getItem('tour_suppliers') || JSON.stringify([
-    { id:'sup_1', name:'南宁地接社', contact:'', phone:'', category:'地接', bankInfo:'' },
-    { id:'sup_2', name:'哈尔滨地接社', contact:'', phone:'', category:'地接', bankInfo:'' },
-    { id:'sup_3', name:'火车票代订', contact:'', phone:'', category:'车票', bankInfo:'' },
-    { id:'sup_4', name:'导游服务公司', contact:'', phone:'', category:'导服', bankInfo:'' },
-    { id:'sup_5', name:'邮轮代理', contact:'', phone:'', category:'邮轮', bankInfo:'' },
-    { id:'sup_6', name:'其他供应商', contact:'', phone:'', category:'其他', bankInfo:'' },
-  ]));
-
-  function saveSuppliers() { localStorage.setItem('tour_suppliers', JSON.stringify(suppliers)); }
-
-  // 根据供应商名称匹配已有ID，若无则新建
-  function resolveSupplierId(name) {
-    if (!name || !name.trim()) return '';
-    var n = name.trim();
-    var found = suppliers.find(function(s){ return s.name === n; });
-    if (found) return found.id;
-    // 新建供应商
-    var newId = 'sup_' + (suppliers.length + 1) + '_' + Date.now();
-    suppliers.push({ id: newId, name: n, contact: '', phone: '', category: '', bankInfo: '' });
-    saveSuppliers();
-    refreshSupplierDatalist();
-    renderSupplierEditList();
-    return newId;
-  }
-
-  // 刷新供应商 datalist
-  function refreshSupplierDatalist() {
-    var dl = document.getElementById('supplierList');
-    if (!dl) return;
-    dl.innerHTML = suppliers.map(function(s){ return '<option value="' + escHtml(s.name) + '">'; }).join('');
-  }
-
-  // 渲染供应商管理标签区
-  function renderSupplierEditList() {
-    var el = document.getElementById('supplierEditList');
-    if (!el) return;
-    el.innerHTML = suppliers.map(function(s){
-      return '<div style="display:flex;align-items:center;gap:4px;padding:4px 8px;border:1px solid var(--border);border-radius:16px;font-size:11px;background:var(--bg-card);">' +
-        '<span style="font-weight:600;">' + escHtml(s.name) + '</span>' +
-        '<span style="color:var(--text-muted);font-size:10px;">' + escHtml(s.category||'未分类') + '</span>' +
-        '<button onclick="deleteSupplier(\'' + s.id + '\')" style="background:var(--danger-bg);color:var(--danger);border:none;border-radius:50%;width:18px;height:18px;font-size:10px;cursor:pointer;line-height:1;">✕</button>' +
-        '</div>';
-    }).join('');
-  }
-
-  window.deleteSupplier = function(sid) {
-    if (!confirm('确定删除这个供应商吗？已有的成本关联不会受影响。')) return;
-    suppliers = suppliers.filter(function(s){ return s.id !== sid; });
-    saveSuppliers();
-    refreshSupplierDatalist();
-    renderSupplierEditList();
-    renderSuppliers();
-  };
+  let suppliers = [
+    { id:'sup_1', name:'南宁地接社', contact:'李经理', phone:'138xxxx0001', category:'地接', bankInfo:'建设银行 xxxx' },
+    { id:'sup_2', name:'哈尔滨地接社', contact:'王经理', phone:'138xxxx0002', category:'地接', bankInfo:'工商银行 xxxx' },
+    { id:'sup_3', name:'火车票代订', contact:'赵经理', phone:'138xxxx0003', category:'车票', bankInfo:'招商银行 xxxx' },
+    { id:'sup_4', name:'导游服务公司', contact:'钱经理', phone:'138xxxx0004', category:'导服', bankInfo:'中国银行 xxxx' },
+    { id:'sup_5', name:'邮轮代理', contact:'周经理', phone:'138xxxx0005', category:'邮轮', bankInfo:'农业银行 xxxx' },
+    { id:'sup_6', name:'其他供应商', contact:'吴经理', phone:'138xxxx0006', category:'其他', bankInfo:'' },
+  ];
 
   /** 付款记录：{ projectId, costId, supplierId, amount, date } */
   let payments = JSON.parse(localStorage.getItem('tour_payments') || '[]');
@@ -956,30 +748,20 @@ async function githubSaveData(projectsArray) {
   }
 
   function normalizeProject(p) {
-    // 从 Supabase 加载时 incomes/costs/peopleDetails 是 JSON 字符串，需解析
-    ['incomes','costs','peopleDetails','_lockedIncomes','_lockedCosts','_lockedProfits'].forEach(function(k){
-      if (typeof p[k] === 'string' && p[k].trim()) {
-        try { var parsed = JSON.parse(p[k]); if (Array.isArray(parsed)) p[k] = parsed; }
-        catch(e) { p[k] = []; }
-      }
-      if (!p[k]) p[k] = [];
-    });
-    if (!p.incomes || p.incomes.length===0) p.incomes = [];
-    if (!p.costs || p.costs.length===0) p.costs = [];
-    if (!p.peopleDetails || p.peopleDetails.length===0) {
+    if (!p.peopleDetails) {
       p.peopleDetails = [
         { name:'线上', count: p.people || 0 },
         { name:'线下', count: 0 },
         { name:'切位', count: 0 }
       ];
     }
-    // 自动关联成本项到供应商
-    (p.costs||[]).forEach(function(c){
-      if (!c._supplierId) c._supplierId = autoMapSupplier(c.name);
-    });
     p._lockedIncomes = p._lockedIncomes || [];
     p._lockedCosts = p._lockedCosts || [];
     p._lockedProfits = p._lockedProfits || [];
+    // 自动关联成本项到供应商
+    (p.costs||[]).forEach(c => {
+      if (!c._supplierId) c._supplierId = autoMapSupplier(c.name);
+    });
     p.receivableStatus = p.receivableStatus || 'unpaid';
     p.payableStatus = p.payableStatus || 'unpaid';
     return p;
@@ -1255,14 +1037,13 @@ async function githubSaveData(projectsArray) {
     document.getElementById('receivableTypeFilter').innerHTML = '<option value="all">全部产品线</option>' + types.map(t=>`<option value="${t}" ${recTypeFilter===t?'selected':''}>${t}</option>`).join('');
   }
 
-  // ==================== MODULE 4: PAYABLES (V3 卡片+月度+分析) ====================
-  var payMonthFilter = 'all';
-
+  // ==================== MODULE 4: PAYABLES ====================
+  let payPage = 1, payStatusFilter = 'all', paySupFilter = 'all', payMonthFilter = 'all';
   function renderPayables() {
-    const allList = getFilteredProjects().filter(p => sumCost(p) > 0);
-    let list = payMonthFilter === 'all' ? allList : allList.filter(p => p.startDate && p.startDate.substring(0,7) === payMonthFilter);
+    let list = getFilteredProjects().filter(p => sumCost(p) > 0);
+    if (payStatusFilter !== 'all') list = list.filter(p => getPayableStatus(p) === payStatusFilter);
+    if (payMonthFilter !== 'all') list = list.filter(p => p.startDate && p.startDate.substring(0,7) === payMonthFilter);
 
-    // KPI
     let totalAP = 0, totalPd = 0, unpaidCount = 0;
     list.forEach(p => { totalAP += sumCost(p); totalPd += sumProjectPayments(p.id); if(getPayableStatus(p)!=='paid') unpaidCount++; });
 
@@ -1272,315 +1053,54 @@ async function githubSaveData(projectsArray) {
       <div class="kpi-card cost"><div class="kpi-label">未付总额</div><div class="kpi-value cost">${fmt(totalAP - totalPd)}</div></div>
       <div class="kpi-card people"><div class="kpi-label">未结清团期</div><div class="kpi-value people">${unpaidCount}</div></div>`;
 
-    // 月份滑块
+    // Build payable items from costs
+    let items = [];
+    list.forEach(p => {
+      (p.costs||[]).forEach(c => {
+        if (paySupFilter !== 'all' && (c._supplierId !== paySupFilter)) return;
+        const paid = sumCostPayments(p.id, c.id);
+        const status = paid >= c.amount ? 'paid' : (paid > 0 ? 'partial' : 'unpaid');
+        items.push({ project:p, cost:c, paid, status });
+      });
+    });
+
+    // Filter by status
+    if (payStatusFilter !== 'all') items = items.filter(i => i.status === payStatusFilter);
+
+    const PAGE = 20;
+    const totalPages = Math.ceil(items.length / PAGE) || 1;
+    if (payPage > totalPages) payPage = totalPages;
+    const paged = items.slice((payPage-1)*PAGE, payPage*PAGE);
+
+    document.getElementById('payableTable').querySelector('tbody').innerHTML = paged.map(({project, cost, paid, status}) => {
+      const sup = suppliers.find(s => s.id === cost._supplierId);
+      return `<tr>
+        <td>${escHtml(project.name)}</td>
+        <td>${escHtml(cost.name)}</td>
+        <td>${sup ? escHtml(sup.name) : '<span style="color:var(--text-muted);">未关联</span>'}</td>
+        <td class="amount-cost">${fmt(cost.amount)}</td>
+        <td>${fmt(paid)}</td>
+        <td class="amount-cost">${fmt(cost.amount - paid)}</td>
+        <td><span class="status-chip status-${status}">${{paid:'已结清',partial:'部分付款',unpaid:'未付款'}[status]}</span></td>
+      </tr>`;
+    }).join('') || '<tr><td colspan="7" style="text-align:center;padding:30px;color:var(--text-muted);">暂无应付款数据</td></tr>';
+
+    document.getElementById('payablePagination').innerHTML = totalPages > 1
+      ? Array.from({length:totalPages},(_,i)=>`<button class="${i+1===payPage?'active':''}" onclick="window._payPage=${i+1};window._renderPayables()">${i+1}</button>`).join('')
+      : '';
+
+    // Supplier filter
+    const allList = getFilteredProjects().filter(p => sumCost(p) > 0);
+    const usedSups = [...new Set(allList.flatMap(p=>(p.costs||[]).map(c=>c._supplierId)).filter(Boolean))];
+    const supOpts = usedSups.map(id => { const s = suppliers.find(x=>x.id===id); return s ? `<option value="${id}">${s.name}</option>` : ''; }).join('');
+    document.getElementById('payableSupplierFilter').innerHTML = '<option value="all">全部供应商</option>' + supOpts;
+
+    // Month filter
     const months = [...new Set(allList.map(p => p.startDate ? p.startDate.substring(0,7) : null).filter(Boolean))].sort();
-    var swiperHtml = '';
-    months.forEach(function(m) {
-      var parts = m.split('-');
-      var cnt = allList.filter(function(p){ return p.startDate && p.startDate.substring(0,7)===m; }).length;
-      var cls = (payMonthFilter === m) ? ' month-chip active' : ' month-chip';
-      swiperHtml += '<div class="' + cls + '" data-month="' + m + '">' +
-        parseInt(parts[0]) + '年' + parseInt(parts[1]) + '月<span class="chip-count">' + cnt + '个团期</span></div>';
-    });
-    document.getElementById('payMonthSwiper').innerHTML = swiperHtml;
-    // 绑定月份点击事件
-    document.querySelectorAll('#payMonthSwiper .month-chip').forEach(function(chip){
-      chip.addEventListener('click', function(){
-        payMonthFilter = this.getAttribute('data-month');
-        renderPayables();
-      });
-    });
-
-    // 团期应付卡片
-    if (payMonthFilter === 'all') {
-      document.getElementById('payCardArea').innerHTML = '<div style="text-align:center;padding:30px;color:var(--text-muted);">👆 点击上方月份查看对应团期应付卡片</div>';
-    } else if (list.length === 0) {
-      document.getElementById('payCardArea').innerHTML = '<div style="text-align:center;padding:30px;color:var(--text-muted);">暂无该月份的应付团期</div>';
-    } else {
-      document.getElementById('payCardArea').innerHTML = list.map(p => renderPayCard(p)).join('');
-      // 绑定卡片展开/收起事件
-      var expandedPayCardId = null;
-      document.querySelectorAll('#payCardArea .pay-card').forEach(function(card){
-        card.addEventListener('click', function(e){
-          // 按钮点击不触发展开
-          if (e.target.tagName === 'BUTTON' || e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') return;
-          var clickedId = this.getAttribute('data-pid');
-          if (expandedPayCardId === clickedId) {
-            // 再次点击同一个 → 收起
-            this.classList.remove('expanded');
-            expandedPayCardId = null;
-          } else {
-            // 收起之前展开的
-            var prev = document.querySelector('#payCardArea .pay-card.expanded');
-            if (prev) prev.classList.remove('expanded');
-            // 展开当前
-            this.classList.add('expanded');
-            expandedPayCardId = clickedId;
-          }
-        });
-      });
-    }
-
-    // 综合分析
-    renderPayAnalysis(allList, list);
-  }
-
-  // 渲染单个团期应付卡片（简约展开式）
-  function renderPayCard(p) {
-    const totalCost = sumCost(p);
-    const totalPaid = sumProjectPayments(p.id);
-    const unpaid = totalCost - totalPaid;
-    const status = totalPaid >= totalCost ? 'paid' : (totalPaid > 0 ? 'partial' : 'unpaid');
-    const statusLabel = {paid:'已结清', partial:'部分付款', unpaid:'未付款'}[status];
-    const statusColor = {paid:'var(--success)', partial:'var(--warning)', unpaid:'var(--danger)'}[status];
-
-    // 成本明细行（展开区）
-    var costRows = '';
-    (p.costs||[]).forEach(function(c){
-      var cPaid = sumCostPayments(p.id, c.id);
-      var cUnpaid = c.amount - cPaid;
-      var sup = suppliers.find(function(s){return s.id===c._supplierId;});
-      costRows += '<div class="pay-cost-row">' +
-        '<div class="cost-info"><span class="cost-name">' + escHtml(c.name) + '</span><span class="cost-supplier">' + (sup ? sup.name : '未关联供应商') + '</span></div>' +
-        '<div class="cost-amounts"><span class="cost-paid">已付 ' + fmt(cPaid) + '</span> / <span class="cost-unpaid">未付 ' + fmt(cUnpaid) + '</span></div>' +
-        '</div>';
-    });
-
-    return '<div class="pay-card" data-pid="' + p.id + '">' +
-      // 头部始终可见
-      '<div class="pay-card-header">' +
-        '<div class="pay-card-title">' + escHtml(p.name) + '</div>' +
-        '<span class="pay-card-tag" style="background:' + statusColor + '20;color:' + statusColor + ';">' + statusLabel + '</span>' +
-      '</div>' +
-      '<div class="pay-card-meta">' +
-        '<span>📦' + (p.productType||'未分类') + '</span>' +
-        '<span>👤' + (p.operator||'-') + '</span>' +
-        '<span>📅' + (p.startDate||'-') + '</span>' +
-      '</div>' +
-      '<div class="pay-card-amounts">' +
-        '<div class="pay-amt-item"><div class="label">应付</div><div class="value" style="color:var(--danger);">' + fmt(totalCost) + '</div></div>' +
-        '<div class="pay-amt-item"><div class="label">已付</div><div class="value" style="color:var(--success);">' + fmt(totalPaid) + '</div></div>' +
-        '<div class="pay-amt-item"><div class="label">未付</div><div class="value" style="color:' + (unpaid>0?'var(--danger)':'var(--text-muted)') + ';">' + fmt(unpaid) + '</div></div>' +
-      '</div>' +
-      '<span class="pay-card-expand-hint">▼</span>' +
-      // 可展开区域
-      '<div class="pay-card-detail">' +
-        (costRows ? '<div class="pay-card-costs">' + costRows + '</div>' : '<div style="font-size:11px;color:var(--text-muted);padding:8px 0;">暂无成本明细</div>') +
-        '<div class="pay-card-actions">' +
-          '<button class="btn btn-sm" onclick="event.stopPropagation();window._showProjectDetail(\'' + p.id + '\')">📋 详情</button>' +
-          '<button class="btn btn-sm btn-accent" onclick="event.stopPropagation();openPayModal(\'' + p.id + '\')">💳 登记付款</button>' +
-        '</div>' +
-      '</div>' +
-    '</div>';
-  }
-
-  // 打开付款登记弹窗
-  window.openPayModal = function(projId) {
-    var p = projects.find(function(x){return x.id===projId;});
-    if (!p) return;
-    var totalCost = sumCost(p);
-    var totalPaid = sumProjectPayments(p.id);
-    var remaining = totalCost - totalPaid;
-
-    // 已有付款记录
-    var payHistory = '';
-    var projPayments = payments.filter(function(pp){return pp.projectId===projId;}).sort(function(a,b){return (b.date||'').localeCompare(a.date||'');});
-    if (projPayments.length > 0) {
-      payHistory = '<h4 style="font-size:12px;color:var(--text-muted);margin-bottom:6px;">📋 付款记录</h4>';
-      projPayments.forEach(function(pm){
-        var cost = (p.costs||[]).find(function(c){return c.id===pm.costId;});
-        var sup = suppliers.find(function(s){return s.id===pm.supplierId;});
-        payHistory += '<div style="display:flex;justify-content:space-between;padding:4px 0;font-size:11px;border-bottom:1px solid var(--border-light);">';
-        payHistory += '<span>'+(cost?escHtml(cost.name):'全部')+ (sup?' · '+escHtml(sup.name):'') + (pm.date?' · '+pm.date:'') + '</span>';
-        payHistory += '<span style="color:var(--success);font-weight:600;">'+fmt(pm.amount)+'</span>';
-        payHistory += '<button onclick="deletePayment(\''+pm.id+'\',\''+projId+'\')" style="background:var(--danger-bg);color:var(--danger);border:none;border-radius:3px;cursor:pointer;font-size:10px;margin-left:4px;">✕</button>';
-        payHistory += '</div>';
-      });
-    }
-
-    var costOpts = '<option value="">[统筹付款]</option>';
-    (p.costs||[]).forEach(function(c,idx){
-      var cPaid = sumCostPayments(p.id, c.id);
-      var cRem = c.amount - cPaid;
-      var sup = suppliers.find(function(s){return s.id===c._supplierId;});
-      costOpts += '<option value="'+c.id+'">'+escHtml(c.name)+(sup?' · '+sup.name:'')+' (剩余'+fmt(cRem)+')</option>';
-    });
-
-    var html = '<button class="close-btn" onclick="closePayModal()">✕</button>';
-    html += '<h3>💳 付款登记 · '+escHtml(p.name)+'</h3>';
-    html += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">应付总额 '+fmt(totalCost)+' · 已付 '+fmt(totalPaid)+' · 剩余 '+fmt(remaining)+'</div>';
-    html += payHistory;
-    html += '<div style="margin-bottom:10px;"><label style="font-size:11px;color:var(--text-muted);">成本项</label><select id="payCostSelect" style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:13px;font-family:inherit;">'+costOpts+'</select></div>';
-    html += '<div style="margin-bottom:10px;"><label style="font-size:11px;color:var(--text-muted);">付款金额</label></div>';
-    html += '<div class="pay-modal-amount"><input type="number" id="payAmountInput" placeholder="请输入付款金额" value="'+(remaining>0?remaining:0)+'" step="0.01" min="0.01"></div>';
-    html += '<div style="margin-bottom:10px;"><label style="font-size:11px;color:var(--text-muted);">付款日期</label><input type="date" id="payDateInput" style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:13px;font-family:inherit;" value="'+new Date().toISOString().slice(0,10)+'"></div>';
-    html += '<div style="margin-bottom:10px;"><label style="font-size:11px;color:var(--text-muted);">供应商</label><select id="paySupSelect" style="width:100%;padding:8px;border-radius:6px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:13px;font-family:inherit;">';
-    suppliers.forEach(function(s){ html += '<option value="'+s.id+'">'+s.name+'</option>'; });
-    html += '</select></div>';
-    html += '<div class="modal-save-bar">';
-    html += '<button class="btn btn-outline" onclick="closePayModal()">取消</button>';
-    html += '<button class="btn btn-accent" onclick="submitPayment(\''+projId+'\')">✅ 确认付款</button>';
-    html += '</div>';
-
-    document.getElementById('payModalBox').innerHTML = html;
-    document.getElementById('payModalOverlay').classList.add('show');
-  };
-
-  window.closePayModal = function() { document.getElementById('payModalOverlay').classList.remove('show'); };
-
-  window.submitPayment = function(projId) {
-    var costId = document.getElementById('payCostSelect').value;
-    var amount = parseFloat(document.getElementById('payAmountInput').value) || 0;
-    var date = document.getElementById('payDateInput').value;
-    var supId = document.getElementById('paySupSelect').value;
-    if (amount <= 0) { alert('请输入有效的付款金额'); return; }
-
-    payments.push({ id: 'pmt_'+Date.now(), projectId: projId, costId: costId, supplierId: supId, amount: amount, date: date });
-    localStorage.setItem('tour_payments', JSON.stringify(payments));
-    closePayModal();
-    renderPayables();
-    alert('✅ 付款已登记：'+fmt(amount));
-  };
-
-  window.deletePayment = function(pmtId, projId) {
-    if (!confirm('确定删除这条付款记录吗？')) return;
-    payments = payments.filter(function(p){return p.id !== pmtId;});
-    localStorage.setItem('tour_payments', JSON.stringify(payments));
-    renderPayables();
-  };
-
-  // 综合分析区域
-  var payAnalysisChart = null;
-  function renderPayAnalysis(allList, monthList) {
-    var isMonthView = payMonthFilter !== 'all' && monthList && monthList.length > 0;
-    var analysisList = isMonthView ? monthList : allList;
-    if (analysisList.length === 0) {
-      document.getElementById('payAnalysisArea').innerHTML = '';
-      return;
-    }
-
-    // 按月汇总
-    var monthAgg = {};
-    allList.forEach(function(p){
-      if (!p.startDate) return;
-      var m = p.startDate.substring(0,7);
-      if (!monthAgg[m]) monthAgg[m] = { payable:0, paid:0, count:0 };
-      monthAgg[m].payable += sumCost(p);
-      monthAgg[m].paid += sumProjectPayments(p.id);
-      monthAgg[m].count++;
-    });
-    var sortedMonths = Object.keys(monthAgg).sort();
-
-    // 供应商应付排行（基于当前分析范围）
-    var supAgg = {};
-    analysisList.forEach(function(p){
-      (p.costs||[]).forEach(function(c){
-        var sid = c._supplierId || 'sup_6';
-        if (!supAgg[sid]) { var s = suppliers.find(function(x){return x.id===sid;}); supAgg[sid] = { name: s?s.name:sid, payable:0, paid:0 }; }
-        supAgg[sid].payable += c.amount;
-        supAgg[sid].paid += sumCostPayments(p.id, c.id);
-      });
-    });
-    var supRank = Object.values(supAgg).sort(function(a,b){return b.payable - a.payable;});
-
-    if (isMonthView) {
-      // === 月份视图：供应商饼图 + 团期排行 ===
-      var mothTotal = analysisList.reduce(function(s,p){return s+sumCost(p);},0);
-      var mothPaid = analysisList.reduce(function(s,p){return s+sumProjectPayments(p.id);},0);
-      var html = '<div class="pay-analysis-card">' +
-        '<h4>📊 ' + payMonthFilter + ' 供应商应付占比</h4>' +
-        '<div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">该月应付总额 '+fmt(mothTotal)+' · 已付 '+fmt(mothPaid)+'</div>' +
-        '<div class="pay-chart-wrap"><canvas id="payMonthlyChart"></canvas></div></div>';
-      html += '<div class="pay-analysis-card"><h4>📋 ' + payMonthFilter + ' 团期应付排行</h4><div style="max-height:260px;overflow-y:auto;">';
-      var projRank = analysisList.map(function(p){
-        var cost = sumCost(p);
-        var paid = sumProjectPayments(p.id);
-        return { name:p.name, cost:cost, paid:paid, unpaid:cost-paid };
-      }).sort(function(a,b){return b.unpaid - a.unpaid;});
-      projRank.forEach(function(p,idx){
-        html += '<div style="display:flex;align-items:center;padding:5px 0;border-bottom:1px solid var(--border-light);font-size:12px;">';
-        html += '<span style="width:24px;color:var(--text-muted);">'+(idx+1)+'</span>';
-        html += '<span style="flex:1;font-weight:600;">'+escHtml(p.name)+'</span>';
-        html += '<span style="color:var(--danger);margin-right:6px;font-size:11px;">未付 '+fmt(p.unpaid)+'</span>';
-        html += '<span style="color:var(--success);font-size:11px;">已付 '+fmt(p.paid)+'</span>';
-        html += '</div>';
-      });
-      html += '</div></div>';
-      document.getElementById('payAnalysisArea').innerHTML = html;
-
-      // 饼图
-      setTimeout(function(){
-        if (payAnalysisChart) payAnalysisChart.destroy();
-        var ctx = document.getElementById('payMonthlyChart');
-        if (!ctx) return;
-        var pieLabels = supRank.slice(0,8).map(function(x){return x.name;});
-        var pieData = supRank.slice(0,8).map(function(x){return x.payable;});
-        var otherSum = supRank.slice(8).reduce(function(s,x){return s+x.payable;},0);
-        if (otherSum > 0) { pieLabels.push('其他'); pieData.push(otherSum); }
-        payAnalysisChart = new Chart(ctx, {
-          type: 'doughnut',
-          data: {
-            labels: pieLabels,
-            datasets: [{ data: pieData,
-              backgroundColor: ['#6366f1','#8b5cf6','#a78bfa','#ef4444','#f97316','#eab308','#10b981','#06b6d4','#6b7280'],
-              borderColor: 'var(--bg-card)', borderWidth: 2 }]
-          },
-          options: {
-            responsive:true, maintainAspectRatio:false,
-            plugins: {
-              legend: { position:'bottom', labels:{color:'#94a3b8',font:{size:10},padding:12,usePointStyle:true,boxWidth:8} },
-              tooltip: { callbacks: { label: function(c){ return c.label+': '+fmt(c.raw); } } }
-            }
-          }
-        });
-      }, 100);
-
-    } else {
-      // === 全部视图：月度趋势图 + 供应商排行 ===
-      var html = '<div class="pay-analysis-card"><h4>📊 月度应付趋势</h4><div class="pay-chart-wrap"><canvas id="payMonthlyChart"></canvas></div></div>';
-      html += '<div class="pay-analysis-card"><h4>🏢 供应商应付排行</h4><div style="max-height:260px;overflow-y:auto;">';
-      supRank.forEach(function(s,idx){
-        var unpaid = s.payable - s.paid;
-        var pct = s.payable > 0 ? ((s.paid/s.payable)*100).toFixed(0) : 0;
-        html += '<div style="display:flex;align-items:center;padding:6px 0;border-bottom:1px solid var(--border-light);font-size:12px;">';
-        html += '<span style="width:24px;color:var(--text-muted);">'+(idx+1)+'</span>';
-        html += '<span style="flex:1;font-weight:600;">'+escHtml(s.name)+'</span>';
-        html += '<span style="color:var(--danger);margin-right:8px;">应付 '+fmt(s.payable)+'</span>';
-        html += '<span style="color:var(--success);margin-right:8px;">已付 '+fmt(s.paid)+'</span>';
-        html += '<span style="font-size:10px;color:var(--text-muted);">'+pct+'%</span>';
-        html += '</div>';
-      });
-      html += '</div></div>';
-      document.getElementById('payAnalysisArea').innerHTML = html;
-
-      setTimeout(function(){
-        if (payAnalysisChart) payAnalysisChart.destroy();
-        var ctx = document.getElementById('payMonthlyChart');
-        if (!ctx) return;
-        payAnalysisChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: sortedMonths.map(function(m){ var p=m.split('-'); return parseInt(p[1])+'月'; }),
-            datasets: [
-              { label: '应付', data: sortedMonths.map(function(m){return monthAgg[m].payable;}),
-                backgroundColor: 'rgba(239,68,68,0.5)', borderColor: '#ef4444', borderWidth:1, borderRadius:4 },
-              { label: '已付', data: sortedMonths.map(function(m){return monthAgg[m].paid;}),
-                backgroundColor: 'rgba(16,185,129,0.5)', borderColor: '#10b981', borderWidth:1, borderRadius:4 }
-            ]
-          },
-          options: {
-            responsive:true, maintainAspectRatio:false,
-            plugins: { legend: { labels: { color:'#94a3b8', font:{size:11}, usePointStyle:true, boxWidth:8 } },
-              tooltip: { callbacks: { label: function(ctx){ return ctx.dataset.label+': '+fmt(ctx.raw); } } }
-            },
-            scales: {
-              x: { ticks:{color:'#94a3b8',font:{size:10}}, grid:{display:false} },
-              y: { ticks:{color:'#94a3b8',font:{size:10},callback:function(v){return v>=10000?(v/10000).toFixed(1)+'万':v;}}, grid:{color:'rgba(30,58,95,0.3)'} }
-            }
-          }
-        });
-      }, 100);
-    }
+    document.getElementById('payableMonthFilter').innerHTML = '<option value="all">全部月份</option>' + months.map(m => {
+      const parts = m.split('-');
+      return `<option value="${m}" ${payMonthFilter===m?'selected':''}>${parts[0]}年${parseInt(parts[1])}月</option>`;
+    }).join('');
   }
 
   // ==================== MODULE 5: SUPPLIERS ====================
@@ -1817,156 +1337,29 @@ async function githubSaveData(projectsArray) {
   // ==================== MODULE 7: DATA IMPORT ====================
   function renderDataImport() {
     // Import zone click
-    document.getElementById('importZone').onclick = function(){ document.getElementById('importFileInput').click(); };
+    document.getElementById('importZone').onclick = () => document.getElementById('importFileInput').click();
     document.getElementById('importFileInput').onchange = handleFileImport;
-    // 导入到云端按钮
-    document.getElementById('importToSupabaseBtn').onclick = pushImportedToGitHub;
-    // 有数据时显示云端导入按钮
-    document.getElementById('importToSupabaseBtn').style.display = projects.length > 0 ? 'inline-block' : 'none';
-  }
-
-  async function pushImportedToGitHub() {
-    var btn = document.getElementById('importToSupabaseBtn');
-    btn.disabled = true;
-    btn.textContent = '⏳ 推送中...';
-    try {
-      var clean = projects.map(function(p){ return {
-        id:p.id, name:p.name, productType:p.productType||'', operator:p.operator||'',
-        startDate:p.startDate||'', remark:p.remark||'',
-        incomes:p.incomes||[], costs:p.costs||[], peopleDetails:p.peopleDetails||[]
-      }; });
-
-      var ok = await githubSaveData(clean);
-      if (!ok) throw new Error('GitHub写入失败');
-      updateDataSourceBadge('github');
-      showImportMsg('✅ 已推送 '+clean.length+' 条数据到云端！');
-      addImportLog('☁️ 数据已推送到 GitHub');
-    } catch(e) {
-      showImportMsg('<span style="color:var(--danger);">❌ 推送失败：'+e.message+'</span>');
-    }
-    btn.disabled = false;
-    btn.textContent = '☁️ 导入到云端';
   }
 
   function handleFileImport(e) {
-    var file = e.target.files[0];
+    const file = e.target.files[0];
     if (!file) return;
-    var reader = new FileReader();
+    const reader = new FileReader();
     reader.onload = function(ev) {
       try {
-        var wb = XLSX.read(ev.target.result, { type: 'array' });
-        var ws = wb.Sheets[wb.SheetNames[0]];
-        var data = XLSX.utils.sheet_to_json(ws);
-        if (data.length === 0) { showImportMsg('⚠️ 文件中没有数据'); return; }
-
-        // 智能列名匹配
-        var firstRow = data[0];
-        var cols = Object.keys(firstRow);
-        var colMap = {};
-        // 列名映射（中英文、简写都兼容）
-        function findCol(patterns) {
-          for (var i = 0; i < patterns.length; i++) {
-            var found = cols.find(function(c){ return c.indexOf(patterns[i]) !== -1 || c === patterns[i]; });
-            if (found) return found;
-          }
-          return null;
-        }
-        colMap.id       = findCol(['团号','id','编号']);
-        colMap.name     = findCol(['名称','name','团名','团期']);
-        colMap.type     = findCol(['产品线','type','类型']);
-        colMap.op       = findCol(['计调','operator','操作人']);
-        colMap.date     = findCol(['出发日期','日期','date','start']);
-        colMap.remark   = findCol(['备注','remark']);
-        colMap.incomes  = findCol(['收入明细','收入','income']);
-        colMap.costs    = findCol(['成本明细','成本','cost']);
-        colMap.people   = findCol(['人数明细','人数','people']);
-
-        if (!colMap.name && !colMap.id) {
-          showImportMsg('⚠️ 未找到「名称」或「团号」列，请检查表头。<br>可用列名：' + cols.join(', '));
-          return;
-        }
-
-        // 解析明细字符串 "名称:金额, 名称:金额"
-        function parseIncomes(str) {
-          if (!str) return [];
-          return String(str).split(/[,，;；]/).filter(Boolean).map(function(s){
-            var parts = s.trim().split(':');
-            return { name: (parts[0]||'').trim(), amount: parseFloat(parts[1]) || 0 };
-          }).filter(function(x){ return x.name; });
-        }
-        function parseCosts(str) {
-          if (!str) return [];
-          return String(str).split(/[,，;；]/).filter(Boolean).map(function(s,idx){
-            var parts = s.trim().split(':');
-            var supName = (parts[2]||'').trim();
-            var supId = resolveSupplierId(supName);
-            return { id: 'cost_imp_'+Date.now()+'_'+idx, name: (parts[0]||'').trim(), amount: parseFloat(parts[1])||0, _supplierId: supId };
-          }).filter(function(x){ return x.name; });
-        }
-        function parsePeople(str) {
-          if (!str) return [];
-          return String(str).split(/[,，;；]/).filter(Boolean).map(function(s){
-            var parts = s.trim().split(':');
-            return { name: (parts[0]||'').trim(), count: parseInt(parts[1]) || 0 };
-          }).filter(function(x){ return x.name&&x.count>0; });
-        }
-
-        var imported = 0, updated = 0, skipped = 0;
-        data.forEach(function(row,idx){
-          var rowId = (row[colMap.id]||'').toString().trim();
-          var rowName = (row[colMap.name]||'').toString().trim();
-          if (!rowName && !rowId) { skipped++; return; }
-
-          // 生成或使用已有的ID
-          var useId = rowId || 'proj_' + (Date.now()+idx) + '_' + Math.random().toString(36).slice(2,6);
-          var existing = projects.find(function(p){ return p.id === useId || p.name === rowName; });
-
-          var proj = {
-            id: useId,
-            name: rowName,
-            productType: (row[colMap.type]||'').toString().trim(),
-            operator: (row[colMap.op]||'').toString().trim(),
-            startDate: (row[colMap.date]||'').toString().trim(),
-            remark: (row[colMap.remark]||'').toString().trim(),
-            incomes: parseIncomes(row[colMap.incomes]),
-            costs: parseCosts(row[colMap.costs]),
-            peopleDetails: parsePeople(row[colMap.people])
-          };
-
-          if (existing) {
-            // 合并：保留已有的ID和已有数据，用导入数据覆盖对应字段
-            proj.id = existing.id;
-            if (!proj.name) proj.name = existing.name;
-            if (!proj.productType) proj.productType = existing.productType || '';
-            if (!proj.operator) proj.operator = existing.operator || '';
-            if (!proj.startDate) proj.startDate = existing.startDate || '';
-            if (!proj.remark) proj.remark = existing.remark || '';
-            if (proj.incomes.length === 0) proj.incomes = (existing.incomes||[]).slice();
-            if (proj.costs.length === 0) proj.costs = (existing.costs||[]).slice();
-            if (proj.peopleDetails.length === 0) proj.peopleDetails = (existing.peopleDetails||[]).slice();
-            var exIdx = projects.findIndex(function(p){ return p.id === existing.id; });
-            projects[exIdx] = proj;
-            updated++;
-          } else {
-            projects.push(proj);
-            imported++;
-          }
-        });
-
-        renderCurrentPane();
-        renderSupplierEditList();
-        refreshSupplierDatalist();
-        showImportMsg('✅ 导入完成：新增 ' + imported + ' 个团期，更新 ' + updated + ' 个，跳过 ' + skipped + ' 行。');
-        addImportLog('导入文件 "' + file.name + '"：新增'+imported+' 更新'+updated+' 跳过'+skipped);
+        const wb = XLSX.read(ev.target.result, { type: 'array' });
+        const ws = wb.Sheets[wb.SheetNames[0]];
+        const data = XLSX.utils.sheet_to_json(ws);
+        document.getElementById('importPreview').innerHTML = `
+          <p style="color:var(--success);font-weight:600;">✅ 读取成功：${data.length} 条记录</p>
+          <p style="font-size:11px;color:var(--text-muted);margin-top:4px;">列名：${Object.keys(data[0]||{}).join(', ')}</p>
+          <p style="font-size:11px;color:var(--text-muted);margin-top:4px;">（导入功能开发中，目前仅支持预览。请使用移动端看板录入或手动编辑data.js）</p>`;
+        addImportLog(`读取文件 "${file.name}"，共 ${data.length} 条记录`);
       } catch(err) {
-        showImportMsg('<span style="color:var(--danger);">❌ 导入失败：' + err.message + '</span>');
+        document.getElementById('importPreview').innerHTML = `<p style="color:var(--danger);">❌ 读取失败：${err.message}</p>`;
       }
     };
     reader.readAsArrayBuffer(file);
-  }
-
-  function showImportMsg(msg) {
-    document.getElementById('importPreview').innerHTML = '<p>' + msg + '</p>';
   }
 
   function addImportLog(msg) {
@@ -1975,14 +1368,14 @@ async function githubSaveData(projectsArray) {
     log.innerHTML = `<div>🕐 ${time} — ${msg}</div>` + log.innerHTML;
   }
 
-  function updateDataSourceBadge(source) {
+  function updateDataSourceBadge(isRemote) {
     var badge = document.getElementById('dataSourceBadge');
     if (!badge) return;
-    if (source === 'github') {
-      badge.innerHTML = '🌐 GitHub';
+    if (isRemote) {
+      badge.innerHTML = '☁️ 远程';
       badge.style.background = 'rgba(16,185,129,0.15)';
       badge.style.color = '#34d399';
-      badge.title = '当前使用 GitHub 云存储（实时同步）';
+      badge.title = '当前使用远程数据源（GitHub）';
     } else {
       badge.innerHTML = '📁 本地';
       badge.style.background = 'rgba(239,68,68,0.15)';
@@ -1991,124 +1384,42 @@ async function githubSaveData(projectsArray) {
     }
   }
 
-  // ==================== PROJECT DETAIL MODAL (可编辑) ====================
+  // ==================== PROJECT DETAIL MODAL ====================
   window._showProjectDetail = function(id) {
     const p = projects.find(x => x.id === id);
     if (!p) return;
+    const inc = sumIncome(p), cost = sumCost(p), gross = sumGross(p);
+    const margin = calcMargin(p);
+    const received = sumProjectReceipts(p.id);
+    const paid = sumProjectPayments(p.id);
+    const peopleStr = (p.peopleDetails||[]).map(d=>`${d.name}:${d.count}`).join(', ');
 
     let html = `<button class="close-btn" onclick="document.getElementById('modalOverlay').classList.remove('show')">✕</button>
-    <h3>📋 ${escHtml(p.name)}</h3>
-
-    <div class="edit-grid">
-      <div class="edit-field"><label>团号</label><input type="text" id="ed_id" value="${escHtml(p.id)}" readonly style="opacity:0.6"></div>
-      <div class="edit-field"><label>名称</label><input type="text" id="ed_name" value="${escHtml(p.name)}"></div>
-      <div class="edit-field"><label>产品线</label><input type="text" id="ed_type" value="${escHtml(p.productType||'')}"></div>
-      <div class="edit-field"><label>计调</label><input type="text" id="ed_op" value="${escHtml(p.operator||'')}"></div>
-      <div class="edit-field"><label>出发日期</label><input type="date" id="ed_start" value="${p.startDate||''}"></div>
-      <div class="edit-field"><label>备注</label><input type="text" id="ed_remark" value="${escHtml(p.remark||'')}"></div>
+    <h3>${escHtml(p.name)}</h3>
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">
+      产品线：${p.productType||'-'} · 计调：${p.operator||'-'} · 出发日：${p.startDate||'-'} · 人数：${peopleStr}(${sumPeople(p,false)})</p>
+    <div class="detail-grid">
+      <div class="detail-section">
+        <h4>💰 收入明细</h4>
+        ${(p.incomes||[]).map(i=>`<div class="detail-row"><span>${escHtml(i.name)}</span><span style="color:#10b981;font-weight:600;">${fmt(i.amount)}</span></div>`).join('')}
+        <div class="detail-row" style="font-weight:700;border-top:1px solid var(--border);margin-top:4px;padding-top:8px;">
+          <span>总收入</span><span style="color:#10b981;">${fmt(inc)}</span></div>
+      </div>
+      <div class="detail-section">
+        <h4>📉 成本明细</h4>
+        ${(p.costs||[]).map(c=>`<div class="detail-row"><span>${escHtml(c.name)}</span><span style="color:#ef4444;font-weight:600;">${fmt(c.amount)}</span></div>`).join('')}
+        <div class="detail-row" style="font-weight:700;border-top:1px solid var(--border);margin-top:4px;padding-top:8px;">
+          <span>总成本</span><span style="color:#ef4444;">${fmt(cost)}</span></div>
+      </div>
+      <div class="detail-section" style="grid-column:1/-1;">
+        <div class="detail-row"><span>毛利</span><span style="color:#3b82f6;font-weight:700;">${fmt(gross)}</span></div>
+        <div class="detail-row"><span>毛利率</span><span style="color:#8b5cf6;font-weight:700;">${fmtMargin(margin)}</span></div>
+        <div class="detail-row"><span>应收 / 已收</span><span>${fmt(inc)} / <span style="color:${received>=inc?'#10b981':'#ef4444'};">${fmt(received)}</span></span></div>
+        <div class="detail-row"><span>应付 / 已付</span><span>${fmt(cost)} / <span style="color:${paid>=cost?'#10b981':'#ef4444'};">${fmt(paid)}</span></span></div>
+      </div>
     </div>`;
-
-    // 收入明细（可编辑）
-    html += '<h4 style="margin:14px 0 8px;">💰 收入明细</h4>';
-    html += '<div id="ed_incomes_list" class="sub-item-list">';
-    (p.incomes||[]).forEach(function(inc,idx){
-      html += `<div class="sub-item"><input placeholder="名称" value="${escHtml(inc.name)}" data-inc-name="${idx}">`;
-      html += `<input placeholder="金额" value="${inc.amount||0}" data-inc-amt="${idx}" style="width:110px;">`;
-      html += `<button onclick="this.parentElement.remove()">✕</button></div>`;
-    });
-    html += '</div>';
-    html += `<button class="btn btn-sm btn-outline" onclick="addSubItemInline('ed_incomes_list','income')" style="margin-bottom:12px;">＋ 添加收入项</button>`;
-
-    // 成本明细（可编辑，含供应商自由输入）
-    html += '<h4 style="margin:12px 0 8px;">📉 成本明细</h4>';
-    html += '<div id="ed_costs_list" class="sub-item-list">';
-    (p.costs||[]).forEach(function(c,idx){
-      var sup = suppliers.find(function(s){return s.id===c._supplierId;});
-      var supName = sup ? sup.name : (c._supplierId || '');
-      html += '<div class="sub-item"><input placeholder="成本项名称" value="'+escHtml(c.name)+'" data-cost-name="'+idx+'">';
-      html += '<input placeholder="金额" value="'+(c.amount||0)+'" data-cost-amt="'+idx+'" style="width:90px;" type="number" step="0.01">';
-      html += '<input list="supplierList" placeholder="供应商(可手输)" value="'+escHtml(supName)+'" data-cost-sup="'+idx+'" style="flex:1;padding:5px 6px;border-radius:6px;border:1px solid var(--border-light);background:var(--bg-secondary);color:var(--text-primary);font-size:11px;min-width:0;font-family:inherit;">';
-      html += '<button onclick="this.parentElement.remove()">✕</button></div>';
-    });
-    html += '</div>';
-    html += `<button class="btn btn-sm btn-outline" onclick="addSubItemInline('ed_costs_list','cost')" style="margin-bottom:12px;">＋ 添加成本项</button>`;
-
-    // 人数明细（可编辑）
-    html += '<h4 style="margin:12px 0 8px;">👥 人数明细</h4>';
-    html += '<div id="ed_people_list" class="sub-item-list">';
-    (p.peopleDetails||[]).forEach(function(d,idx){
-      html += `<div class="sub-item"><input placeholder="类型" value="${escHtml(d.name)}" data-ppl-name="${idx}">`;
-      html += `<input placeholder="人数" value="${d.count||0}" data-ppl-cnt="${idx}" style="width:90px;"></div>`;
-    });
-    html += '</div>';
-    html += `<button class="btn btn-sm btn-outline" onclick="addSubItemInline('ed_people_list','people')" style="margin-bottom:4px;">＋ 添加人数类型</button>`;
-
-    // 操作按钮
-    html += `<div class="modal-save-bar">
-      <button class="btn btn-outline" onclick="document.getElementById('modalOverlay').classList.remove('show')">取消</button>
-      <button class="btn btn-accent" onclick="saveDetailToCloud('${id}')">💾 保存到云端</button>
-    </div>`;
-
     document.getElementById('modalBox').innerHTML = html;
     document.getElementById('modalOverlay').classList.add('show');
-  };
-
-  // 内联添加子项
-  window.addSubItemInline = function(containerId, type) {
-    var container = document.getElementById(containerId);
-    var idx = container.children.length;
-    var h = '<div class="sub-item">';
-    if (type==='income') {
-      h+='<input placeholder="收入项名称" data-inc-name="'+idx+'"><input placeholder="金额" value="0" data-inc-amt="'+idx+'" style="width:110px;">';
-    } else if(type==='cost') {
-      h+='<input placeholder="成本项名称" data-cost-name="'+idx+'"><input placeholder="金额" value="0" data-cost-amt="'+idx+'" style="width:90px;" type="number" step="0.01">';
-      h+='<input list="supplierList" placeholder="供应商(可手输)" value="" data-cost-sup="'+idx+'" style="flex:1;padding:5px 6px;border-radius:6px;border:1px solid var(--border-light);background:var(--bg-secondary);color:var(--text-primary);font-size:11px;min-width:0;font-family:inherit;">';
-    } else {
-      h+='<input placeholder="类型" data-ppl-name="'+idx+'"><input placeholder="人数" value="0" data-ppl-cnt="" style="width:90px;">';
-    }
-    h+='<button onclick="this.parentElement.remove()">✕</button></div>';
-    container.insertAdjacentHTML('beforeend', h);
-  };
-
-  // 保存详情修改到 Supabase
-  window.saveDetailToCloud = async function(origId) {
-    var incomes=[], costs=[], peopleDetails=[];
-    document.querySelectorAll('#ed_incomes_list .sub-item').forEach(function(el){
-      var n=el.querySelector('[data-inc-name]'), a=el.querySelector('[data-inc-amt]');
-      if(n&&n.value.trim()) incomes.push({name:n.value.trim(), amount:parseFloat(a.value)||0});
-    });
-    document.querySelectorAll('#ed_costs_list .sub-item').forEach(function(el){
-      var n=el.querySelector('[data-cost-name]'), a=el.querySelector('[data-cost-amt]'), s=el.querySelector('[data-cost-sup]');
-      if(n&&n.value.trim()) {
-        var supId = resolveSupplierId(s?s.value:''); // 自由输入 → 匹配已有或新建供应商
-        costs.push({id:'cost_'+Date.now()+'_'+costs.length, name:n.value.trim(), amount:parseFloat(a.value)||0, _supplierId:supId});
-      }
-    });
-    document.querySelectorAll('#ed_people_list .sub-item').forEach(function(el){
-      var n=el.querySelector('[data-ppl-name]'), c=el.querySelector('[data-ppl-cnt]');
-      if(n&&n.value.trim()) peopleDetails.push({name:n.value.trim(), count:parseInt(c.value)||0});
-    });
-
-    var updated = { id: origId, name: document.getElementById('ed_name').value.trim(),
-      productType: document.getElementById('ed_type').value.trim(), operator: document.getElementById('ed_op').value.trim(),
-      startDate: document.getElementById('ed_start').value, remark: document.getElementById('ed_remark').value.trim(),
-      incomes: incomes, costs: costs, peopleDetails: peopleDetails };
-
-    try {
-      // 先在内存中更新
-      var idx = projects.findIndex(function(x){return x.id===origId});
-      if(idx>=0) projects[idx] = updated;
-      renderCurrentPane();
-
-      // 保存完整 projects 到 GitHub
-      var ok = await githubSaveData(projects);
-      if (!ok) throw new Error('GitHub写入失败');
-
-      document.getElementById('modalOverlay').classList.remove('show');
-      alert('✅ 已保存到云端：'+updated.name);
-    } catch(e) {
-      alert('❌ 保存失败：'+e.message);
-    }
   };
 
   // ==================== CHART HELPER ====================
@@ -2149,28 +1460,32 @@ async function githubSaveData(projectsArray) {
 
   // ==================== EVENT BINDINGS ====================
   document.getElementById('refreshBtn').addEventListener('click', async () => {
-    // 1️⃣ 尝试 GitHub
-    try {
-      var ghData = await githubLoadData();
-      if (ghData && Array.isArray(ghData) && ghData.length > 0) {
-        window.TOUR_DATA = ghData;
-        projects = ghData.map(p => normalizeProject(p));
-        updateDataSourceBadge('github');
-        renderCurrentPane();
-        addImportLog('🌐 GitHub 刷新：已加载 ' + projects.length + ' 个团期');
-        return;
+    if (REMOTE_DATA_URL && REMOTE_DATA_URL.trim()) {
+      try {
+        const resp = await fetch(REMOTE_DATA_URL.trim(), { cache: 'no-cache' });
+        if (resp.ok) {
+          const remoteData = await resp.json();
+          if (Array.isArray(remoteData) && remoteData.length > 0) {
+            window.TOUR_DATA = remoteData;
+            projects = remoteData.map(p => normalizeProject(p));
+            updateDataSourceBadge(true);
+            renderCurrentPane();
+            addImportLog('✅ 远程刷新：已加载 ' + projects.length + ' 个团期');
+            return;
+          }
+        }
+        throw new Error('远程加载失败(' + resp.status + ')');
+      } catch(e) {
+        addImportLog('⚠️ 远程刷新失败，尝试本地: ' + e.message);
       }
-    } catch(e) {
-      addImportLog('⚠️ GitHub 刷新失败: ' + e.message);
     }
-
-    // 2️⃣ 本地刷新
+    // 本地刷新
     delete window.TOUR_DATA;
     const script = document.createElement('script');
     script.src = 'data.js?t=' + Date.now();
     script.onload = () => {
       projects = (window.TOUR_DATA || []).map(p => normalizeProject(p));
-      updateDataSourceBadge('local');
+      updateDataSourceBadge(false);
       renderCurrentPane();
       addImportLog('📁 本地刷新：已加载 ' + projects.length + ' 个团期');
     };
@@ -2209,32 +1524,19 @@ async function githubSaveData(projectsArray) {
   // Receivables filters
   document.getElementById('receivableStatusFilter').addEventListener('change', function() { recStatusFilter = this.value; recPage = 1; renderReceivables(); });
   document.getElementById('receivableTypeFilter').addEventListener('change', function() { recTypeFilter = this.value; recPage = 1; renderReceivables(); });
-  // Payables filters (V3: 使用月份滑块，不再需要下拉筛选)
-  document.getElementById('payMonthAll').addEventListener('click', function() { payMonthFilter = 'all'; renderPayables(); });
-  document.getElementById('payModalOverlay').addEventListener('click', function(e) { if (e.target===this) closePayModal(); });
-
-  // 供应商新增
-  document.getElementById('addSupBtn').addEventListener('click', function(){
-    var nm = document.getElementById('newSupName').value.trim();
-    if (!nm) { alert('请输入供应商名称'); return; }
-    var cat = document.getElementById('newSupCat').value.trim();
-    var existing = suppliers.find(function(s){ return s.name === nm; });
-    if (existing) { alert('供应商「' + nm + '」已存在'); return; }
-    suppliers.push({ id: 'sup_' + Date.now(), name: nm, contact: '', phone: '', category: cat, bankInfo: '' });
-    saveSuppliers();
-    refreshSupplierDatalist();
-    renderSupplierEditList();
-    renderSuppliers();
-    document.getElementById('newSupName').value = '';
-    document.getElementById('newSupCat').value = '';
-  });
+  // Payables filters
+  document.getElementById('payableStatusFilter').addEventListener('change', function() { payStatusFilter = this.value; payPage = 1; renderPayables(); });
+  document.getElementById('payableSupplierFilter').addEventListener('change', function() { paySupFilter = this.value; payPage = 1; renderPayables(); });
+  document.getElementById('payableMonthFilter').addEventListener('change', function() { payMonthFilter = this.value; payPage = 1; renderPayables(); });
   // Projects filters
   document.getElementById('projectTypeFilter').addEventListener('change', function() { projTypeFilter = this.value; projPage = 1; renderProjects(); });
   document.getElementById('projectOpFilter').addEventListener('change', function() { projOpFilter = this.value; projPage = 1; renderProjects(); });
   document.getElementById('projectMarginFilter').addEventListener('change', function() { projMarginFilter = this.value; projPage = 1; renderProjects(); });
 
   // Expose render functions for pagination
+  window._recPage = 1; window._payPage = 1; window._projPage = 1;
   Object.defineProperty(window, '_recPage', { get:()=>recPage, set:v=>{recPage=v;renderReceivables();} });
+  Object.defineProperty(window, '_payPage', { get:()=>payPage, set:v=>{payPage=v;renderPayables();} });
   Object.defineProperty(window, '_projPage', { get:()=>projPage, set:v=>{projPage=v;renderProjects();} });
   window._renderReceivables = renderReceivables;
   window._renderPayables = renderPayables;
@@ -2248,63 +1550,29 @@ async function githubSaveData(projectsArray) {
   };
   window._supGoPage = function(pg) { supListPage = pg; if (activeSupplierId) refreshSupplierDetail(); };
 
-  // ==================== EXPORT EXCEL (含导出模版) ====================
+  // ==================== EXPORT EXCEL ====================
   function exportExcel() {
     const list = getFilteredProjects();
     if (!list.length) { alert('暂无数据可导出'); return; }
-    const data = list.map(function(p){
-      var incomesStr = (p.incomes||[]).map(function(i){ return i.name+':'+i.amount; }).join(', ');
-      var costsStr = (p.costs||[]).map(function(c){
-        var sup = suppliers.find(function(s){return s.id===c._supplierId;});
-        return c.name + ':' + c.amount + (sup?':'+sup.name:'');
-      }).join(', ');
-      var peopleStr = (p.peopleDetails||[]).map(function(d){ return d.name+':'+d.count; }).join(', ');
-      return {
-        '团号': p.id,
-        '名称': p.name,
-        '产品线': p.productType || '',
-        '计调': p.operator || '',
-        '出发日期': p.startDate || '',
-        '备注': p.remark || '',
-        '收入明细(名称:金额)': incomesStr,
-        '成本明细(名称:金额:供应商)': costsStr,
-        '人数明细(类型:数量)': peopleStr
-      };
-    });
-    var ws = XLSX.utils.json_to_sheet(data);
-    ws['!cols'] = [
-      { wch: 16 },{ wch: 20 },{ wch: 10 },{ wch: 8 },
-      { wch: 12 },{ wch: 16 },{ wch: 38 },{ wch: 40 },{ wch: 20 }
-    ];
-    var wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, '团期数据');
-    var ts = new Date().toISOString().slice(0,10);
-    XLSX.writeFile(wb, '财务看板模板_' + ts + '.xlsx');
+    const data = list.map(p => ({
+      '团号': p.name,
+      '产品线': p.productType || '',
+      '计调': p.operator || '',
+      '收入': sumIncome(p),
+      '成本': sumCost(p),
+      '毛利': sumGross(p),
+      '毛利率(%)': calcMargin(p)?.toFixed(1) || '',
+      '成交人数': sumPeople(p, false),
+      '应收状态': ({paid:'已结清',partial:'部分收款',unpaid:'未收款'})[getReceivableStatus(p)],
+      '应付状态': ({paid:'已结清',partial:'部分付款',unpaid:'未付款'})[getPayableStatus(p)],
+    }));
+    const ws = XLSX.utils.json_to_sheet(data);
+    ws['!cols'] = Array(10).fill(0).map(()=>({ wch: 18 }));
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, '团期明细');
+    const ts = new Date().toISOString().slice(0,10);
+    XLSX.writeFile(wb, `财务看板_${ts}.xlsx`);
   }
-
-  // 下载空白导入模版
-  window.downloadTemplate = function() {
-    var data = [{
-      '团号': 'T20260501',
-      '名称': '示例团期名称',
-      '产品线': '国内游',
-      '计调': '张三',
-      '出发日期': '2026-05-01',
-      '备注': '备注信息',
-      '收入明细(名称:金额)': '门票收入:50000, 交通收入:20000',
-      '成本明细(名称:金额:供应商)': '地接费:25000:南宁地接社, 火车票:8000:火车票代订',
-      '人数明细(类型:数量)': '成人:30, 儿童:10'
-    }];
-    var ws = XLSX.utils.json_to_sheet(data);
-    ws['!cols'] = [
-      { wch: 16 },{ wch: 20 },{ wch: 10 },{ wch: 8 },
-      { wch: 12 },{ wch: 16 },{ wch: 38 },{ wch: 40 },{ wch: 20 }
-    ];
-    // 首行表头样式提示
-    var wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, '模板(仅作格式参考)');
-    XLSX.writeFile(wb, '导入模板_空白.xlsx');
-  };
 
   // ==================== DATE RANGE LABEL ====================
   function updateDateRangeLabel() {
@@ -2564,12 +1832,8 @@ async function githubSaveData(projectsArray) {
       }
     });
 
-    // 初始化供应商 datalist 和管理区
-    refreshSupplierDatalist();
-    renderSupplierEditList();
-
     renderDashboard();
-    addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
+    addImportLog('系统启动，已加载 ' + projects.length + ' 个团期数据');
   }
 
   init();
