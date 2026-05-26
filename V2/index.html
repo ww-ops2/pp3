@@ -1286,8 +1286,11 @@ async function githubSaveData(projectsArray) {
   }
 
   // ==================== MODULE 2: PRODUCT LINES ====================
+  var selectedProductType = null; // null=全部，否则=选中的产品线
   function renderProductLines() {
-    const list = getFilteredProjects('productLines');
+    const allList = getFilteredProjects('productLines');
+    // 如果选中了某个产品线，过滤数据
+    const list = selectedProductType ? allList.filter(p => (p.productType || '未分类') === selectedProductType) : allList;
     const groups = {};
     list.forEach(p => {
       const t = p.productType || '未分类';
@@ -1302,26 +1305,44 @@ async function githubSaveData(projectsArray) {
     list.forEach(p => { totalIncome += sumIncome(p); totalCost += sumCost(p); });
     const totalGross = totalIncome - totalCost;
 
-    document.getElementById('productLineKPI').innerHTML = `
+    // KPI 标题显示当前筛选状态
+    var kpiTitle = selectedProductType 
+      ? '<div style="display:flex;align-items:center;gap:6px;"><div class="kpi-card income"><div class="kpi-label">产品线</div><div class="kpi-value" style="color:var(--accent);font-size:14px;">' + escHtml(selectedProductType) + '</div></div><a href="#" onclick="selectedProductType=null;renderProductLines();return false;" style="font-size:11px;color:var(--info);cursor:pointer;text-decoration:none;">← 返回全部</a></div>'
+      : '';
+    document.getElementById('productLineKPI').innerHTML = (kpiTitle || '') + `
       <div class="kpi-card income"><div class="kpi-label">产品线总数</div><div class="kpi-value" style="color:var(--info);">${entries.length}</div></div>
       <div class="kpi-card income"><div class="kpi-label">总收入</div><div class="kpi-value income">${fmt(totalIncome)}</div></div>
       <div class="kpi-card cost"><div class="kpi-label">总成本</div><div class="kpi-value cost">${fmt(totalCost)}</div></div>
       <div class="kpi-card gross"><div class="kpi-label">总毛利</div><div class="kpi-value gross">${fmt(totalGross)}</div></div>
       <div class="kpi-card margin"><div class="kpi-label">整体毛利率</div><div class="kpi-value margin">${fmtMargin(totalIncome?(totalGross/totalIncome*100):null)}</div></div>`;
 
+    // 水平条形图 - Y轴显示产品名，X轴显示金额
     renderChart('lineBarChart', 'bar', {
       labels: entries.map(e=>e[0]),
       datasets: [
         { label:'收入', data:entries.map(e=>e[1].income), backgroundColor:'rgba(16,185,129,0.6)', borderRadius:6 },
         { label:'毛利', data:entries.map(e=>e[1].income-e[1].cost), backgroundColor:'rgba(59,130,246,0.6)', borderRadius:6 }
       ]
-    }, { indexAxis: 'y' });
+    }, {
+      indexAxis: 'y',
+      scales: {
+        y: { 
+          ticks: { color: '#e2e8f0', font: { size: 12, weight: 'bold' } },
+          grid: { display: false }
+        },
+        x: { 
+          ticks: { color: '#94a3b8', callback: function(v) { return v >= 10000 ? (v/10000).toFixed(1)+'万' : v; } },
+          grid: { color: 'rgba(30,58,95,0.4)' }
+        }
+      }
+    });
 
     document.getElementById('productCards').innerHTML = entries.map(([type,d]) => {
       const gross = d.income - d.cost;
       const margin = d.income ? (gross/d.income*100) : 0;
-      return `<div class="product-card">
-        <div class="line-name">${escHtml(type)} <span style="font-size:11px;color:var(--text-muted);font-weight:400;">${d.count}个团期</span></div>
+      var isActive = (type === selectedProductType) ? 'style="box-shadow:0 0 0 2px var(--accent);"' : '';
+      return `<div class="product-card" ${isActive} onclick="selectedProductType='${escHtml(type)}';renderProductLines();" style="cursor:pointer;" title="点击查看${escHtml(type)}详情">
+        <div class="line-name">${escHtml(type)} <span style="font-size:11px;color:var(--text-muted);font-weight:400;">${d.count}个团期 ${isActive?'(已选中)':''}</span></div>
         <div class="line-stats">
           <div class="line-stat">收入<span class="val income">${fmt(d.income)}</span></div>
           <div class="line-stat">成本<span class="val cost">${fmt(d.cost)}</span></div>
