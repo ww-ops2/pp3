@@ -8,41 +8,40 @@
     "remark": "",
     "incomes": [
       {
-        "id": "income_1778477803837",
         "name": "线上",
         "amount": 1884355
       }
     ],
     "costs": [
       {
-        "id": "cost_1778477812132",
+        "id": "cost_1779783999704_0",
         "name": "车票款",
         "amount": 360000,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_7_1779783999704"
       },
       {
-        "id": "cost_1778477818476",
+        "id": "cost_1779783999704_1",
         "name": "地接款",
         "amount": 679228,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_7_1779783999704"
       },
       {
-        "id": "cost_1778477844404",
+        "id": "cost_1779783999705_2",
         "name": "代订费用",
         "amount": 133287,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_8_1779783999704"
       },
       {
-        "id": "cost_1778477856660",
+        "id": "cost_1779783999705_3",
         "name": "导服费",
         "amount": 48200,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_9_1779783999705"
       },
       {
-        "id": "cost_1778477867292",
+        "id": "cost_1779783999705_4",
         "name": "其他",
         "amount": 5584,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_10_1779783999705"
       }
     ],
     "peopleDetails": [
@@ -113,7 +112,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778469000914",
@@ -168,7 +172,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778469008378",
@@ -211,7 +220,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478180812",
@@ -282,7 +296,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478204084",
@@ -353,7 +372,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478220980",
@@ -424,7 +448,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478242960",
@@ -495,7 +524,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478256747",
@@ -566,7 +600,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478267895",
@@ -637,7 +676,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478280700",
@@ -708,7 +752,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478302916",
@@ -779,7 +828,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552573501",
@@ -850,7 +904,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552581701",
@@ -921,7 +980,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552792245",
@@ -992,7 +1056,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552799653",
@@ -1063,7 +1132,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552804829",
@@ -1134,7 +1208,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552809207",
@@ -1205,7 +1284,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552813198",
@@ -1276,7 +1360,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552819375",
@@ -1347,7 +1436,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552824390",
@@ -1418,7 +1512,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553394192",
@@ -1486,7 +1585,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553406836",
@@ -1557,7 +1661,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553412828",
@@ -1628,7 +1737,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553427676",
@@ -1699,7 +1813,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553432668",
@@ -1770,7 +1889,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553437388",
@@ -1841,7 +1965,12 @@
         "name": "切位",
         "count": 425
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553442404",
@@ -1912,7 +2041,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553449855",
@@ -1983,7 +2117,12 @@
         "name": "切位",
         "count": 150
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553454127",
@@ -2054,7 +2193,12 @@
         "name": "切位",
         "count": 419
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778553464020",
@@ -2125,7 +2269,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "YJMH-长江贰号·三峡游轮（汉渝航次）-20260506",
@@ -2141,6 +2290,11 @@
         "name": "成人",
         "count": 2
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   }
 ]
