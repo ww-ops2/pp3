@@ -561,7 +561,7 @@
 <div class="main-area">
   <header class="main-header">
     <div class="page-title" id="pageTitle">📈 总览面板</div>
-    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250526d</small>
+    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250526e</small>
     <small id="filterStatus" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:6px;">等待筛选...</small>
     <div class="header-actions">
       <div style="position:relative;">
@@ -1963,7 +1963,11 @@ async function githubSaveData(projectsArray) {
   let projPage = 1, projTypeFilter = 'all', projOpFilter = 'all', projMarginFilter = 'all';
   function renderProjects() {
     let list = getFilteredProjects('projects');
+
+    // 联动筛选：先按产品线过滤，再在结果中取计调选项
     if (projTypeFilter !== 'all') list = list.filter(p => p.productType === projTypeFilter);
+    // 取产品线过滤后的列表来填充计调下拉（级联）
+    var afterTypeFilter = list.slice();
     if (projOpFilter !== 'all') list = list.filter(p => p.operator === projOpFilter);
     if (projMarginFilter === 'above') list = list.filter(p => calcMargin(p) !== null && calcMargin(p) >= marginThreshold);
     else if (projMarginFilter === 'below') list = list.filter(p => calcMargin(p) !== null && calcMargin(p) < marginThreshold);
@@ -1999,12 +2003,24 @@ async function githubSaveData(projectsArray) {
       ? Array.from({length:totalPages},(_,i)=>`<button class="${i+1===projPage?'active':''}" onclick="window._projPage=${i+1};window._renderProjects()">${i+1}</button>`).join('')
       : '';
 
-    // filters
-    const all = getFilteredProjects('projects');
-    const types = [...new Set(all.map(p=>p.productType).filter(Boolean))];
-    const ops = [...new Set(all.map(p=>p.operator).filter(Boolean))];
-    document.getElementById('projectTypeFilter').innerHTML = '<option value="all">全部产品线</option>' + types.map(t=>`<option>${t}</option>`).join('');
-    document.getElementById('projectOpFilter').innerHTML = '<option value="all">全部计调</option>' + ops.map(o=>`<option>${o}</option>`).join('');
+    // ===== 级联筛选下拉框 =====
+    // 产品线选项：从全部时间筛选后的数据取（不受其他筛选项影响）
+    const allForTypes = getFilteredProjects('projects');
+    const types = [...new Set(allForTypes.map(function(p){return p.productType;}).filter(Boolean))].sort();
+    var typeSel = document.getElementById('projectTypeFilter');
+    typeSel.innerHTML = '<option value="all">全部产品线</option>' + types.map(function(t){return '<option value="' + t + '">' + t + '</option>';}).join('');
+    typeSel.value = projTypeFilter; // 恢复选中值
+
+    // 计调选项：从"已按产品线过滤后"的数据中取（级联联动）
+    var opsSrc = projTypeFilter !== 'all' ? afterTypeFilter : allForTypes;
+    const ops = [...new Set(opsSrc.map(function(p){return p.operator;}).filter(Boolean))].sort();
+    var opSel = document.getElementById('projectOpFilter');
+    opSel.innerHTML = '<option value="all">全部计调</option>' + ops.map(function(o){return '<option value="' + o + '">' + o + '</option>';}).join('');
+    opSel.value = projOpFilter; // 恢复选中值；如果当前值不在新选项中，会自动回退到"全部"
+
+    // 毛利率下拉不需要动态重建，只需恢复选中值即可（但为保险也恢复一下）
+    var marginSel = document.getElementById('projectMarginFilter');
+    marginSel.value = projMarginFilter;
   }
 
   // ==================== MODULE 7: DATA IMPORT ====================
@@ -2504,7 +2520,7 @@ async function githubSaveData(projectsArray) {
     document.getElementById('newSupCat').value = '';
   });
   // Projects filters
-  document.getElementById('projectTypeFilter').addEventListener('change', function() { projTypeFilter = this.value; projPage = 1; renderProjects(); });
+  document.getElementById('projectTypeFilter').addEventListener('change', function() { projTypeFilter = this.value; projOpFilter = 'all'; projPage = 1; renderProjects(); });
   document.getElementById('projectOpFilter').addEventListener('change', function() { projOpFilter = this.value; projPage = 1; renderProjects(); });
   document.getElementById('projectMarginFilter').addEventListener('change', function() { projMarginFilter = this.value; projPage = 1; renderProjects(); });
 
@@ -2944,10 +2960,10 @@ async function githubSaveData(projectsArray) {
 
     renderDashboard();
     // 页面可见版本号（方便判断是否加载了最新代码）
-    document.getElementById('pageVer').textContent = 'v20250526d loaded ' + new Date().toLocaleTimeString();
+    document.getElementById('pageVer').textContent = 'v20250526e loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250526d 已加载，选中产品线展示团期明细对比');
+    console.log('[版本] v20250526e 已加载，团期明细筛选级联联动修复');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
   }
 
