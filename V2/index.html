@@ -477,16 +477,22 @@
   .traffic-compact-btn.yellow-btn { border-left: 4px solid var(--warning); }
   .traffic-compact-btn.yellow-btn .tcb-num { color: var(--warning); }
   .traffic-compact-btn.yellow-btn.active { border-color: var(--warning); background: var(--warning-bg); }
-  .tcb-threshold-row { display: flex; align-items: center; gap: 6px; margin-top: 4px; padding: 7px 10px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; }
+  .tcb-threshold-row { display: flex; align-items: center; gap: 6px; margin-top: 4px; padding: 7px 10px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; flex-wrap: wrap; }
   .tcb-threshold-row label { font-size: 11px; color: var(--text-muted); white-space: nowrap; }
-  .tcb-threshold-row input { flex: 1; min-width: 0; width: 50px; }
+  .tcb-threshold-row input { flex: 0 0 auto; min-width: 0; width: 50px; }
   .tcb-threshold-row .switch-wrap { display:flex;align-items:center;gap:4px;margin-left:6px;padding-left:8px;border-left:1px solid var(--border); }
   .tcb-threshold-row .switch-wrap label { font-size:10px; cursor:pointer; }
   .tcb-toggle { width:32px;height:18px;border-radius:9px;background:var(--border);position:relative;cursor:pointer;transition:var(--transition);flex-shrink:0; }
   .tcb-toggle::after { content:'';position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:#fff;transition:var(--transition); }
   .tcb-toggle.on { background:var(--accent); }
   .tcb-toggle.on::after { transform:translateX(14px); }
-  .tcb-threshold-row input { flex: 1; min-width: 0; width: 50px; }
+  /* 公式提示：独立行显示 */
+  .tcb-formula-bar {
+    margin-top: 6px; padding: 6px 10px;
+    background: rgba(99,102,241,0.06); border: 1px dashed var(--accent);
+    border-radius: 6px; font-size: 10px; color: var(--text-secondary);
+    line-height: 1.5;
+  }
   .traffic-compact-mid {
     border: 1px solid var(--border); border-radius: var(--radius);
     background: var(--bg-card); padding: 12px;
@@ -723,13 +729,6 @@
                 <div class="tcb-label">高于阈值团期</div>
               </div>
             </div>
-            <div class="traffic-compact-btn yellow-btn" id="traffic-medium">
-              <div class="tcb-icon">🟡</div>
-              <div class="tcb-body">
-                <div class="tcb-num" id="trafficMediumCount">0</div>
-                <div class="tcb-label">警告区间团期</div>
-              </div>
-            </div>
             <div class="traffic-compact-btn red-btn" id="traffic-below">
               <div class="tcb-icon">⚠️</div>
               <div class="tcb-body">
@@ -738,18 +737,16 @@
               </div>
             </div>
             <div class="tcb-threshold-row">
-              <label>绿灯≥</label>
+              <label>阈值≥</label>
               <input type="number" id="marginThresholdGreen" value="30" step="0.1" style="width:46px;">
-              <label>黄灯≥</label>
-              <input type="number" id="marginThresholdRed" value="15" step="0.1" style="width:46px;">
-              <label style="font-size:9px;color:var(--text-muted);">红灯&lt;</label>
+              <label style="font-size:9px;color:var(--text-muted);">%</label>
               <div class="switch-wrap" style="margin-left:8px;">
                 <span class="tcb-toggle" id="trafficKeWeiToggle" title="切换含/不含切位毛利率"></span>
                 <label for="trafficKeWeiToggle" style="font-size:10px;" title="不含切位毛利率 = (总收入-总成本)÷不含切位收入×100%">不含切位</label>
               </div>
-              <span class="tcb-formula-hint" id="tcbFormulaHint" style="font-size:9px;color:var(--text-muted);margin-left:4px;"></span>
               <button class="btn btn-accent btn-sm" id="applyThreshold" style="padding:3px 8px;font-size:11px;">应用</button>
             </div>
+            <div class="tcb-formula-bar" id="tcbFormulaHint"></div>
           </div>
           <div class="traffic-compact-mid" id="trafficCompactMid">
             <div class="hint">👆 点击左侧按钮<br>查看对应团期明细</div>
@@ -996,6 +993,9 @@ async function githubSaveData(projectsArray) {
     console.log('📁 使用本地 data.js 数据源');
   }
 
+  // 标记数据已就绪，供 init() 检测
+  window._dataReady = true;
+
   // ==================== 数据层 ====================
 
   /** 原始数据：从远程JSON或本地data.js加载 */
@@ -1157,8 +1157,7 @@ async function githubSaveData(projectsArray) {
   let unit = 'yuan';
   let excludeKeWei = localStorage.getItem('tour_excludeKeWei') === 'true';
   let marginThreshold = parseFloat(localStorage.getItem('tour_marginThreshold') || '30');
-  let marginThresholdRed = parseFloat(localStorage.getItem('tour_marginThresholdRed') || '15');
-  let activeTrafficFilter = null; // 'above' | 'medium' | 'below' | null
+  let activeTrafficFilter = null; // 'above' | 'below' | null
   let tcListPage = 1, tcChartInstance = null;
 
   // ==================== 每个面板独立的时间筛选范围 ====================
@@ -1320,10 +1319,8 @@ async function githubSaveData(projectsArray) {
 
     // Traffic lights - compact layout (基于当前时间筛选范围)
     const above = list.filter(p => { var m = getTrafficMargin(p); return m !== null && m >= marginThreshold; });
-    const medium = list.filter(p => { var m = getTrafficMargin(p); return m !== null && m >= marginThresholdRed && m < marginThreshold; });
-    const below = list.filter(p => { var m = getTrafficMargin(p); return m !== null && m < marginThresholdRed; });
+    const below = list.filter(p => { var m = getTrafficMargin(p); return m !== null && m < marginThreshold; });
     document.getElementById('trafficAboveCount').textContent = above.length;
-    document.getElementById('trafficMediumCount').textContent = medium.length;
     document.getElementById('trafficBelowCount').textContent = below.length;
     // 红绿灯区域显示筛选提示
     var trafficTitle = document.querySelector('#trafficSection .section-title');
@@ -1334,7 +1331,6 @@ async function githubSaveData(projectsArray) {
       trafficTitle.innerHTML = '<span style="width:7px;height:7px;border-radius:50%;background:var(--warning);display:inline-block;margin-right:4px;"></span>🚦 毛利率监控红绿灯' + filterHint;
     }
     window._trafficAbove = above;
-    window._trafficMedium = medium;
     window._trafficBelow = below;
     window._marginThreshold = marginThreshold;
     if (activeTrafficFilter) { refreshTrafficPanel(); }
@@ -2151,8 +2147,7 @@ async function githubSaveData(projectsArray) {
     var afterTypeFilter = list.slice();
     if (projOpFilter !== 'all') list = list.filter(p => p.operator === projOpFilter);
     if (projMarginFilter === 'above') list = list.filter(p => { var m = getTrafficMargin(p); return m !== null && m >= marginThreshold; });
-    else if (projMarginFilter === 'medium') list = list.filter(p => { var m = getTrafficMargin(p); return m !== null && m >= marginThresholdRed && m < marginThreshold; });
-    else if (projMarginFilter === 'below') list = list.filter(p => { var m = getTrafficMargin(p); return m !== null && m < marginThresholdRed; });
+    else if (projMarginFilter === 'below') list = list.filter(p => { var m = getTrafficMargin(p); return m !== null && m < marginThreshold; });
 
     const PAGE = 12;
     const totalPages = Math.ceil(list.length / PAGE) || 1;
@@ -2620,9 +2615,9 @@ async function githubSaveData(projectsArray) {
     var el = document.getElementById('tcbFormulaHint');
     if (!el) return;
     if (excludeKeWei) {
-      el.textContent = '不含切位毛利率=(总收入-总成本)÷(总收入-切位收入)×100%';
+      el.innerHTML = '<b>当前公式（不含切位）:</b> 毛利率 = (总收入 - 总成本) / (总收入 - 切位收入) x 100%';
     } else {
-      el.textContent = '含切位毛利率=(总收入-总成本)÷总收入×100%';
+      el.innerHTML = '<b>当前公式（含切位）:</b> 毛利率 = (总收入 - 总成本) / 总收入 x 100%';
     }
   }
 
@@ -2684,11 +2679,8 @@ async function githubSaveData(projectsArray) {
   });
   document.getElementById('applyThreshold').addEventListener('click', function() {
     marginThreshold = parseFloat(document.getElementById('marginThresholdGreen').value) || 30;
-    marginThresholdRed = parseFloat(document.getElementById('marginThresholdRed').value) || 15;
     localStorage.setItem('tour_marginThreshold', marginThreshold);
-    localStorage.setItem('tour_marginThresholdRed', marginThresholdRed);
     document.getElementById('marginThresholdGreen').value = marginThreshold;
-    document.getElementById('marginThresholdRed').value = marginThresholdRed;
     activeTrafficFilter = null;
     if (tcChartInstance) { tcChartInstance.destroy(); tcChartInstance = null; }
     document.querySelectorAll('.traffic-compact-btn').forEach(b => b.classList.remove('active'));
@@ -2909,7 +2901,6 @@ async function githubSaveData(projectsArray) {
     var mid = document.getElementById('trafficCompactMid');
     var right = document.getElementById('trafficCompactRight');
     var target = activeTrafficFilter === 'above' ? (window._trafficAbove || []) :
-                 activeTrafficFilter === 'medium' ? (window._trafficMedium || []) :
                  activeTrafficFilter === 'below' ? (window._trafficBelow || []) : [];
 
     if (!target.length) {
@@ -2919,7 +2910,7 @@ async function githubSaveData(projectsArray) {
       return;
     }
 
-    var labMap = {above:'✅ 高于阈值', medium:'🟡 警告区间', below:'⚠️ 低于阈值'};
+    var labMap = {above:'✅ 高于阈值', below:'⚠️ 低于阈值'};
     var lab = labMap[activeTrafficFilter] || '';
     var perPage = 6;
     var totalPages = Math.ceil(target.length / perPage) || 1;
@@ -2929,13 +2920,13 @@ async function githubSaveData(projectsArray) {
     // === MIDDLE: detail list ===
     var midHtml = '<div class="tc-panel-header-row">';
     midHtml += '<span style="font-size:12px;font-weight:600;">' + lab + ' · ' + target.length + '个团期</span>';
-    midHtml += '<span style="font-size:10px;color:var(--text-muted);">绿灯≥' + marginThreshold + '% 红灯&lt;' + marginThresholdRed + '% ' + (excludeKeWei?'不含切位':'含切位') + '</span>';
+    midHtml += '<span style="font-size:10px;color:var(--text-muted);">阈值' + marginThreshold + '% ' + (excludeKeWei?'不含切位':'含切位') + '</span>';
     midHtml += '</div>';
     midHtml += '<div class="tc-content-area"><div class="tc-proj-list">';
     for (var j = 0; j < paged.length; j++) {
       var p = paged[j];
       var margin = getTrafficMargin(p);
-      var mc = margin >= marginThreshold ? 'var(--success)' : (margin >= marginThresholdRed ? 'var(--warning)' : 'var(--danger)');
+      var mc = margin >= marginThreshold ? 'var(--success)' : 'var(--danger)';
       midHtml += '<div class="tc-proj-item" style="animation-delay:' + (j*0.04) + 's" onclick="window._showProjectDetail(\'' + p.id + '\')">';
       midHtml += '<div class="tc-top"><span class="tc-name">' + escHtml(p.name) + '</span>';
       midHtml += '<span class="tc-margin" style="background:' + mc + '20;color:' + mc + ';">' + fmtMargin(margin) + '</span></div>';
@@ -3147,16 +3138,6 @@ async function githubSaveData(projectsArray) {
         document.getElementById('trafficCompactRight').innerHTML = '<div class="hint">📊<br>点击按钮查看对比图表</div>';
       }
     });
-    document.getElementById('traffic-medium').addEventListener('click', function(){
-      activeTrafficFilter = activeTrafficFilter === 'medium' ? null : 'medium';
-      if (tcChartInstance) { tcChartInstance.destroy(); tcChartInstance = null; }
-      document.querySelectorAll('.traffic-compact-btn').forEach(function(b){ b.classList.remove('active'); });
-      if (activeTrafficFilter) { this.classList.add('active'); tcListPage = 1; refreshTrafficPanel(); }
-      else {
-        document.getElementById('trafficCompactMid').innerHTML = '<div class="hint">👆 点击左侧按钮<br>查看对应团期明细</div>';
-        document.getElementById('trafficCompactRight').innerHTML = '<div class="hint">📊<br>点击按钮查看对比图表</div>';
-      }
-    });
     document.getElementById('traffic-below').addEventListener('click', function(){
       activeTrafficFilter = activeTrafficFilter === 'below' ? null : 'below';
       if (tcChartInstance) { tcChartInstance.destroy(); tcChartInstance = null; }
@@ -3175,19 +3156,29 @@ async function githubSaveData(projectsArray) {
     // 初始化红绿灯阈值输入框 和 切位开关状态
     var thInput = document.getElementById('marginThresholdGreen');
     if (thInput) thInput.value = marginThreshold;
-    var thRedInput = document.getElementById('marginThresholdRed');
-    if (thRedInput) thRedInput.value = marginThresholdRed;
     var keWeiToggle = document.getElementById('trafficKeWeiToggle');
     if (keWeiToggle && excludeKeWei) keWeiToggle.classList.add('on');
     else if (keWeiToggle) keWeiToggle.classList.remove('on');
     updateFormulaHint();
 
+    // 首次渲染：如果 async 数据已加载完成则直接渲染，否则等待后重试
     renderDashboard();
+    if (!window._dataReady) {
+      // 数据还没从 GitHub 返回，等一下再重新渲染一次
+      setTimeout(function() {
+        if (window._dataReady) {
+          projects = (window.TOUR_DATA || []).map(p => normalizeProject(p));
+          renderDashboard();
+          console.log('[Init] 异步数据就绪，重新渲染 dashboard');
+        }
+      }, 800);
+    }
+
     // 页面可见版本号（方便判断是否加载了最新代码）
-    document.getElementById('pageVer').textContent = 'v20250526h loaded ' + new Date().toLocaleTimeString();
+    document.getElementById('pageVer').textContent = 'v20250526j loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250526h 已加载，红绿灯三元阈值+公式联动+切位毛利率修复');
+    console.log('[版本] v20250526j 已加载，修复首次打开无数据+公式提示美化');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
   }
 
