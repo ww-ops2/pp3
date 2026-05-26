@@ -68,35 +68,34 @@
     "remark": "",
     "incomes": [
       {
-        "id": "income_1778477895862",
         "name": "线上",
         "amount": 191066
       }
     ],
     "costs": [
       {
-        "id": "cost_1778477910132",
+        "id": "cost_1779784073558_0",
         "name": "地接款",
         "amount": 142100,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_11_1779784073557"
       },
       {
-        "id": "cost_1778477915853",
+        "id": "cost_1779784073558_1",
         "name": "代订费用",
         "amount": 4177,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_8_1779783999704"
       },
       {
-        "id": "cost_1778477920932",
+        "id": "cost_1779784073558_2",
         "name": "导服费",
         "amount": 2600,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_9_1779783999705"
       },
       {
-        "id": "cost_1778477926348",
+        "id": "cost_1779784073558_3",
         "name": "其他",
-        "amount": 171,
-        "_supplierId": "sup_6"
+        "amount": 170.5,
+        "_supplierId": "sup_10_1779783999705"
       }
     ],
     "peopleDetails": [
@@ -112,12 +111,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778469000914",
