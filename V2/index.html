@@ -608,7 +608,7 @@
 <div class="main-area">
   <header class="main-header">
     <div class="page-title" id="pageTitle">📈 总览面板</div>
-    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250527c</small>
+    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250527d</small>
     <small id="filterStatus" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:6px;">等待筛选...</small>
     <div class="header-actions">
       <div style="position:relative;">
@@ -1090,35 +1090,44 @@ async function githubSaveData(projectsArray) {
   };
 
   /**
-   * 付款/收款数据已嵌入 data.json 的 costs[i].paidAmount 和 incomes[i].receivedAmount 中。
-   * 所有读写操作直接操作 projects 数组，通过 githubSaveData() 同步云端。
-   * 旧的 localStorage(tour_payments/tour_receipts) 已废弃，此处做迁移兜底。
+   * v20250527d: 付款/收款数据生命周期
+   *   主存储: cloud data.json 的 costs[i].paidAmount / incomes[i].receivedAmount
+   *   安全网: localStorage(tour_payments/tour_receipts) 保留不删，每次加载兜底恢复
+   *   仅在 submitPayment/submitReceipt 确认云端保存成功后，才标记 localStorage 可清理
    */
+  var _legacyPaymentRestored = false;
   (function migrateLegacyPayments() {
     try {
       var oldPmts = JSON.parse(localStorage.getItem('tour_payments') || '[]');
       var oldRcpts = JSON.parse(localStorage.getItem('tour_receipts') || '[]');
       if (oldPmts.length > 0 || oldRcpts.length > 0) {
+        var totalRestored = 0;
         projects.forEach(function(p) {
-          // 迁移付款 → costs[i].paidAmount
+          // 迁移付款 → costs[i].paidAmount（仅当 cloud 中 paidAmount 为空/未设置时）
           (p.costs||[]).forEach(function(c) {
-            if (!c.paidAmount) {
-              c.paidAmount = oldPmts.filter(function(pm) {
-                return pm.projectId === p.id && pm.costId === c.id;
-              }).reduce(function(s, pm) { return s + pm.amount; }, 0);
+            var legacyAmt = oldPmts.filter(function(pm) {
+              return pm.projectId === p.id && pm.costId === c.id;
+            }).reduce(function(s, pm) { return s + pm.amount; }, 0);
+            // 仅在 cloud 无数据时从 localStorage 兜底恢复
+            if ((c.paidAmount === undefined || c.paidAmount === 0) && legacyAmt > 0) {
+              c.paidAmount = legacyAmt;
+              totalRestored++;
             }
           });
           // 迁移收款 → incomes[i].receivedAmount
           (p.incomes||[]).forEach(function(i) {
-            if (!i.receivedAmount) {
-              i.receivedAmount = oldRcpts.filter(function(r) { return r.projectId === p.id; })
-                .reduce(function(s, r) { return s + r.amount; }, 0);
+            var legacyRcpt = oldRcpts.filter(function(r) { return r.projectId === p.id; })
+              .reduce(function(s, r) { return s + r.amount; }, 0);
+            if ((i.receivedAmount === undefined || i.receivedAmount === 0) && legacyRcpt > 0) {
+              i.receivedAmount = legacyRcpt;
             }
           });
         });
-        if (oldPmts.length > 0) localStorage.removeItem('tour_payments');
-        if (oldRcpts.length > 0) localStorage.removeItem('tour_receipts');
-        console.log('[迁移] 已完成 localStorage → data.json 付款/收款数据迁移');
+        if (totalRestored > 0) {
+          _legacyPaymentRestored = true;
+          console.log('[迁移] 从 localStorage 兜底恢复了 ' + totalRestored + ' 项付款数据，请操作一次保存以同步至云端');
+        }
+        // ★ 不再立即删除 localStorage！只有在 submitPayment/submitReceipt 确认云端保存成功后，才安全清除
       }
     } catch(e) { console.warn('[迁移] 失败，忽略:', e.message); }
   })();
@@ -1822,6 +1831,16 @@ async function githubSaveData(projectsArray) {
     // 3. 同步到云端 data.json
     var ok = await githubSaveData(projects);
     if (ok) {
+      // 云端保存成功 → 安全清除 localStorage 中的旧付款数据
+      try {
+        var oldPmts = JSON.parse(localStorage.getItem('tour_payments') || '[]');
+        if (oldPmts.length > 0 && _legacyPaymentRestored) {
+          localStorage.removeItem('tour_payments');
+          localStorage.removeItem('tour_receipts');
+          _legacyPaymentRestored = false;
+          console.log('[保存] 云端已同步，已安全清除 localStorage 旧付款数据');
+        }
+      } catch(e){}
       closePayModal();
       renderPayables();
       renderSuppliers();
@@ -3396,10 +3415,10 @@ async function githubSaveData(projectsArray) {
 
     // 页面可见版本号（方便判断是否加载了最新代码）
     var verBadge = document.getElementById('pageVer');
-    if (verBadge) verBadge.textContent = 'v20250527c loaded ' + new Date().toLocaleTimeString();
+    if (verBadge) verBadge.textContent = 'v20250527d loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250527c 已加载，修复sumCostPayments兜底导致已付>应付异常');
+    console.log('[版本] v20250527d 已加载，保留localStorage安全网+云端保存后清除');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
     if (window._githubError) {
       addImportLog('⚠️ GitHub云端异常: ' + window._githubError + ' | 使用本地数据兜底');
