@@ -1089,14 +1089,39 @@ async function githubSaveData(projectsArray) {
     renderSuppliers();
   };
 
-  /** 付款记录：{ projectId, costId, supplierId, amount, date } */
-  let payments = JSON.parse(localStorage.getItem('tour_payments') || '[]');
-
-  /** 收款记录：{ projectId, amount, date } */
-  let receipts = JSON.parse(localStorage.getItem('tour_receipts') || '[]');
-
-  function savePayments() { localStorage.setItem('tour_payments', JSON.stringify(payments)); }
-  function saveReceipts() { localStorage.setItem('tour_receipts', JSON.stringify(receipts)); }
+  /**
+   * 付款/收款数据已嵌入 data.json 的 costs[i].paidAmount 和 incomes[i].receivedAmount 中。
+   * 所有读写操作直接操作 projects 数组，通过 githubSaveData() 同步云端。
+   * 旧的 localStorage(tour_payments/tour_receipts) 已废弃，此处做迁移兜底。
+   */
+  (function migrateLegacyPayments() {
+    try {
+      var oldPmts = JSON.parse(localStorage.getItem('tour_payments') || '[]');
+      var oldRcpts = JSON.parse(localStorage.getItem('tour_receipts') || '[]');
+      if (oldPmts.length > 0 || oldRcpts.length > 0) {
+        projects.forEach(function(p) {
+          // 迁移付款 → costs[i].paidAmount
+          (p.costs||[]).forEach(function(c) {
+            if (!c.paidAmount) {
+              c.paidAmount = oldPmts.filter(function(pm) {
+                return pm.projectId === p.id && pm.costId === c.id;
+              }).reduce(function(s, pm) { return s + pm.amount; }, 0);
+            }
+          });
+          // 迁移收款 → incomes[i].receivedAmount
+          (p.incomes||[]).forEach(function(i) {
+            if (!i.receivedAmount) {
+              i.receivedAmount = oldRcpts.filter(function(r) { return r.projectId === p.id; })
+                .reduce(function(s, r) { return s + r.amount; }, 0);
+            }
+          });
+        });
+        if (oldPmts.length > 0) localStorage.removeItem('tour_payments');
+        if (oldRcpts.length > 0) localStorage.removeItem('tour_receipts');
+        console.log('[迁移] 已完成 localStorage → data.json 付款/收款数据迁移');
+      }
+    } catch(e) { console.warn('[迁移] 失败，忽略:', e.message); }
+  })();
 
   /** 成本项名称 → 供应商自动映射 */
   function autoMapSupplier(costName) {
@@ -1127,9 +1152,14 @@ async function githubSaveData(projectsArray) {
         { name:'切位', count: 0 }
       ];
     }
-    // 自动关联成本项到供应商
+    // 自动关联成本项到供应商 + 初始化付款数据字段
     (p.costs||[]).forEach(function(c){
       if (!c._supplierId) c._supplierId = autoMapSupplier(c.name);
+      if (c.paidAmount === undefined) c.paidAmount = 0;
+    });
+    // 初始化收款数据字段
+    (p.incomes||[]).forEach(function(i){
+      if (i.receivedAmount === undefined) i.receivedAmount = 0;
     });
     p._lockedIncomes = p._lockedIncomes || [];
     p._lockedCosts = p._lockedCosts || [];
@@ -1157,35 +1187,40 @@ async function githubSaveData(projectsArray) {
   // 红绿灯/筛选统一取数：跟随excludeKeWei全局开关
   function getTrafficMargin(p) { return getEffectiveMargin(p, excludeKeWei); }
 
+  /** 查询某团期的收款总额 — 从 projects[].incomes[].receivedAmount 直接读取（云端共享） */
   function sumProjectReceipts(projId) {
-    return receipts.filter(r => r.projectId === projId).reduce((s,r) => s + r.amount, 0);
+    var p = projects.find(function(x){return x.id===projId;});
+    if (!p) return 0;
+    return (p.incomes||[]).reduce(function(s,i){ return s + (i.receivedAmount||0); }, 0);
   }
-  /** 查询某团期某成本项的已付金额 — 三级匹配策略（无危险兜底）
-   *  L1: supplierId+projectId 精确匹配（付款按供应商登记的主路径）
-   *  L2: costId+projectId 匹配（兼容旧版按成本项登记的记录）
-   *  L3: 安全降级→ 返回0，不再回退项目总额（防止把其他供应商的付款算到自己头上）
+  /** 查询某团期某成本项的已付金额 — 从 projects[].costs[].paidAmount 直接读取（云端共享）
+   *  已付数据随 data.json 同步，所有设备真实共享，不再依赖 localStorage
    */
   function sumCostPayments(projId, costId, supplierId) {
-    var validSid = supplierId && supplierId !== '' ? supplierId : null;
-    if (validSid) {
-      var matched = payments.filter(function(p){ return p.projectId === projId && p.supplierId === validSid; });
-      if (matched.length > 0) return matched.reduce(function(s,p){ return s + p.amount; }, 0);
-      // supplierId 存在但无精确匹配 → 尝试 costId
-    }
-    // 按 costId 精确匹配
-    var byCostId = payments.filter(function(p){ return p.projectId === projId && p.costId === costId; }).reduce(function(s,p){ return s + p.amount; }, 0);
-    if (byCostId > 0) return byCostId;
-    // 安全降级：无匹配则返回0（旧逻辑会回退项目总已付，导致某供应商已付>应付的异常显示）
-    if (validSid) {
-      console.debug('[payment匹配] supplierId=' + validSid + ' costId=' + costId + ' 无匹配, 已付=0, proj=' + projId);
+    var p = projects.find(function(x){return x.id===projId;});
+    if (!p) return 0;
+    // 优先按 costId 精确读取 paidAmount
+    var cost = (p.costs||[]).find(function(c){return c.id===costId;});
+    if (cost && cost.paidAmount !== undefined) return cost.paidAmount;
+    // 降级：按 supplierId 汇总该团期下该供应商所有 cost 的 paidAmount
+    if (supplierId) {
+      return (p.costs||[]).filter(function(c){return c._supplierId===supplierId;}).reduce(function(s,c){return s+(c.paidAmount||0);},0);
     }
     return 0;
   }
   function sumProjectPayments(projId) {
-    return payments.filter(p => p.projectId === projId).reduce((s,p) => s + p.amount, 0);
+    var p = projects.find(function(x){return x.id===projId;});
+    if (!p) return 0;
+    return (p.costs||[]).reduce(function(s,c){ return s + (c.paidAmount||0); }, 0);
   }
   function sumSupplierPayments(supId) {
-    return payments.filter(p => p.supplierId === supId).reduce((s,p) => s + p.amount, 0);
+    var total = 0;
+    projects.forEach(function(p){
+      (p.costs||[]).forEach(function(c){
+        if (c._supplierId === supId) total += (c.paidAmount||0);
+      });
+    });
+    return total;
   }
 
   function getReceivableStatus(proj) {
@@ -1707,9 +1742,13 @@ async function githubSaveData(projectsArray) {
       bySupplier[sid].costIds.push(c.id);
     });
 
-    // 补入供应商已付金额
+    // 补入供应商已付金额（从 cost.paidAmount 汇总，云端共享）
     Object.keys(bySupplier).forEach(function(sid){
-      bySupplier[sid].currentPaid = payments.filter(function(pm){ return pm.projectId===projId&&pm.supplierId===sid; }).reduce(function(s,pm){return s+pm.amount;},0);
+      var paid = 0;
+      (p.costs||[]).forEach(function(c){
+        if ((c._supplierId||'sup_6') === sid) paid += (c.paidAmount||0);
+      });
+      bySupplier[sid].currentPaid = paid;
     });
 
     var supEntries = Object.values(bySupplier).filter(function(x){return x.totalPayable>0||x.currentPaid>0;});
@@ -1757,31 +1796,39 @@ async function githubSaveData(projectsArray) {
 
   window.closePayModal = function() { document.getElementById('payModalOverlay').classList.remove('show'); };
 
-  // 保存付款（按供应商聚合，批量更新）
-  window.submitPayment = function(projId) {
+  // 保存付款（按供应商聚合 → 写入各 cost.paidAmount → 同步云端）
+  window.submitPayment = async function(projId) {
     var p = projects.find(function(x){return x.id===projId;});
     if (!p) return;
 
-    // 删除此团期所有旧付款记录
-    payments = payments.filter(function(pm){return pm.projectId !== projId;});
+    // 1. 先清空该团期所有 cost 的 paidAmount
+    (p.costs||[]).forEach(function(c){ c.paidAmount = 0; });
 
-    // 遍历每个供应商输入框，创建新记录
+    // 2. 遍历弹窗中每个供应商的输入框 → 均分写入该供应商的所有 cost
     document.querySelectorAll('.pay-sup-input').forEach(function(inp){
       var sid = inp.getAttribute('data-sid');
-      var cid = inp.getAttribute('data-cost-id');
       var amt = parseFloat(inp.value) || 0;
-      if (amt > 0) {
-        payments.push({
-          id: 'pmt_'+Date.now()+'_'+Math.random().toString(36).substr(2,4),
-          projectId: projId, costId: cid, supplierId: sid, amount: amt,
-          date: new Date().toISOString().slice(0,10)
-        });
+      if (amt > 0 && sid) {
+        var supCosts = (p.costs||[]).filter(function(c){ return (c._supplierId||'') === sid; });
+        if (supCosts.length > 0) {
+          var per = Math.round((amt / supCosts.length) * 100) / 100;
+          supCosts.forEach(function(c, idx){
+            c.paidAmount = idx < supCosts.length - 1 ? per : Math.round((amt - per * idx) * 100) / 100;
+          });
+        }
       }
     });
 
-    localStorage.setItem('tour_payments', JSON.stringify(payments));
-    closePayModal();
-    renderPayables();
+    // 3. 同步到云端 data.json
+    var ok = await githubSaveData(projects);
+    if (ok) {
+      closePayModal();
+      renderPayables();
+      renderSuppliers();
+      showToast('✅ 付款已保存并同步至云端');
+    } else {
+      showToast('❌ 云端保存失败，请检查网络后重试');
+    }
   };
 
   // 综合分析区域
