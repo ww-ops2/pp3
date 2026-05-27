@@ -1620,8 +1620,7 @@ async function githubSaveData(projectsArray) {
     // 成本明细行（展开区）— 先按供应商聚合，再对账分配
     var costRows = '';
     var costsArr = (p.costs||[]).slice();
-    var totalCost = sumCost(p);
-    var totalPaid = sumProjectPayments(p.id);
+    // 注意: totalCost / totalPaid 已在上方用 const 声明，此处直接复用
     // 第一遍：按 supplierId+projectId 精确匹配已付金额
     var supPaidMap = {};
     costsArr.forEach(function(c){
@@ -3348,10 +3347,10 @@ async function githubSaveData(projectsArray) {
 
     // 页面可见版本号（方便判断是否加载了最新代码）
     var verBadge = document.getElementById('pageVer');
-    if (verBadge) verBadge.textContent = 'v20250526n loaded ' + new Date().toLocaleTimeString();
+    if (verBadge) verBadge.textContent = 'v20250526o loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250526n 已加载，修复GitHub数据拉取+错误可见化');
+    console.log('[版本] v20250526o 已加载，修复renderPayCard变量重声明导致JS中断');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
     if (window._githubError) {
       addImportLog('⚠️ GitHub云端异常: ' + window._githubError + ' | 使用本地数据兜底');
