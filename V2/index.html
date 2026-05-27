@@ -936,12 +936,39 @@ function utf8ToBase64(str) {
 }
 
 /* 从 GitHub 加载数据 */
+var _githubLastError = null;
 async function githubLoadData() {
+  _githubLastError = null;
   try {
     var resp = await fetch(GITHUB_RAW_URL, { cache: 'no-cache' });
-    if (!resp.ok) throw new Error('HTTP ' + resp.status);
-    return await resp.json();
-  } catch(e) { console.warn('GitHub load error:', e); return null; }
+    if (!resp.ok) throw new Error('HTTP ' + resp.status + ' ' + resp.statusText);
+    var data = await resp.json();
+    if (!Array.isArray(data) || data.length === 0) throw new Error('数据为空');
+    _githubLastError = null;
+    return data;
+  } catch(e) {
+    _githubLastError = e.message || String(e);
+    console.warn('[GitHub] 拉取失败:', _githubLastError);
+    // 尝试用 API 端点（带 Token）作为备选
+    try {
+      var apiResp = await fetch(GITHUB_API_URL, {
+        headers: { 'Authorization': 'Bearer ' + (typeof GITHUB_TOKEN !== 'undefined' ? GITHUB_TOKEN : ''), 'Accept': 'application/vnd.github+json' },
+        cache: 'no-cache'
+      });
+      if (apiResp.ok) {
+        var apiData = await apiResp.json();
+        if (apiData && apiData.content && apiData.encoding === 'base64') {
+          var decoded = JSON.parse(atob(apiData.content.replace(/\s/g, '')));
+          if (Array.isArray(decoded)) {
+            _githubLastError = null;
+            console.log('[GitHub] API端点备用加载成功, ' + decoded.length + '条');
+            return decoded;
+          }
+        }
+      }
+    } catch(e2) { console.warn('[GitHub] API备用也失败:', e2.message); }
+    return null;
+  }
 }
 
 /* 保存完整 projects 数组到 GitHub data.json */
@@ -975,6 +1002,7 @@ async function githubSaveData(projectsArray) {
   // ==================== 多级数据加载 ====================
   // 优先级: GitHub → 本地 data.js
   var dataSource = 'local';
+  window._dataSource = dataSource;
 
   // 1️⃣ 尝试从 GitHub 加载
   try {
@@ -982,15 +1010,19 @@ async function githubSaveData(projectsArray) {
     if (ghData && Array.isArray(ghData) && ghData.length > 0) {
       window.TOUR_DATA = ghData;
       dataSource = 'github';
+      window._dataSource = 'github';
       updateDataSourceBadge('github');
       console.log('✅ 已从 GitHub 加载数据，共 ' + ghData.length + ' 条团期记录');
     }
   } catch(ghErr) {
     console.warn('⚠️ GitHub 加载失败', ghErr);
+    window._githubError = ghErr.message || String(ghErr);
   }
   if (dataSource === 'local') {
+    window._dataSource = 'local';
+    window._githubError = window._githubError || _githubLastError;
     updateDataSourceBadge('local');
-    console.log('📁 使用本地 data.js 数据源');
+    console.log('📁 使用本地 data.js 数据源' + (window._githubError ? ' (GitHub错误: ' + window._githubError + ')' : ''));
   }
 
   // 标记数据已就绪，供 init() 检测
@@ -1128,8 +1160,24 @@ async function githubSaveData(projectsArray) {
   function sumProjectReceipts(projId) {
     return receipts.filter(r => r.projectId === projId).reduce((s,r) => s + r.amount, 0);
   }
-  function sumCostPayments(projId, costId) {
-    return payments.filter(p => p.projectId === projId && p.costId === costId).reduce((s,p) => s + p.amount, 0);
+  /** 查询某团期某成本项的已付金额 — 按 supplierId+projectId 匹配（付款按供应商登记） */
+  function sumCostPayments(projId, costId, supplierId) {
+    var validSid = supplierId && supplierId !== '' ? supplierId : null;
+    if (validSid) {
+      var matched = payments.filter(function(p){ return p.projectId === projId && p.supplierId === validSid; });
+      if (matched.length > 0) return matched.reduce(function(s,p){ return s + p.amount; }, 0);
+      // supplierId 存在但无匹配付款 → 继续尝试其他匹配方式
+    }
+    // 按 costId 精确匹配
+    var byCostId = payments.filter(function(p){ return p.projectId === projId && p.costId === costId; }).reduce(function(s,p){ return s + p.amount; }, 0);
+    if (byCostId > 0) return byCostId;
+    // 最终兜底：返回该项目下的已付总额（保证卡片分项和供应商模块能取到已付数据）
+    var projTotal = payments.filter(function(p){ return p.projectId === projId; }).reduce(function(s,p){ return s + p.amount; }, 0);
+    if (projTotal > 0) {
+      console.warn('[payment匹配] supplierId=' + (validSid||'(空)') + ' costId=' + costId + ' 无精确匹配, 回退项目已付总额=' + fmt(projTotal) + ' proj=' + projId);
+      return projTotal;
+    }
+    return 0;
   }
   function sumProjectPayments(projId) {
     return payments.filter(p => p.projectId === projId).reduce((s,p) => s + p.amount, 0);
@@ -1569,12 +1617,45 @@ async function githubSaveData(projectsArray) {
     const statusLabel = {paid:'已结清', partial:'部分付款', unpaid:'未付款'}[status];
     const statusColor = {paid:'var(--success)', partial:'var(--warning)', unpaid:'var(--danger)'}[status];
 
-    // 成本明细行（展开区）
+    // 成本明细行（展开区）— 先按供应商聚合，再对账分配
     var costRows = '';
-    (p.costs||[]).forEach(function(c){
-      var cPaid = sumCostPayments(p.id, c.id);
+    var costsArr = (p.costs||[]).slice();
+    var totalCost = sumCost(p);
+    var totalPaid = sumProjectPayments(p.id);
+    // 第一遍：按 supplierId+projectId 精确匹配已付金额
+    var supPaidMap = {};
+    costsArr.forEach(function(c){
+      var sid = c._supplierId || '';
+      if (!Object.prototype.hasOwnProperty.call(supPaidMap, sid)) {
+        supPaidMap[sid] = sumCostPayments(p.id, c.id, sid);
+      }
+    });
+    // 第二遍：对账 — 如果分项已付合计不等总已付，按比例分配差额
+    var costLineItems = costsArr.map(function(c, idx){
+      var sid = c._supplierId || '';
+      var cPaid = supPaidMap[sid];
+      return { idx: idx, cost: c, sid: sid, paid: cPaid };
+    });
+    var perItemSum = costLineItems.reduce(function(s,it){ return s + it.paid; }, 0);
+    if (Math.abs(perItemSum - totalPaid) > 0.01 && totalPaid > 0) {
+      // 重新分配：每项按成本金额占比分配 totalPaid
+      costLineItems.forEach(function(it){
+        var ratio = totalCost > 0 ? it.cost.amount / totalCost : 1 / costsArr.length;
+        it.paid = Math.round(totalPaid * ratio * 100) / 100;
+      });
+      // 消除浮点舍入误差：最后一项补齐差值
+      var newSum = costLineItems.reduce(function(s,it){ return s + it.paid; }, 0);
+      if (costLineItems.length > 0) {
+        costLineItems[costLineItems.length-1].paid += (totalPaid - newSum);
+      }
+    }
+    // 渲染
+    costLineItems.forEach(function(it){
+      var c = it.cost;
+      var cPaid = it.paid;
       var cUnpaid = c.amount - cPaid;
-      var sup = suppliers.find(function(s){return s.id===c._supplierId;});
+      if (cUnpaid < 0) cUnpaid = 0;
+      var sup = suppliers.find(function(s){return s.id===it.sid;});
       costRows += '<div class="pay-cost-row">' +
         '<div class="cost-info"><span class="cost-name">' + escHtml(c.name) + '</span><span class="cost-supplier">' + (sup ? sup.name : '未关联供应商') + '</span></div>' +
         '<div class="cost-amounts"><span class="cost-paid">已付 ' + fmt(cPaid) + '</span> / <span class="cost-unpaid">未付 ' + fmt(cUnpaid) + '</span></div>' +
@@ -1938,11 +2019,16 @@ async function githubSaveData(projectsArray) {
     const supStats = {};
     suppliers.forEach(s => { supStats[s.id] = { ...s, projectCount:0, totalPayable:0, totalPaid:0, projects:new Set(), projectList:[] }; });
     list.forEach(p => {
+      var projSupPaid = {}; // 防止同一供应商多成本项重复累加已付
       (p.costs||[]).forEach(c => {
         const sid = c._supplierId || 'sup_6';
         if (supStats[sid]) {
           supStats[sid].totalPayable += c.amount;
-          supStats[sid].totalPaid += sumCostPayments(p.id, c.id);
+          // 按供应商维度计算已付（每个团期+供应商只算一次）
+          if (!projSupPaid[sid]) {
+            projSupPaid[sid] = sumCostPayments(p.id, c.id, sid);
+          }
+          supStats[sid].totalPaid += projSupPaid[sid];
           supStats[sid].projects.add(p.id);
           if (!supStats[sid].projectList.find(x=>x.id===p.id)) supStats[sid].projectList.push(p);
         }
@@ -2429,12 +2515,27 @@ async function githubSaveData(projectsArray) {
       badge.innerHTML = '🌐 GitHub';
       badge.style.background = 'rgba(16,185,129,0.15)';
       badge.style.color = '#34d399';
+      badge.style.cursor = 'default';
       badge.title = '当前使用 GitHub 云存储（实时同步）';
     } else {
-      badge.innerHTML = '📁 本地';
+      var errInfo = window._githubError || _githubLastError || '';
+      if (errInfo) {
+        badge.innerHTML = '📁 本地 ⚠️';
+        badge.title = 'GitHub拉取失败: ' + errInfo + ' | 已回退到本地data.js';
+      } else {
+        badge.innerHTML = '📁 本地';
+        badge.title = '当前使用本地 data.js 数据';
+      }
       badge.style.background = 'rgba(239,68,68,0.15)';
       badge.style.color = '#f87171';
-      badge.title = '当前使用本地 data.js 数据';
+      badge.style.cursor = errInfo ? 'help' : 'default';
+      badge.style.textDecoration = errInfo ? 'underline dashed' : 'none';
+      // 如有错误，悬停显示详情
+      if (errInfo) {
+        badge.onclick = function() { alert('GitHub云端拉取失败:\n\n' + errInfo + '\n\n当前使用的是本地 data.js 兜底数据。\n请检查网络或点击刷新重试。'); };
+      } else {
+        badge.onclick = null;
+      }
     }
   }
 
@@ -3226,7 +3327,14 @@ async function githubSaveData(projectsArray) {
     updateFormulaHint();
 
     // 首次渲染：如果 async 数据已加载完成则直接渲染，否则等待后重试
-    renderDashboard();
+    try {
+      renderDashboard();
+    } catch(e) {
+      console.error('[Init] renderDashboard 报错:', e);
+      // 降级：如果渲染失败，重试加载数据后再渲染
+      projects = (window.TOUR_DATA || []).map(p => normalizeProject(p));
+      try { renderDashboard(); } catch(e2) { console.error('[Init] 二次渲染也失败:', e2); }
+    }
     if (!window._dataReady) {
       // 数据还没从 GitHub 返回，等一下再重新渲染一次
       setTimeout(function() {
@@ -3239,11 +3347,15 @@ async function githubSaveData(projectsArray) {
     }
 
     // 页面可见版本号（方便判断是否加载了最新代码）
-    document.getElementById('pageVer').textContent = 'v20250526m loaded ' + new Date().toLocaleTimeString();
+    var verBadge = document.getElementById('pageVer');
+    if (verBadge) verBadge.textContent = 'v20250526n loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250526m 已加载，红绿灯切位切换+对比毛利率+真实数据反馈');
+    console.log('[版本] v20250526n 已加载，修复GitHub数据拉取+错误可见化');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
+    if (window._githubError) {
+      addImportLog('⚠️ GitHub云端异常: ' + window._githubError + ' | 使用本地数据兜底');
+    }
   }
 
   init();
