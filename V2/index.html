@@ -608,7 +608,7 @@
 <div class="main-area">
   <header class="main-header">
     <div class="page-title" id="pageTitle">📈 总览面板</div>
-    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250526o</small>
+    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250527</small>
     <small id="filterStatus" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:6px;">等待筛选...</small>
     <div class="header-actions">
       <div style="position:relative;">
@@ -3347,10 +3347,10 @@ async function githubSaveData(projectsArray) {
 
     // 页面可见版本号（方便判断是否加载了最新代码）
     var verBadge = document.getElementById('pageVer');
-    if (verBadge) verBadge.textContent = 'v20250526o loaded ' + new Date().toLocaleTimeString();
+    if (verBadge) verBadge.textContent = 'v20250527 loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250526o 已加载，修复renderPayCard变量重声明导致JS中断');
+    console.log('[版本] v20250527 已加载，全量文件同步协议+固定执行流程');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
     if (window._githubError) {
       addImportLog('⚠️ GitHub云端异常: ' + window._githubError + ' | 使用本地数据兜底');
