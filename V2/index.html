@@ -1318,20 +1318,7 @@ async function githubSaveData(projectsArray) {
     });
 
     // Traffic lights - compact layout (基于当前时间筛选范围)
-    const above = list.filter(p => { var m = getTrafficMargin(p); return m !== null && m >= marginThreshold; });
-    const below = list.filter(p => { var m = getTrafficMargin(p); return m !== null && m < marginThreshold; });
-    document.getElementById('trafficAboveCount').textContent = above.length;
-    document.getElementById('trafficBelowCount').textContent = below.length;
-    // 红绿灯区域显示筛选提示
-    var trafficTitle = document.querySelector('#trafficSection .section-title');
-    if (trafficTitle) {
-      var filterHint = list.length < projects.length 
-        ? ' <small style="color:var(--info);font-weight:normal;">(' + dr.start + '~' + dr.end + ')</small>' 
-        : '';
-      trafficTitle.innerHTML = '<span style="width:7px;height:7px;border-radius:50%;background:var(--warning);display:inline-block;margin-right:4px;"></span>🚦 毛利率监控红绿灯' + filterHint;
-    }
-    window._trafficAbove = above;
-    window._trafficBelow = below;
+    _refreshTrafficData(list);
     window._marginThreshold = marginThreshold;
     if (activeTrafficFilter) { refreshTrafficPanel(); }
     else {
@@ -2897,6 +2884,18 @@ async function githubSaveData(projectsArray) {
   };
 
   // ==================== TRAFFIC PANEL ====================
+  /** 刷新红绿灯 above/below 数据（从当前 dashboard 筛选范围重新计算） */
+  function _refreshTrafficData(list) {
+    list = list || getFilteredProjects('dashboard');
+    var above = list.filter(function(p){ var m = getTrafficMargin(p); return m !== null && m >= marginThreshold; });
+    var below = list.filter(function(p){ var m = getTrafficMargin(p); return m !== null && m < marginThreshold; });
+    window._trafficAbove = above;
+    window._trafficBelow = below;
+    document.getElementById('trafficAboveCount').textContent = above.length;
+    document.getElementById('trafficBelowCount').textContent = below.length;
+    console.log('[红绿灯] 刷新完成: 高于阈值=' + above.length + ' 低于阈值=' + below.length + ' 阈值=' + marginThreshold + '%');
+  }
+
   function refreshTrafficPanel() {
     var mid = document.getElementById('trafficCompactMid');
     var right = document.getElementById('trafficCompactRight');
@@ -3127,12 +3126,16 @@ async function githubSaveData(projectsArray) {
       }
     })();
 
-    // Traffic light buttons
+    // Traffic light buttons - 点击时先刷新红绿灯数据确保 _trafficAbove/Below 是最新的
     document.getElementById('traffic-above').addEventListener('click', function(){
       activeTrafficFilter = activeTrafficFilter === 'above' ? null : 'above';
       if (tcChartInstance) { tcChartInstance.destroy(); tcChartInstance = null; }
       document.querySelectorAll('.traffic-compact-btn').forEach(function(b){ b.classList.remove('active'); });
-      if (activeTrafficFilter) { this.classList.add('active'); tcListPage = 1; refreshTrafficPanel(); }
+      if (activeTrafficFilter) {
+        this.classList.add('active'); tcListPage = 1;
+        _refreshTrafficData();
+        refreshTrafficPanel();
+      }
       else {
         document.getElementById('trafficCompactMid').innerHTML = '<div class="hint">👆 点击左侧按钮<br>查看对应团期明细</div>';
         document.getElementById('trafficCompactRight').innerHTML = '<div class="hint">📊<br>点击按钮查看对比图表</div>';
@@ -3142,7 +3145,11 @@ async function githubSaveData(projectsArray) {
       activeTrafficFilter = activeTrafficFilter === 'below' ? null : 'below';
       if (tcChartInstance) { tcChartInstance.destroy(); tcChartInstance = null; }
       document.querySelectorAll('.traffic-compact-btn').forEach(function(b){ b.classList.remove('active'); });
-      if (activeTrafficFilter) { this.classList.add('active'); tcListPage = 1; refreshTrafficPanel(); }
+      if (activeTrafficFilter) {
+        this.classList.add('active'); tcListPage = 1;
+        _refreshTrafficData();
+        refreshTrafficPanel();
+      }
       else {
         document.getElementById('trafficCompactMid').innerHTML = '<div class="hint">👆 点击左侧按钮<br>查看对应团期明细</div>';
         document.getElementById('trafficCompactRight').innerHTML = '<div class="hint">📊<br>点击按钮查看对比图表</div>';
@@ -3159,6 +3166,14 @@ async function githubSaveData(projectsArray) {
     var keWeiToggle = document.getElementById('trafficKeWeiToggle');
     if (keWeiToggle && excludeKeWei) keWeiToggle.classList.add('on');
     else if (keWeiToggle) keWeiToggle.classList.remove('on');
+
+    // 绑定切位切换开关的点击事件
+    if (keWeiToggle) {
+      keWeiToggle.addEventListener('click', window._toggleKeWei);
+      // label 也支持点击
+      var keWeiLabel = document.querySelector('label[for="trafficKeWeiToggle"]');
+      if (keWeiLabel) keWeiLabel.addEventListener('click', function(e){ e.preventDefault(); window._toggleKeWei(); });
+    }
     updateFormulaHint();
 
     // 首次渲染：如果 async 数据已加载完成则直接渲染，否则等待后重试
@@ -3175,10 +3190,10 @@ async function githubSaveData(projectsArray) {
     }
 
     // 页面可见版本号（方便判断是否加载了最新代码）
-    document.getElementById('pageVer').textContent = 'v20250526j loaded ' + new Date().toLocaleTimeString();
+    document.getElementById('pageVer').textContent = 'v20250526k loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250526j 已加载，修复首次打开无数据+公式提示美化');
+    console.log('[版本] v20250526k 已加载，修复红绿灯按钮点后无刷新数据');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
   }
 
