@@ -608,7 +608,7 @@
 <div class="main-area">
   <header class="main-header">
     <div class="page-title" id="pageTitle">📈 总览面板</div>
-    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250527e</small>
+    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250527f</small>
     <small id="filterStatus" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:6px;">等待筛选...</small>
     <div class="header-actions">
       <div style="position:relative;">
@@ -984,6 +984,13 @@ async function githubSaveData(projectsArray) {
       message: 'Update data.json from web panel',
       content: utf8ToBase64(JSON.stringify(projectsArray, null, 2))
     };
+    // v20250527e: 将供应商数据嵌入 data.json 的 _suppliers 字段（跨设备共享）
+    if (typeof suppliers !== 'undefined' && suppliers && suppliers.length > 0) {
+      // 在 projects 数组的首项附加 _suppliers 元数据
+      var payload = projectsArray.length > 0 ? JSON.parse(JSON.stringify(projectsArray)) : [{}];
+      payload[0]._suppliers = suppliers;
+      body.content = utf8ToBase64(JSON.stringify(payload, null, 2));
+    }
     if (sha) body.sha = sha;
 
     var putResp = await fetch(GITHUB_API_URL, {
@@ -1033,17 +1040,35 @@ async function githubSaveData(projectsArray) {
   /** 原始数据：从远程JSON或本地data.js加载 */
   let projects = (window.TOUR_DATA || []).map(p => normalizeProject(p));
 
-  /** 供应商主数据（模拟，后续从系统同步或手动维护） */
-  let suppliers = JSON.parse(localStorage.getItem('tour_suppliers') || JSON.stringify([
+  /**
+   * v20250527e: 供应商主数据 — 三级优先级
+   *   1️⃣ 云端 data._suppliers（跨设备共享，GitHub加载时自动提取）
+   *   2️⃣ localStorage tour_suppliers（本浏览器缓存）
+   *   3️⃣ 默认内置列表
+   */
+  var _defaultSuppliers = [
     { id:'sup_1', name:'南宁地接社', contact:'', phone:'', category:'地接', bankInfo:'' },
     { id:'sup_2', name:'哈尔滨地接社', contact:'', phone:'', category:'地接', bankInfo:'' },
     { id:'sup_3', name:'火车票代订', contact:'', phone:'', category:'车票', bankInfo:'' },
     { id:'sup_4', name:'导游服务公司', contact:'', phone:'', category:'导服', bankInfo:'' },
     { id:'sup_5', name:'邮轮代理', contact:'', phone:'', category:'邮轮', bankInfo:'' },
     { id:'sup_6', name:'其他供应商', contact:'', phone:'', category:'其他', bankInfo:'' },
-  ]));
+  ];
+  // 从 GitHub 加载的原始数据中提取 _suppliers（如果存在）
+  var _cloudSuppliers = null;
+  if (window.TOUR_DATA && window.TOUR_DATA.length > 0 && window.TOUR_DATA[0] && window.TOUR_DATA[0]._suppliers) {
+    _cloudSuppliers = window.TOUR_DATA[0]._suppliers;
+    console.log('[供应商] 从云端 data.json 加载了 ' + _cloudSuppliers.length + ' 个供应商');
+    // 清理：从 projects 数组中移除 _suppliers 元数据（不是团期数据）
+    delete window.TOUR_DATA[0]._suppliers;
+  }
+  let suppliers = _cloudSuppliers || JSON.parse(localStorage.getItem('tour_suppliers') || JSON.stringify(_defaultSuppliers));
 
-  function saveSuppliers() { localStorage.setItem('tour_suppliers', JSON.stringify(suppliers)); }
+  function saveSuppliers() {
+    localStorage.setItem('tour_suppliers', JSON.stringify(suppliers));
+    // 同时标记需要同步到云端（下次 githubSaveData 时携带）
+    window._suppliersDirty = true;
+  }
 
   // 根据供应商名称匹配已有ID，若无则新建
   function resolveSupplierId(name) {
@@ -3414,14 +3439,30 @@ async function githubSaveData(projectsArray) {
 
     // 页面可见版本号（方便判断是否加载了最新代码）
     var verBadge = document.getElementById('pageVer');
-    if (verBadge) verBadge.textContent = 'v20250527e loaded ' + new Date().toLocaleTimeString();
+    if (verBadge) verBadge.textContent = 'v20250527f loaded  + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250527e 已加载，修复renderPayAnalysis引用已删除的payments变量导致图形/明细消失');
+    console.log('[版本] v20250527f 已加载，供应商数据自动同步云端+修复图形明细消失');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
     if (window._githubError) {
       addImportLog('⚠️ GitHub云端异常: ' + window._githubError + ' | 使用本地数据兜底');
     }
+
+    // v20250527f: 启动时自动将 suppliers 同步到云端（确保跨设备一致）
+    (function autoSyncSuppliers() {
+      if (!_cloudSuppliers || _cloudSuppliers.length === 0) {
+        console.log('[供应商] 云端无供应商数据，启动自动同步...');
+        githubSaveData(projects).then(function(ok){
+          if (ok) { _cloudSuppliers = JSON.parse(JSON.stringify(suppliers)); console.log('[供应商] 自动同步成功，' + suppliers.length + ' 个供应商已写入云端'); }
+        });
+      } else {
+        var localSuppliers = JSON.parse(localStorage.getItem('tour_suppliers') || 'null');
+        if (localSuppliers && localSuppliers.length > _cloudSuppliers.length) {
+          console.log('[供应商] localStorage 供应商数(' + localSuppliers.length + ') > 云端(' + _cloudSuppliers.length + ')，启动自动同步...');
+          githubSaveData(projects).then(function(ok){ if (ok) console.log('[供应商] 供应商增量同步完成'); });
+        }
+      }
+    })();
   }
 
   init();
