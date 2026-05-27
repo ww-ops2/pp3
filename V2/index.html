@@ -726,14 +726,14 @@
               <div class="tcb-icon">✅</div>
               <div class="tcb-body">
                 <div class="tcb-num" id="trafficAboveCount">0</div>
-                <div class="tcb-label">高于阈值团期</div>
+                <div class="tcb-label">高于阈值团期<span id="aboveModeTag" style="font-size:9px;opacity:.6"></span></div>
               </div>
             </div>
             <div class="traffic-compact-btn red-btn" id="traffic-below">
               <div class="tcb-icon">⚠️</div>
               <div class="tcb-body">
                 <div class="tcb-num" id="trafficBelowCount">0</div>
-                <div class="tcb-label">低于阈值团期</div>
+                <div class="tcb-label">低于阈值团期<span id="belowModeTag" style="font-size:9px;opacity:.6"></span></div>
               </div>
             </div>
             <div class="tcb-threshold-row">
@@ -2900,7 +2900,35 @@ async function githubSaveData(projectsArray) {
     window._trafficBelow = below;
     document.getElementById('trafficAboveCount').textContent = above.length;
     document.getElementById('trafficBelowCount').textContent = below.length;
-    console.log('[红绿灯] 刷新完成: 高于阈值=' + above.length + ' 低于阈值=' + below.length + ' 阈值=' + marginThreshold + '%');
+
+    // 同时计算另一种模式的数据用于对比提示
+    var otherAbove = list.filter(function(p){ var m = getEffectiveMargin(p, !excludeKeWei); return m !== null && m >= marginThreshold; });
+    var otherBelow = list.filter(function(p){ var m = getEffectiveMargin(p, !excludeKeWei); return m !== null && m < marginThreshold; });
+    var modeLabel = excludeKeWei ? '含切位' : '不含切位';
+    var changed = (above.length !== otherAbove.length) || (below.length !== otherBelow.length);
+
+    // 更新模式标签
+    var aboveTag = document.getElementById('aboveModeTag');
+    var belowTag = document.getElementById('belowModeTag');
+    if (aboveTag) aboveTag.textContent = '(' + modeLabel + (changed ? ':' + otherAbove.length + ':':'相同') + ')';
+    if (belowTag) belowTag.textContent = '(' + modeLabel + (changed ? ':' + otherBelow.length + ':':'相同') + ')';
+
+    // 更新公式栏，显示对比数据
+    var formulaEl = document.getElementById('tcbFormulaHint');
+    if (formulaEl && changed) {
+      var diffAbove = above.length - otherAbove.length;
+      var diffBelow = below.length - otherBelow.length;
+      formulaEl.innerHTML = '<b>当前' + (excludeKeWei?'不含切位':'含切位') + ':</b> 高于阈值 ' + above.length + ' / 低于阈值 ' + below.length +
+        ' &nbsp;<span style="color:var(--info)">→ 切换为' + modeLabel + ': 高于 ' + otherAbove.length + (diffAbove!==0?'('+diffAbove+')':'') + ' / 低于 ' + otherBelow.length + (diffBelow!==0?'('+diffBelow+')':'') + '</span>';
+    }
+
+    console.log('[红绿灯] ' + (excludeKeWei?'不含':'含') + '切位: 高=' + above.length + ' 低=' + below.length + (changed ? ' ('+modeLabel+'高='+otherAbove+' 低='+otherBelow+')' : ''));
+
+    // 统计有非零切位收入的团期数量
+    var cutCount = list.filter(function(p){
+      return (p.incomes||[]).some(function(i){ return i.name === '切位收入' && i.amount > 0; });
+    }).length;
+    if (cutCount > 0) console.log('[红绿灯] 其中 ' + cutCount + ' 个团期有切位收入>0');
   }
 
   function refreshTrafficPanel() {
@@ -2932,14 +2960,26 @@ async function githubSaveData(projectsArray) {
     for (var j = 0; j < paged.length; j++) {
       var p = paged[j];
       var margin = getTrafficMargin(p);
+      var otherMargin = getEffectiveMargin(p, !excludeKeWei); // 对比模式的毛利率
       var mc = margin >= marginThreshold ? 'var(--success)' : 'var(--danger)';
+      var hasDiff = Math.abs((margin||0) - (otherMargin||0)) > 0.5; // 差异超过0.5%才显示对比
       midHtml += '<div class="tc-proj-item" style="animation-delay:' + (j*0.04) + 's" onclick="window._showProjectDetail(\'' + p.id + '\')">';
       midHtml += '<div class="tc-top"><span class="tc-name">' + escHtml(p.name) + '</span>';
-      midHtml += '<span class="tc-margin" style="background:' + mc + '20;color:' + mc + ';">' + fmtMargin(margin) + '</span></div>';
+      midHtml += '<span class="tc-margin" style="background:' + mc + '20;color:' + mc + ';" title="' + (hasDiff ? (excludeKeWei?'含切位':'不含切位')+'毛利率: '+fmtMargin(otherMargin):'与另一模式相同') + '">' + fmtMargin(margin);
+      if (hasDiff) {
+        var arrow = otherMargin > margin ? '↑' : '↓';
+        midHtml += ' <small style="opacity:.7">' + arrow + fmtMargin(otherMargin) + '</small>';
+      }
+      midHtml += '</span></div>';
       midHtml += '<div class="tc-meta">';
       midHtml += '<span>📦' + (p.productType||'未分类') + '</span>';
       midHtml += '<span>💰' + fmt(sumIncome(p)) + '</span>';
       midHtml += '<span>📉' + fmt(sumCost(p)) + '</span>';
+      // 如果有切位收入，额外显示切位金额
+      var cutIncome = (p.incomes||[]).find(function(i){ return i.name === '切位收入'; });
+      if (cutIncome && cutIncome.amount > 0) {
+        midHtml += '<span title="切位收入金额">✂️' + fmt(cutIncome.amount) + '</span>';
+      }
       midHtml += '</div></div>';
     }
     midHtml += '</div></div>';
@@ -3199,10 +3239,10 @@ async function githubSaveData(projectsArray) {
     }
 
     // 页面可见版本号（方便判断是否加载了最新代码）
-    document.getElementById('pageVer').textContent = 'v20250526l loaded ' + new Date().toLocaleTimeString();
+    document.getElementById('pageVer').textContent = 'v20250526m loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250526l 已加载，修复init报错+切位切换联动红绿灯');
+    console.log('[版本] v20250526m 已加载，红绿灯切位切换+对比毛利率+真实数据反馈');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
   }
 
