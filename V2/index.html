@@ -2594,7 +2594,14 @@ async function githubSaveData(projectsArray) {
     var toggleEl = document.getElementById('trafficKeWeiToggle');
     if (toggleEl) { if (excludeKeWei) toggleEl.classList.add('on'); else toggleEl.classList.remove('on'); }
     updateFormulaHint();
+    // 切换切位后重新渲染当前面板（会连带刷新红绿灯计数）
     renderCurrentPane();
+    // 如果当前正在查看红绿灯明细/图表，需要同步刷新右侧面板
+    if (activeTrafficFilter && typeof _refreshTrafficData === 'function') {
+      _refreshTrafficData();
+      refreshTrafficPanel();
+      console.log('[切位切换] 已联动刷新红绿灯面板, 阈值=' + marginThreshold + '%, 不含切位=' + excludeKeWei);
+    }
   };
 
   // 更新毛利率公式提示文字
@@ -3073,7 +3080,9 @@ async function githubSaveData(projectsArray) {
     var initR = getPaneRange();
     document.getElementById('rangeStart').value = initR.start;
     document.getElementById('rangeEnd').value = initR.end;
-    document.getElementById('marginThreshold').value = marginThreshold;
+    // marginThreshold 输入框在红绿灯区域 (id=marginThresholdGreen)，顶部筛选区没有这个元素
+    var mtEl = document.getElementById('marginThreshold');
+    if (mtEl) mtEl.value = marginThreshold;
     updateDateRangeLabel();
 
     // Date range popover
@@ -3190,10 +3199,10 @@ async function githubSaveData(projectsArray) {
     }
 
     // 页面可见版本号（方便判断是否加载了最新代码）
-    document.getElementById('pageVer').textContent = 'v20250526k loaded ' + new Date().toLocaleTimeString();
+    document.getElementById('pageVer').textContent = 'v20250526l loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250526k 已加载，修复红绿灯按钮点后无刷新数据');
+    console.log('[版本] v20250526l 已加载，修复init报错+切位切换联动红绿灯');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
   }
 
