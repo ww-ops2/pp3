@@ -608,7 +608,7 @@
 <div class="main-area">
   <header class="main-header">
     <div class="page-title" id="pageTitle">📈 总览面板</div>
-    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250527d</small>
+    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250527e</small>
     <small id="filterStatus" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:6px;">等待筛选...</small>
     <div class="header-actions">
       <div style="position:relative;">
@@ -1090,7 +1090,7 @@ async function githubSaveData(projectsArray) {
   };
 
   /**
-   * v20250527d: 付款/收款数据生命周期
+   * v20250527e: 付款/收款数据生命周期
    *   主存储: cloud data.json 的 costs[i].paidAmount / incomes[i].receivedAmount
    *   安全网: localStorage(tour_payments/tour_receipts) 保留不删，每次加载兜底恢复
    *   仅在 submitPayment/submitReceipt 确认云端保存成功后，才标记 localStorage 可清理
@@ -1582,11 +1582,22 @@ async function githubSaveData(projectsArray) {
   }
 
   // ==================== MODULE 4: PAYABLES (V3 卡片+月度+分析) ====================
-  var payMonthFilter = 'all';
+  var payMonthFilter = 'all'; // 首次渲染时自动切换到最新月份
+  var _payMonthAutoSet = false; // 是否已自动设置过月份
   var payKPIDetail = null; // null | 'paid' | 'unpaid' | 'unsettled'
 
   function renderPayables() {
     const allList = getFilteredProjects('payables').filter(p => sumCost(p) > 0);
+
+    // 月份滑块
+    const months = [...new Set(allList.map(p => p.startDate ? p.startDate.substring(0,7) : null).filter(Boolean))].sort();
+
+    // 首次渲染时自动选中最新月份（让用户立即看到卡片+图表+明细）
+    if (!_payMonthAutoSet && months.length > 0 && payMonthFilter === 'all') {
+      payMonthFilter = months[months.length - 1]; // 最新月份
+      _payMonthAutoSet = true;
+    }
+
     let list = payMonthFilter === 'all' ? allList : allList.filter(p => p.startDate && p.startDate.substring(0,7) === payMonthFilter);
 
     // KPI
@@ -1599,8 +1610,7 @@ async function githubSaveData(projectsArray) {
       <div class="kpi-card kpi-clickable cost${payKPIDetail==='unpaid'?' active':''}" onclick="window._togglePayKPIDetail('unpaid')"><div class="kpi-label">未付总额 ▾</div><div class="kpi-value cost">${fmt(totalAP - totalPd)}</div></div>
       <div class="kpi-card kpi-clickable people${payKPIDetail==='unsettled'?' active':''}" onclick="window._togglePayKPIDetail('unsettled')"><div class="kpi-label">未结清团期 ▾</div><div class="kpi-value people">${unpaidCount}</div></div>`;
 
-    // 月份滑块
-    const months = [...new Set(allList.map(p => p.startDate ? p.startDate.substring(0,7) : null).filter(Boolean))].sort();
+    // 月份滑块（months 已在函数顶部计算）
     var swiperHtml = '';
     months.forEach(function(m) {
       var parts = m.split('-');
@@ -1873,17 +1883,7 @@ async function githubSaveData(projectsArray) {
     var sortedMonths = Object.keys(monthAgg).sort();
 
     // 供应商应付排行（基于当前分析范围）
-    // 预计算每个项目-供应商组合的已付款，避免costId匹配问题
-    var supPaidByProj = {};
-    analysisList.forEach(function(p){
-      supPaidByProj[p.id] = {};
-      payments.forEach(function(pm){
-        if (pm.projectId === p.id) {
-          supPaidByProj[p.id][pm.supplierId] = (supPaidByProj[p.id][pm.supplierId] || 0) + pm.amount;
-        }
-      });
-    });
-
+    // v20250527e: 从 costs[].paidAmount 直接读取已付数据（替代旧 payments 数组）
     var supAgg = {};
     var supPaidProcessed = {};
     analysisList.forEach(function(p){
@@ -1894,8 +1894,7 @@ async function githubSaveData(projectsArray) {
         var key = p.id + '__' + sid;
         if (!supPaidProcessed[key]) {
           supPaidProcessed[key] = true;
-          var paid = (supPaidByProj[p.id] && supPaidByProj[p.id][sid]) ? supPaidByProj[p.id][sid] : 0;
-          supAgg[sid].paid += paid;
+          supAgg[sid].paid += (c.paidAmount||0);
         }
       });
     });
@@ -3415,10 +3414,10 @@ async function githubSaveData(projectsArray) {
 
     // 页面可见版本号（方便判断是否加载了最新代码）
     var verBadge = document.getElementById('pageVer');
-    if (verBadge) verBadge.textContent = 'v20250527d loaded ' + new Date().toLocaleTimeString();
+    if (verBadge) verBadge.textContent = 'v20250527e loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250527d 已加载，保留localStorage安全网+云端保存后清除');
+    console.log('[版本] v20250527e 已加载，修复renderPayAnalysis引用已删除的payments变量导致图形/明细消失');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
     if (window._githubError) {
       addImportLog('⚠️ GitHub云端异常: ' + window._githubError + ' | 使用本地数据兜底');
