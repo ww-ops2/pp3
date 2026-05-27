@@ -9,7 +9,8 @@
     "incomes": [
       {
         "name": "线上",
-        "amount": 1884355
+        "amount": 1884355,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -17,31 +18,36 @@
         "id": "cost_1779786088502_0",
         "name": "车票款",
         "amount": 360000,
-        "_supplierId": "sup_7_1779783999704"
+        "_supplierId": "sup_7_1779783999704",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779786088502_1",
         "name": "地接款",
         "amount": 679228,
-        "_supplierId": "sup_7_1779783999704"
+        "_supplierId": "sup_7_1779783999704",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779786088502_2",
         "name": "代订费用",
         "amount": 133286.5,
-        "_supplierId": "sup_8_1779783999704"
+        "_supplierId": "sup_8_1779783999704",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779786088502_3",
         "name": "导服费",
         "amount": 48199.5,
-        "_supplierId": "sup_9_1779783999705"
+        "_supplierId": "sup_9_1779783999705",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779786088502_4",
         "name": "其他",
         "amount": 5584,
-        "_supplierId": "sup_10_1779783999705"
+        "_supplierId": "sup_10_1779783999705",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -74,7 +80,8 @@
     "incomes": [
       {
         "name": "线上",
-        "amount": 191066
+        "amount": 191066,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -82,25 +89,29 @@
         "id": "cost_1779784073558_0",
         "name": "地接款",
         "amount": 142100,
-        "_supplierId": "sup_11_1779784073557"
+        "_supplierId": "sup_11_1779784073557",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779784073558_1",
         "name": "代订费用",
         "amount": 4177,
-        "_supplierId": "sup_8_1779783999704"
+        "_supplierId": "sup_8_1779783999704",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779784073558_2",
         "name": "导服费",
         "amount": 2600,
-        "_supplierId": "sup_9_1779783999705"
+        "_supplierId": "sup_9_1779783999705",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779784073558_3",
         "name": "其他",
         "amount": 170.5,
-        "_supplierId": "sup_10_1779783999705"
+        "_supplierId": "sup_10_1779783999705",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -133,7 +144,8 @@
     "incomes": [
       {
         "name": "线上",
-        "amount": 309171
+        "amount": 309171,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -141,25 +153,29 @@
         "id": "cost_1779786182622_0",
         "name": "地接款",
         "amount": 170520,
-        "_supplierId": "sup_7_1779783999704"
+        "_supplierId": "sup_7_1779783999704",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779786182622_1",
         "name": "代订费用",
         "amount": 25962.5,
-        "_supplierId": "sup_8_1779783999704"
+        "_supplierId": "sup_8_1779783999704",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779786182622_2",
         "name": "导服费",
         "amount": 7600,
-        "_supplierId": "sup_9_1779783999705"
+        "_supplierId": "sup_9_1779783999705",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779786182622_3",
         "name": "其他",
         "amount": 800,
-        "_supplierId": "sup_10_1779783999705"
+        "_supplierId": "sup_10_1779783999705",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -192,7 +208,8 @@
     "incomes": [
       {
         "name": "线上",
-        "amount": 60432
+        "amount": 60432,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -200,13 +217,15 @@
         "id": "cost_1779784162184_0",
         "name": "地接款",
         "amount": 43820,
-        "_supplierId": "sup_11_1779784073557"
+        "_supplierId": "sup_11_1779784073557",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779784162184_1",
         "name": "其他",
         "amount": 44,
-        "_supplierId": "sup_10_1779783999705"
+        "_supplierId": "sup_10_1779783999705",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -240,17 +259,20 @@
       {
         "id": "inc_1778478180812_1",
         "name": "线上收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478180812_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478180812_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -258,31 +280,36 @@
         "id": "cost_1778478180812_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478180812_2",
         "name": "地接款",
         "amount": 0,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478180812_3",
         "name": "代订费用",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478180812_4",
         "name": "导服费用",
         "amount": 0,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478180812_5",
         "name": "其他费用",
         "amount": 0,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -316,17 +343,20 @@
       {
         "id": "inc_1778478204084_1",
         "name": "线上收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478204084_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478204084_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -334,31 +364,36 @@
         "id": "cost_1778478204084_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478204084_2",
         "name": "地接款",
         "amount": 0,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478204084_3",
         "name": "代订费用",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478204084_4",
         "name": "导服费用",
         "amount": 0,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478204084_5",
         "name": "其他费用",
         "amount": 0,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -392,17 +427,20 @@
       {
         "id": "inc_1778478220980_1",
         "name": "线上收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478220980_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478220980_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -410,31 +448,36 @@
         "id": "cost_1778478220980_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478220980_2",
         "name": "地接款",
         "amount": 0,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478220980_3",
         "name": "代订费用",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478220980_4",
         "name": "导服费用",
         "amount": 0,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478220980_5",
         "name": "其他费用",
         "amount": 0,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -468,17 +511,20 @@
       {
         "id": "inc_1778478242960_1",
         "name": "线上收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478242960_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478242960_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -486,31 +532,36 @@
         "id": "cost_1778478242960_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478242960_2",
         "name": "地接款",
         "amount": 0,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478242960_3",
         "name": "代订费用",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478242960_4",
         "name": "导服费用",
         "amount": 0,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478242960_5",
         "name": "其他费用",
         "amount": 0,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -544,17 +595,20 @@
       {
         "id": "inc_1778478256747_1",
         "name": "线上收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478256747_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478256747_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -562,31 +616,36 @@
         "id": "cost_1778478256747_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478256747_2",
         "name": "地接款",
         "amount": 0,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478256747_3",
         "name": "代订费用",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478256747_4",
         "name": "导服费用",
         "amount": 0,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478256747_5",
         "name": "其他费用",
         "amount": 0,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -620,17 +679,20 @@
       {
         "id": "inc_1778478267895_1",
         "name": "线上收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478267895_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478267895_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -638,31 +700,36 @@
         "id": "cost_1778478267895_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478267895_2",
         "name": "地接款",
         "amount": 0,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478267895_3",
         "name": "代订费用",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478267895_4",
         "name": "导服费用",
         "amount": 0,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478267895_5",
         "name": "其他费用",
         "amount": 0,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -696,17 +763,20 @@
       {
         "id": "inc_1778478280700_1",
         "name": "线上收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478280700_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478280700_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -714,31 +784,36 @@
         "id": "cost_1778478280700_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478280700_2",
         "name": "地接款",
         "amount": 0,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478280700_3",
         "name": "代订费用",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478280700_4",
         "name": "导服费用",
         "amount": 0,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478280700_5",
         "name": "其他费用",
         "amount": 0,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -772,17 +847,20 @@
       {
         "id": "inc_1778478302916_1",
         "name": "线上收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478302916_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778478302916_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -790,31 +868,36 @@
         "id": "cost_1778478302916_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478302916_2",
         "name": "地接款",
         "amount": 0,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478302916_3",
         "name": "代订费用",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478302916_4",
         "name": "导服费用",
         "amount": 0,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778478302916_5",
         "name": "其他费用",
         "amount": 0,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -847,15 +930,18 @@
     "incomes": [
       {
         "name": "线上收入",
-        "amount": 718121
+        "amount": 718121,
+        "receivedAmount": 0
       },
       {
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -863,25 +949,29 @@
         "id": "cost_1779786551489_0",
         "name": "地接款",
         "amount": 476600,
-        "_supplierId": "sup_11_1779784073557"
+        "_supplierId": "sup_11_1779784073557",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779786551489_1",
         "name": "代订费用",
         "amount": 72486.5,
-        "_supplierId": "sup_8_1779783999704"
+        "_supplierId": "sup_8_1779783999704",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779786551489_2",
         "name": "导服费用",
         "amount": 8301.5,
-        "_supplierId": "sup_9_1779783999705"
+        "_supplierId": "sup_9_1779783999705",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779786551489_3",
         "name": "其他费用",
         "amount": 1256.05,
-        "_supplierId": "sup_10_1779783999705"
+        "_supplierId": "sup_10_1779783999705",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -897,7 +987,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552581701",
@@ -909,15 +1004,18 @@
     "incomes": [
       {
         "name": "线上收入",
-        "amount": 197226
+        "amount": 197226,
+        "receivedAmount": 0
       },
       {
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -925,25 +1023,29 @@
         "id": "cost_1779786652648_0",
         "name": "地接款",
         "amount": 141160,
-        "_supplierId": "sup_11_1779784073557"
+        "_supplierId": "sup_11_1779784073557",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779786652648_1",
         "name": "代订费用",
         "amount": 4926.5,
-        "_supplierId": "sup_8_1779783999704"
+        "_supplierId": "sup_8_1779783999704",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779786652648_2",
         "name": "导服费用",
         "amount": 2800,
-        "_supplierId": "sup_9_1779783999705"
+        "_supplierId": "sup_9_1779783999705",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779786652648_3",
         "name": "其他费用",
         "amount": 302.2,
-        "_supplierId": "sup_10_1779783999705"
+        "_supplierId": "sup_10_1779783999705",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -959,7 +1061,12 @@
         "name": "切位",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778552792245",
@@ -972,17 +1079,20 @@
       {
         "id": "inc_1778552792245_1",
         "name": "线上收入",
-        "amount": 44977
+        "amount": 44977,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778552792245_2",
         "name": "线下收入",
-        "amount": 26480
+        "amount": 26480,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778552792245_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -990,31 +1100,36 @@
         "id": "cost_1778552792245_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552792245_2",
         "name": "地接款",
         "amount": 1535,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552792245_3",
         "name": "代订费用",
         "amount": 41929,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552792245_4",
         "name": "导服费用",
         "amount": 2678,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552792245_5",
         "name": "其他费用",
         "amount": 0,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -1048,17 +1163,20 @@
       {
         "id": "inc_1778552799653_1",
         "name": "线上收入",
-        "amount": 6254
+        "amount": 6254,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778552799653_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778552799653_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -1066,31 +1184,36 @@
         "id": "cost_1778552799653_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552799653_2",
         "name": "地接款",
         "amount": 5628,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552799653_3",
         "name": "代订费用",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552799653_4",
         "name": "导服费用",
         "amount": 0,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552799653_5",
         "name": "其他费用",
         "amount": 3,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -1124,17 +1247,20 @@
       {
         "id": "inc_1778552804829_1",
         "name": "线上收入",
-        "amount": 89472
+        "amount": 89472,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778552804829_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778552804829_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -1142,31 +1268,36 @@
         "id": "cost_1778552804829_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552804829_2",
         "name": "地接款",
         "amount": 56244,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552804829_3",
         "name": "代订费用",
         "amount": 4374,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552804829_4",
         "name": "导服费用",
         "amount": 0,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552804829_5",
         "name": "其他费用",
         "amount": 120,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -1200,17 +1331,20 @@
       {
         "id": "inc_1778552809207_1",
         "name": "线上收入",
-        "amount": 1475308
+        "amount": 1475308,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778552809207_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778552809207_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -1218,31 +1352,36 @@
         "id": "cost_1778552809207_1",
         "name": "车票款",
         "amount": 340000,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552809207_2",
         "name": "地接款",
         "amount": 462474,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552809207_3",
         "name": "代订费用",
         "amount": 115330,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552809207_4",
         "name": "导服费用",
         "amount": 36979,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552809207_5",
         "name": "其他费用",
         "amount": 4000,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -1276,17 +1415,20 @@
       {
         "id": "inc_1778552813198_1",
         "name": "线上收入",
-        "amount": 842283
+        "amount": 842283,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778552813198_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778552813198_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -1294,31 +1436,36 @@
         "id": "cost_1778552813198_1",
         "name": "车票款",
         "amount": 170000,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552813198_2",
         "name": "地接款",
         "amount": 348334,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552813198_3",
         "name": "代订费用",
         "amount": 60131,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552813198_4",
         "name": "导服费用",
         "amount": 21600,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552813198_5",
         "name": "其他费用",
         "amount": 2384,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -1352,17 +1499,20 @@
       {
         "id": "inc_1778552819375_1",
         "name": "线上收入",
-        "amount": 27920
+        "amount": 27920,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778552819375_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778552819375_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -1370,31 +1520,36 @@
         "id": "cost_1778552819375_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552819375_2",
         "name": "地接款",
         "amount": 24520,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552819375_3",
         "name": "代订费用",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552819375_4",
         "name": "导服费用",
         "amount": 0,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552819375_5",
         "name": "其他费用",
         "amount": 13,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -1428,17 +1583,20 @@
       {
         "id": "inc_1778552824390_1",
         "name": "线上收入",
-        "amount": 56998
+        "amount": 56998,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778552824390_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778552824390_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -1446,31 +1604,36 @@
         "id": "cost_1778552824390_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552824390_2",
         "name": "地接款",
         "amount": 42752,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552824390_3",
         "name": "代订费用",
         "amount": 1949,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552824390_4",
         "name": "导服费用",
         "amount": 2500,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778552824390_5",
         "name": "其他费用",
         "amount": 179,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -1503,15 +1666,18 @@
     "incomes": [
       {
         "name": "线上收入",
-        "amount": 44116
+        "amount": 44116,
+        "receivedAmount": 0
       },
       {
         "name": "线下收入",
-        "amount": 22222
+        "amount": 22222,
+        "receivedAmount": 0
       },
       {
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -1519,31 +1685,36 @@
         "id": "cost_1779706758443_0",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779706758443_1",
         "name": "地接款",
         "amount": 37816,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779706758443_2",
         "name": "代订费用",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779706758443_3",
         "name": "导服费用",
         "amount": 0,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1779706758443_4",
         "name": "其他费用",
         "amount": 23,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -1577,17 +1748,20 @@
       {
         "id": "inc_1778553406836_1",
         "name": "线上收入",
-        "amount": 2267706
+        "amount": 2267706,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553406836_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553406836_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -1595,31 +1769,36 @@
         "id": "cost_1778553406836_1",
         "name": "车票款",
         "amount": 770000,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553406836_2",
         "name": "地接款",
         "amount": 716076,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553406836_3",
         "name": "代订费用",
         "amount": 9518,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553406836_4",
         "name": "导服费用",
         "amount": 36600,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553406836_5",
         "name": "其他费用",
         "amount": 3000,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -1653,17 +1832,20 @@
       {
         "id": "inc_1778553412828_1",
         "name": "线上收入",
-        "amount": 104358
+        "amount": 104358,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553412828_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553412828_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -1671,31 +1853,36 @@
         "id": "cost_1778553412828_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553412828_2",
         "name": "地接款",
         "amount": 3250,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553412828_3",
         "name": "代订费用",
         "amount": 49845,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553412828_4",
         "name": "导服费用",
         "amount": 2000,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553412828_5",
         "name": "其他费用",
         "amount": 243,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -1729,17 +1916,20 @@
       {
         "id": "inc_1778553427676_1",
         "name": "线上收入",
-        "amount": 564101
+        "amount": 564101,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553427676_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553427676_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -1747,31 +1937,36 @@
         "id": "cost_1778553427676_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553427676_2",
         "name": "地接款",
         "amount": 513917,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553427676_3",
         "name": "代订费用",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553427676_4",
         "name": "导服费用",
         "amount": 5969,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553427676_5",
         "name": "其他费用",
         "amount": 368,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -1805,17 +2000,20 @@
       {
         "id": "inc_1778553432668_1",
         "name": "线上收入",
-        "amount": 65274
+        "amount": 65274,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553432668_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553432668_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -1823,31 +2021,36 @@
         "id": "cost_1778553432668_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553432668_2",
         "name": "地接款",
         "amount": 39500,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553432668_3",
         "name": "代订费用",
         "amount": 6716,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553432668_4",
         "name": "导服费用",
         "amount": 0,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553432668_5",
         "name": "其他费用",
         "amount": 121,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -1881,17 +2084,20 @@
       {
         "id": "inc_1778553437388_1",
         "name": "线上收入",
-        "amount": 1523383
+        "amount": 1523383,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553437388_2",
         "name": "线下收入",
-        "amount": 27488
+        "amount": 27488,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553437388_3",
         "name": "切位收入",
-        "amount": 876235
+        "amount": 876235,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -1899,31 +2105,36 @@
         "id": "cost_1778553437388_1",
         "name": "车票款",
         "amount": 1795848,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553437388_2",
         "name": "地接款",
         "amount": 239900,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553437388_3",
         "name": "代订费用",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553437388_4",
         "name": "导服费用",
         "amount": 55200,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553437388_5",
         "name": "其他费用",
         "amount": 6250,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -1957,17 +2168,20 @@
       {
         "id": "inc_1778553442404_1",
         "name": "线上收入",
-        "amount": 2275145
+        "amount": 2275145,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553442404_2",
         "name": "线下收入",
-        "amount": 357130
+        "amount": 357130,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553442404_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -1975,31 +2189,36 @@
         "id": "cost_1778553442404_1",
         "name": "车票款",
         "amount": 1477142,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553442404_2",
         "name": "地接款",
         "amount": 428615,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553442404_3",
         "name": "代订费用",
         "amount": 51402,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553442404_4",
         "name": "导服费用",
         "amount": 81550,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553442404_5",
         "name": "其他费用",
         "amount": 10829,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -2033,17 +2252,20 @@
       {
         "id": "inc_1778553449855_1",
         "name": "线上收入",
-        "amount": 2624595
+        "amount": 2624595,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553449855_2",
         "name": "线下收入",
-        "amount": 100442
+        "amount": 100442,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553449855_3",
         "name": "切位收入",
-        "amount": 285975
+        "amount": 285975,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -2051,31 +2273,36 @@
         "id": "cost_1778553449855_1",
         "name": "车票款",
         "amount": 1698790,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553449855_2",
         "name": "地接款",
         "amount": 446530,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553449855_3",
         "name": "代订费用",
         "amount": 55692,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553449855_4",
         "name": "导服费用",
         "amount": 81800,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553449855_5",
         "name": "其他费用",
         "amount": 9113,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -2109,17 +2336,20 @@
       {
         "id": "inc_1778553454127_1",
         "name": "线上收入",
-        "amount": 1213108
+        "amount": 1213108,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553454127_2",
         "name": "线下收入",
-        "amount": 198032
+        "amount": 198032,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553454127_3",
         "name": "切位收入",
-        "amount": 775311
+        "amount": 775311,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -2127,31 +2357,36 @@
         "id": "cost_1778553454127_1",
         "name": "车票款",
         "amount": 1472501,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553454127_2",
         "name": "地接款",
         "amount": 225775,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553454127_3",
         "name": "代订费用",
         "amount": 35289,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553454127_4",
         "name": "导服费用",
         "amount": 48500,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553454127_5",
         "name": "其他费用",
         "amount": 3557,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
@@ -2185,17 +2420,20 @@
       {
         "id": "inc_1778553464020_1",
         "name": "线上收入",
-        "amount": 124980
+        "amount": 124980,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553464020_2",
         "name": "线下收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       },
       {
         "id": "inc_1778553464020_3",
         "name": "切位收入",
-        "amount": 0
+        "amount": 0,
+        "receivedAmount": 0
       }
     ],
     "costs": [
@@ -2203,31 +2441,36 @@
         "id": "cost_1778553464020_1",
         "name": "车票款",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553464020_2",
         "name": "地接款",
         "amount": 104500,
-        "_supplierId": "sup_1"
+        "_supplierId": "sup_1",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553464020_3",
         "name": "代订费用",
         "amount": 0,
-        "_supplierId": "sup_3"
+        "_supplierId": "sup_3",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553464020_4",
         "name": "导服费用",
         "amount": 0,
-        "_supplierId": "sup_4"
+        "_supplierId": "sup_4",
+        "paidAmount": 0
       },
       {
         "id": "cost_1778553464020_5",
         "name": "其他费用",
         "amount": 48,
-        "_supplierId": "sup_6"
+        "_supplierId": "sup_6",
+        "paidAmount": 0
       }
     ],
     "peopleDetails": [
