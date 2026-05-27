@@ -608,7 +608,7 @@
 <div class="main-area">
   <header class="main-header">
     <div class="page-title" id="pageTitle">📈 总览面板</div>
-    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250527b</small>
+    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250527c</small>
     <small id="filterStatus" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:6px;">等待筛选...</small>
     <div class="header-actions">
       <div style="position:relative;">
@@ -1160,22 +1160,24 @@ async function githubSaveData(projectsArray) {
   function sumProjectReceipts(projId) {
     return receipts.filter(r => r.projectId === projId).reduce((s,r) => s + r.amount, 0);
   }
-  /** 查询某团期某成本项的已付金额 — 按 supplierId+projectId 匹配（付款按供应商登记） */
+  /** 查询某团期某成本项的已付金额 — 三级匹配策略（无危险兜底）
+   *  L1: supplierId+projectId 精确匹配（付款按供应商登记的主路径）
+   *  L2: costId+projectId 匹配（兼容旧版按成本项登记的记录）
+   *  L3: 安全降级→ 返回0，不再回退项目总额（防止把其他供应商的付款算到自己头上）
+   */
   function sumCostPayments(projId, costId, supplierId) {
     var validSid = supplierId && supplierId !== '' ? supplierId : null;
     if (validSid) {
       var matched = payments.filter(function(p){ return p.projectId === projId && p.supplierId === validSid; });
       if (matched.length > 0) return matched.reduce(function(s,p){ return s + p.amount; }, 0);
-      // supplierId 存在但无匹配付款 → 继续尝试其他匹配方式
+      // supplierId 存在但无精确匹配 → 尝试 costId
     }
     // 按 costId 精确匹配
     var byCostId = payments.filter(function(p){ return p.projectId === projId && p.costId === costId; }).reduce(function(s,p){ return s + p.amount; }, 0);
     if (byCostId > 0) return byCostId;
-    // 最终兜底：返回该项目下的已付总额（保证卡片分项和供应商模块能取到已付数据）
-    var projTotal = payments.filter(function(p){ return p.projectId === projId; }).reduce(function(s,p){ return s + p.amount; }, 0);
-    if (projTotal > 0) {
-      console.warn('[payment匹配] supplierId=' + (validSid||'(空)') + ' costId=' + costId + ' 无精确匹配, 回退项目已付总额=' + fmt(projTotal) + ' proj=' + projId);
-      return projTotal;
+    // 安全降级：无匹配则返回0（旧逻辑会回退项目总已付，导致某供应商已付>应付的异常显示）
+    if (validSid) {
+      console.debug('[payment匹配] supplierId=' + validSid + ' costId=' + costId + ' 无匹配, 已付=0, proj=' + projId);
     }
     return 0;
   }
@@ -3347,10 +3349,10 @@ async function githubSaveData(projectsArray) {
 
     // 页面可见版本号（方便判断是否加载了最新代码）
     var verBadge = document.getElementById('pageVer');
-    if (verBadge) verBadge.textContent = 'v20250527b loaded ' + new Date().toLocaleTimeString();
+    if (verBadge) verBadge.textContent = 'v20250527c loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250527b 已加载，时间戳驱动智能同步+双向数据保护');
+    console.log('[版本] v20250527c 已加载，修复sumCostPayments兜底导致已付>应付异常');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
     if (window._githubError) {
       addImportLog('⚠️ GitHub云端异常: ' + window._githubError + ' | 使用本地数据兜底');
