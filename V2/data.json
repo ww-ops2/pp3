@@ -1,49 +1,50 @@
 [
   {
     "id": "proj_1778468987860",
-    "name": "YJMH-越南-20260110 南宁",
-    "productType": "越南",
+    "name": "YJMH-è¶å-20260110 åå®",
+    "productType": "è¶å",
     "operator": "",
     "startDate": "2026-01-01",
     "remark": "",
     "incomes": [
       {
-        "name": "线上",
-        "amount": 1884355
+        "name": "çº¿ä¸",
+        "amount": 1884355,
+        "receivedAmount": 0
       }
     ],
     "costs": [
       {
         "id": "cost_1779933933514_0",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 360000,
         "_supplierId": "sup_7_1779933933509",
         "paidAmount": 519614
       },
       {
         "id": "cost_1779933933514_1",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 679228,
         "_supplierId": "sup_7_1779933933509",
         "paidAmount": 519614
       },
       {
         "id": "cost_1779933933515_2",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 133286.5,
         "_supplierId": "sup_8_1779933933514",
         "paidAmount": 133286.5
       },
       {
         "id": "cost_1779933933515_3",
-        "name": "导服费",
+        "name": "å¯¼æè´¹",
         "amount": 48199.5,
         "_supplierId": "sup_9_1779933933515",
         "paidAmount": 48199.5
       },
       {
         "id": "cost_1779933933515_4",
-        "name": "其他",
+        "name": "å¶ä»",
         "amount": 5584,
         "_supplierId": "sup_10_1779933933515",
         "paidAmount": 5584
@@ -51,57 +52,63 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 336
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778468995018",
-    "name": "YJMH-冰雪专列-20260113-A线",
-    "productType": "冰雪专列",
+    "name": "YJMH-å°éªä¸å-20260113-Açº¿",
+    "productType": "å°éªä¸å",
     "operator": "",
     "startDate": "2026-01-01",
     "remark": "",
     "incomes": [
       {
-        "name": "线上",
-        "amount": 191066
+        "name": "çº¿ä¸",
+        "amount": 191066,
+        "receivedAmount": 0
       }
     ],
     "costs": [
       {
         "id": "cost_1779936983267_0",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 142100,
         "_supplierId": "sup_11_1779936983266",
         "paidAmount": 142100
       },
       {
         "id": "cost_1779936983268_1",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 4177,
         "_supplierId": "sup_8_1779933933514",
         "paidAmount": 4177
       },
       {
         "id": "cost_1779936983268_2",
-        "name": "导服费",
+        "name": "å¯¼æè´¹",
         "amount": 2600,
         "_supplierId": "sup_9_1779933933515",
         "paidAmount": 2600
       },
       {
         "id": "cost_1779936983268_3",
-        "name": "其他",
+        "name": "å¶ä»",
         "amount": 170.5,
         "_supplierId": "sup_10_1779933933515",
         "paidAmount": 170.5
@@ -109,57 +116,63 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 30
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778469000914",
-    "name": "YJMH-越南-20260120 南宁",
-    "productType": "越南",
+    "name": "YJMH-è¶å-20260120 åå®",
+    "productType": "è¶å",
     "operator": "",
     "startDate": "2026-01-01",
     "remark": "",
     "incomes": [
       {
-        "name": "线上",
-        "amount": 309171
+        "name": "çº¿ä¸",
+        "amount": 309171,
+        "receivedAmount": 0
       }
     ],
     "costs": [
       {
         "id": "cost_1779937070316_0",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 170520,
         "_supplierId": "sup_7_1779933933509",
         "paidAmount": 170520
       },
       {
         "id": "cost_1779937070316_1",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 25962.5,
         "_supplierId": "sup_8_1779933933514",
         "paidAmount": 25962.5
       },
       {
         "id": "cost_1779937070316_2",
-        "name": "导服费",
+        "name": "å¯¼æè´¹",
         "amount": 7600,
         "_supplierId": "sup_9_1779933933515",
         "paidAmount": 7600
       },
       {
         "id": "cost_1779937070316_3",
-        "name": "其他",
+        "name": "å¶ä»",
         "amount": 800,
         "_supplierId": "sup_10_1779933933515",
         "paidAmount": 800
@@ -167,43 +180,49 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 56
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778469008378",
-    "name": "YJMH-冰雪专列-20260124-B线",
-    "productType": "冰雪专列",
+    "name": "YJMH-å°éªä¸å-20260124-Bçº¿",
+    "productType": "å°éªä¸å",
     "operator": "",
     "startDate": "2026-01-01",
     "remark": "",
     "incomes": [
       {
-        "name": "线上",
-        "amount": 60432
+        "name": "çº¿ä¸",
+        "amount": 60432,
+        "receivedAmount": 0
       }
     ],
     "costs": [
       {
         "id": "cost_1779937483268_0",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 43820,
         "_supplierId": "sup_11_1779936983266",
         "paidAmount": 43820
       },
       {
         "id": "cost_1779937483268_1",
-        "name": "其他",
+        "name": "å¶ä»",
         "amount": 44,
         "_supplierId": "sup_10_1779933933515",
         "paidAmount": 44
@@ -211,42 +230,47 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 9
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
-    ]
+    ],
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": [],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478180812",
-    "name": "YJMH-南北疆-20260516-上海车",
-    "productType": "南北疆",
-    "operator": "彭菲",
+    "name": "YJMH-ååç-20260516-ä¸æµ·è½¦",
+    "productType": "ååç",
+    "operator": "å½­è²",
     "startDate": "2026-05-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778478180812_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478180812_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478180812_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -254,35 +278,35 @@
     "costs": [
       {
         "id": "cost_1778478180812_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478180812_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 0,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478180812_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478180812_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478180812_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -290,15 +314,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -310,27 +334,27 @@
   },
   {
     "id": "proj_1778478204084",
-    "name": "YJMH-中亚-20260522-新疆",
-    "productType": "中亚",
-    "operator": "祝云星",
+    "name": "YJMH-ä¸­äº-20260522-æ°ç",
+    "productType": "ä¸­äº",
+    "operator": "ç¥äºæ",
     "startDate": "2026-05-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778478204084_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478204084_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478204084_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -338,35 +362,35 @@
     "costs": [
       {
         "id": "cost_1778478204084_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478204084_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 0,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478204084_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478204084_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478204084_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -374,15 +398,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -394,27 +418,27 @@
   },
   {
     "id": "proj_1778478220980",
-    "name": "YJMH-西沙邮轮2026·祥龙号0511",
-    "productType": "邮轮",
-    "operator": "郭梦云",
+    "name": "YJMH-è¥¿æ²é®è½®2026Â·ç¥¥é¾å·0511",
+    "productType": "é®è½®",
+    "operator": "é­æ¢¦äº",
     "startDate": "2026-05-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778478220980_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478220980_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478220980_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -422,35 +446,35 @@
     "costs": [
       {
         "id": "cost_1778478220980_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478220980_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 0,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478220980_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478220980_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478220980_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -458,15 +482,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -478,27 +502,27 @@
   },
   {
     "id": "proj_1778478242960",
-    "name": "YJMH-东北-20260520-广东车",
-    "productType": "东北",
-    "operator": "赵祯",
+    "name": "YJMH-ä¸å-20260520-å¹¿ä¸è½¦",
+    "productType": "ä¸å",
+    "operator": "èµµç¥¯",
     "startDate": "2026-05-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778478242960_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478242960_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478242960_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -506,35 +530,35 @@
     "costs": [
       {
         "id": "cost_1778478242960_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478242960_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 0,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478242960_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478242960_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478242960_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -542,15 +566,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -562,27 +586,27 @@
   },
   {
     "id": "proj_1778478256747",
-    "name": "YJMH-长江贰号·三峡游轮（汉渝航次）-20260506",
-    "productType": "邮轮",
-    "operator": "杨冰雁",
+    "name": "YJMH-é¿æ±è´°å·Â·ä¸å³¡æ¸¸è½®ï¼æ±æ¸èªæ¬¡ï¼-20260506",
+    "productType": "é®è½®",
+    "operator": "æ¨å°é",
     "startDate": "2026-05-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778478256747_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478256747_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478256747_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -590,35 +614,35 @@
     "costs": [
       {
         "id": "cost_1778478256747_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478256747_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 0,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478256747_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478256747_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478256747_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -626,15 +650,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -646,27 +670,27 @@
   },
   {
     "id": "proj_1778478267895",
-    "name": "YJMH-中亚-20260508-新疆",
-    "productType": "中亚",
-    "operator": "祝云星",
+    "name": "YJMH-ä¸­äº-20260508-æ°ç",
+    "productType": "ä¸­äº",
+    "operator": "ç¥äºæ",
     "startDate": "2026-05-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778478267895_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478267895_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478267895_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -674,35 +698,35 @@
     "costs": [
       {
         "id": "cost_1778478267895_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478267895_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 0,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478267895_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478267895_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478267895_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -710,15 +734,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -730,27 +754,27 @@
   },
   {
     "id": "proj_1778478280700",
-    "name": "YJMH-西沙邮轮2026·祥龙号0503",
-    "productType": "邮轮",
-    "operator": "郭梦云",
+    "name": "YJMH-è¥¿æ²é®è½®2026Â·ç¥¥é¾å·0503",
+    "productType": "é®è½®",
+    "operator": "é­æ¢¦äº",
     "startDate": "2026-05-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778478280700_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478280700_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478280700_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -758,35 +782,35 @@
     "costs": [
       {
         "id": "cost_1778478280700_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478280700_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 0,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478280700_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478280700_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478280700_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -794,15 +818,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -814,27 +838,27 @@
   },
   {
     "id": "proj_1778478302916",
-    "name": "YJMH-东北-20260522-南宁接广州车",
-    "productType": "东北",
-    "operator": "赵祯",
+    "name": "YJMH-ä¸å-20260522-åå®æ¥å¹¿å·è½¦",
+    "productType": "ä¸å",
+    "operator": "èµµç¥¯",
     "startDate": "2026-05-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778478302916_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478302916_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778478302916_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -842,35 +866,35 @@
     "costs": [
       {
         "id": "cost_1778478302916_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478302916_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 0,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478302916_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478302916_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778478302916_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -878,15 +902,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -898,24 +922,24 @@
   },
   {
     "id": "proj_1778552573501",
-    "name": "YJMH-冰雪专列-20260203-A线",
-    "productType": "冰雪专列",
+    "name": "YJMH-å°éªä¸å-20260203-Açº¿",
+    "productType": "å°éªä¸å",
     "operator": "",
     "startDate": "2026-02-01",
     "remark": "",
     "incomes": [
       {
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 718121,
         "receivedAmount": 0
       },
       {
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -923,28 +947,28 @@
     "costs": [
       {
         "id": "cost_1779786551489_0",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 476600,
         "_supplierId": "sup_11_1779784073557",
         "paidAmount": 0
       },
       {
         "id": "cost_1779786551489_1",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 72486.5,
         "_supplierId": "sup_8_1779783999704",
         "paidAmount": 0
       },
       {
         "id": "cost_1779786551489_2",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 8301.5,
         "_supplierId": "sup_9_1779783999705",
         "paidAmount": 0
       },
       {
         "id": "cost_1779786551489_3",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 1256.05,
         "_supplierId": "sup_10_1779783999705",
         "paidAmount": 0
@@ -952,15 +976,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 97
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -972,24 +996,24 @@
   },
   {
     "id": "proj_1778552581701",
-    "name": "YJMH-冰雪专列-20260218-B线",
-    "productType": "冰雪专列",
+    "name": "YJMH-å°éªä¸å-20260218-Bçº¿",
+    "productType": "å°éªä¸å",
     "operator": "",
     "startDate": "2026-02-01",
     "remark": "",
     "incomes": [
       {
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 197226,
         "receivedAmount": 0
       },
       {
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -997,28 +1021,28 @@
     "costs": [
       {
         "id": "cost_1779786652648_0",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 141160,
         "_supplierId": "sup_11_1779784073557",
         "paidAmount": 0
       },
       {
         "id": "cost_1779786652648_1",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 4926.5,
         "_supplierId": "sup_8_1779783999704",
         "paidAmount": 0
       },
       {
         "id": "cost_1779786652648_2",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 2800,
         "_supplierId": "sup_9_1779783999705",
         "paidAmount": 0
       },
       {
         "id": "cost_1779786652648_3",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 302.2,
         "_supplierId": "sup_10_1779783999705",
         "paidAmount": 0
@@ -1026,15 +1050,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 29
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -1046,27 +1070,27 @@
   },
   {
     "id": "proj_1778552792245",
-    "name": "YJMH-西藏-20260305-CS",
-    "productType": "西藏",
+    "name": "YJMH-è¥¿è-20260305-CS",
+    "productType": "è¥¿è",
     "operator": "",
     "startDate": "2026-03-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778552792245_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 44977,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778552792245_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 26480,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778552792245_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -1074,35 +1098,35 @@
     "costs": [
       {
         "id": "cost_1778552792245_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552792245_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 1535,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552792245_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 41929,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552792245_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 2678,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552792245_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -1110,15 +1134,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 13
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 10
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -1130,27 +1154,27 @@
   },
   {
     "id": "proj_1778552799653",
-    "name": "YJMH-西沙邮轮·祥龙号0309",
-    "productType": "邮轮",
+    "name": "YJMH-è¥¿æ²é®è½®Â·ç¥¥é¾å·0309",
+    "productType": "é®è½®",
     "operator": "",
     "startDate": "2026-03-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778552799653_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 6254,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778552799653_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778552799653_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -1158,35 +1182,35 @@
     "costs": [
       {
         "id": "cost_1778552799653_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552799653_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 5628,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552799653_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552799653_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552799653_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 3,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -1194,15 +1218,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 1
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -1214,27 +1238,27 @@
   },
   {
     "id": "proj_1778552804829",
-    "name": "YJMH-西藏-20260310-山南号",
-    "productType": "西藏",
+    "name": "YJMH-è¥¿è-20260310-å±±åå·",
+    "productType": "è¥¿è",
     "operator": "",
     "startDate": "2026-03-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778552804829_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 89472,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778552804829_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778552804829_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -1242,35 +1266,35 @@
     "costs": [
       {
         "id": "cost_1778552804829_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552804829_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 56244,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552804829_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 4374,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552804829_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552804829_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 120,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -1278,15 +1302,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 17
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -1298,27 +1322,27 @@
   },
   {
     "id": "proj_1778552809207",
-    "name": "YJMH-越南-20260310 南宁",
-    "productType": "越南",
+    "name": "YJMH-è¶å-20260310 åå®",
+    "productType": "è¶å",
     "operator": "",
     "startDate": "2026-03-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778552809207_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 1475308,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778552809207_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778552809207_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -1326,35 +1350,35 @@
     "costs": [
       {
         "id": "cost_1778552809207_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 340000,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552809207_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 462474,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552809207_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 115330,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552809207_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 36979,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552809207_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 4000,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -1362,15 +1386,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 257
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -1382,27 +1406,27 @@
   },
   {
     "id": "proj_1778552813198",
-    "name": "YJMH-越南-20260316 南宁",
-    "productType": "越南",
+    "name": "YJMH-è¶å-20260316 åå®",
+    "productType": "è¶å",
     "operator": "",
     "startDate": "2026-03-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778552813198_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 842283,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778552813198_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778552813198_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -1410,35 +1434,35 @@
     "costs": [
       {
         "id": "cost_1778552813198_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 170000,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552813198_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 348334,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552813198_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 60131,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552813198_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 21600,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552813198_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 2384,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -1446,15 +1470,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 156
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -1466,27 +1490,27 @@
   },
   {
     "id": "proj_1778552819375",
-    "name": "YJMH-西沙邮轮·祥龙号0318",
-    "productType": "邮轮",
+    "name": "YJMH-è¥¿æ²é®è½®Â·ç¥¥é¾å·0318",
+    "productType": "é®è½®",
     "operator": "",
     "startDate": "2026-03-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778552819375_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 27920,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778552819375_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778552819375_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -1494,35 +1518,35 @@
     "costs": [
       {
         "id": "cost_1778552819375_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552819375_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 24520,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552819375_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552819375_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552819375_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 13,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -1530,15 +1554,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 4
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -1550,27 +1574,27 @@
   },
   {
     "id": "proj_1778552824390",
-    "name": "YJMH-三峡游轮（恩施）-20260318",
-    "productType": "邮轮",
+    "name": "YJMH-ä¸å³¡æ¸¸è½®ï¼æ©æ½ï¼-20260318",
+    "productType": "é®è½®",
     "operator": "",
     "startDate": "2026-03-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778552824390_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 56998,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778552824390_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778552824390_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -1578,35 +1602,35 @@
     "costs": [
       {
         "id": "cost_1778552824390_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552824390_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 42752,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552824390_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 1949,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552824390_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 2500,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552824390_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 179,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -1614,15 +1638,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 16
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -1634,24 +1658,24 @@
   },
   {
     "id": "proj_1778553394192",
-    "name": "YJMH-西沙邮轮·祥龙号0412",
-    "productType": "邮轮",
+    "name": "YJMH-è¥¿æ²é®è½®Â·ç¥¥é¾å·0412",
+    "productType": "é®è½®",
     "operator": "",
     "startDate": "2026-04-01",
     "remark": "",
     "incomes": [
       {
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 44116,
         "receivedAmount": 0
       },
       {
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 22222,
         "receivedAmount": 0
       },
       {
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -1659,35 +1683,35 @@
     "costs": [
       {
         "id": "cost_1779706758443_0",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1779706758443_1",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 37816,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1779706758443_2",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1779706758443_3",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1779706758443_4",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 23,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -1695,15 +1719,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 7
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -1715,27 +1739,27 @@
   },
   {
     "id": "proj_1778553406836",
-    "name": "YJMH-遇见美好号*云贵-20260415",
-    "productType": "遇见美好号",
+    "name": "YJMH-éè§ç¾å¥½å·*äºè´µ-20260415",
+    "productType": "éè§ç¾å¥½å·",
     "operator": "",
     "startDate": "2026-04-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778553406836_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 2267706,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553406836_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553406836_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -1743,35 +1767,35 @@
     "costs": [
       {
         "id": "cost_1778553406836_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 770000,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553406836_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 716076,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553406836_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 9518,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553406836_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 36600,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553406836_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 3000,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -1779,15 +1803,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 184
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -1799,27 +1823,27 @@
   },
   {
     "id": "proj_1778553412828",
-    "name": "YJMH-西藏-20260416-CS",
-    "productType": "西藏",
+    "name": "YJMH-è¥¿è-20260416-CS",
+    "productType": "è¥¿è",
     "operator": "",
     "startDate": "2026-04-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778553412828_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 104358,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553412828_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553412828_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -1827,35 +1851,35 @@
     "costs": [
       {
         "id": "cost_1778553412828_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553412828_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 3250,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553412828_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 49845,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553412828_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 2000,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553412828_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 243,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -1863,15 +1887,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 25
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -1883,27 +1907,27 @@
   },
   {
     "id": "proj_1778553427676",
-    "name": "YJMH-爱达·东南亚五国-20260418",
-    "productType": "邮轮",
+    "name": "YJMH-ç±è¾¾Â·ä¸åäºäºå½-20260418",
+    "productType": "é®è½®",
     "operator": "",
     "startDate": "2026-04-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778553427676_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 564101,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553427676_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553427676_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -1911,35 +1935,35 @@
     "costs": [
       {
         "id": "cost_1778553427676_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553427676_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 513917,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553427676_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553427676_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 5969,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553427676_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 368,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -1947,15 +1971,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 45
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -1967,27 +1991,27 @@
   },
   {
     "id": "proj_1778553432668",
-    "name": "YJMH-西藏-20260418-山南号",
-    "productType": "西藏",
+    "name": "YJMH-è¥¿è-20260418-å±±åå·",
+    "productType": "è¥¿è",
     "operator": "",
     "startDate": "2026-04-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778553432668_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 65274,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553432668_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553432668_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -1995,35 +2019,35 @@
     "costs": [
       {
         "id": "cost_1778553432668_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553432668_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 39500,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553432668_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 6716,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553432668_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553432668_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 121,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -2031,15 +2055,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 13
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -2051,27 +2075,27 @@
   },
   {
     "id": "proj_1778553437388",
-    "name": "YJMH-南北疆-20260422-杭州车",
-    "productType": "南北疆",
+    "name": "YJMH-ååç-20260422-æ­å·è½¦",
+    "productType": "ååç",
     "operator": "",
     "startDate": "2026-04-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778553437388_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 1523383,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553437388_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 27488,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553437388_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 876235,
         "receivedAmount": 0
       }
@@ -2079,35 +2103,35 @@
     "costs": [
       {
         "id": "cost_1778553437388_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 1795848,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553437388_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 239900,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553437388_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553437388_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 55200,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553437388_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 6250,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -2115,15 +2139,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 272
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 6
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 425
       }
     ],
@@ -2135,27 +2159,27 @@
   },
   {
     "id": "proj_1778553442404",
-    "name": "YJMH-东北-20260422-湖北接华东车",
-    "productType": "东北",
+    "name": "YJMH-ä¸å-20260422-æ¹åæ¥åä¸è½¦",
+    "productType": "ä¸å",
     "operator": "",
     "startDate": "2026-04-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778553442404_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 2275145,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553442404_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 357130,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553442404_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -2163,35 +2187,35 @@
     "costs": [
       {
         "id": "cost_1778553442404_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 1477142,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553442404_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 428615,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553442404_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 51402,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553442404_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 81550,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553442404_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 10829,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -2199,15 +2223,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 504
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 127
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -2219,27 +2243,27 @@
   },
   {
     "id": "proj_1778553449855",
-    "name": "YJMH-南北疆-20260424-广州车",
-    "productType": "南北疆",
+    "name": "YJMH-ååç-20260424-å¹¿å·è½¦",
+    "productType": "ååç",
     "operator": "",
     "startDate": "2026-04-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778553449855_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 2624595,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553449855_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 100442,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553449855_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 285975,
         "receivedAmount": 0
       }
@@ -2247,35 +2271,35 @@
     "costs": [
       {
         "id": "cost_1778553449855_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 1698790,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553449855_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 446530,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553449855_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 55692,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553449855_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 81800,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553449855_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 9113,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -2283,15 +2307,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 505
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 29
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 150
       }
     ],
@@ -2303,27 +2327,27 @@
   },
   {
     "id": "proj_1778553454127",
-    "name": "YJMH-东北-20260424-广东车",
-    "productType": "东北",
+    "name": "YJMH-ä¸å-20260424-å¹¿ä¸è½¦",
+    "productType": "ä¸å",
     "operator": "",
     "startDate": "2026-04-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778553454127_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 1213108,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553454127_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 198032,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553454127_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 775311,
         "receivedAmount": 0
       }
@@ -2331,35 +2355,35 @@
     "costs": [
       {
         "id": "cost_1778553454127_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 1472501,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553454127_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 225775,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553454127_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 35289,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553454127_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 48500,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553454127_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 3557,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -2367,15 +2391,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 288
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 54
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 419
       }
     ],
@@ -2387,27 +2411,27 @@
   },
   {
     "id": "proj_1778553464020",
-    "name": "YJMH-中俄蒙-20260426-CS",
-    "productType": "中俄蒙",
+    "name": "YJMH-ä¸­ä¿è-20260426-CS",
+    "productType": "ä¸­ä¿è",
     "operator": "",
     "startDate": "2026-04-01",
     "remark": "",
     "incomes": [
       {
         "id": "inc_1778553464020_1",
-        "name": "线上收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 124980,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553464020_2",
-        "name": "线下收入",
+        "name": "çº¿ä¸æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       },
       {
         "id": "inc_1778553464020_3",
-        "name": "切位收入",
+        "name": "åä½æ¶å¥",
         "amount": 0,
         "receivedAmount": 0
       }
@@ -2415,35 +2439,35 @@
     "costs": [
       {
         "id": "cost_1778553464020_1",
-        "name": "车票款",
+        "name": "è½¦ç¥¨æ¬¾",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553464020_2",
-        "name": "地接款",
+        "name": "å°æ¥æ¬¾",
         "amount": 104500,
         "_supplierId": "sup_1",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553464020_3",
-        "name": "代订费用",
+        "name": "ä»£è®¢è´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_3",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553464020_4",
-        "name": "导服费用",
+        "name": "å¯¼æè´¹ç¨",
         "amount": 0,
         "_supplierId": "sup_4",
         "paidAmount": 0
       },
       {
         "id": "cost_1778553464020_5",
-        "name": "其他费用",
+        "name": "å¶ä»è´¹ç¨",
         "amount": 48,
         "_supplierId": "sup_6",
         "paidAmount": 0
@@ -2451,15 +2475,15 @@
     ],
     "peopleDetails": [
       {
-        "name": "线上",
+        "name": "çº¿ä¸",
         "count": 5
       },
       {
-        "name": "线下",
+        "name": "çº¿ä¸",
         "count": 0
       },
       {
-        "name": "切位",
+        "name": "åä½",
         "count": 0
       }
     ],
@@ -2470,17 +2494,17 @@
     "payableStatus": "unpaid"
   },
   {
-    "id": "YJMH-长江贰号·三峡游轮（汉渝航次）-20260506",
+    "id": "YJMH-é¿æ±è´°å·Â·ä¸å³¡æ¸¸è½®ï¼æ±æ¸èªæ¬¡ï¼-20260506",
     "name": "",
-    "productType": "游轮",
-    "operator": "杨冰雁",
+    "productType": "æ¸¸è½®",
+    "operator": "æ¨å°é",
     "startDate": "46148",
     "remark": "",
     "incomes": [],
     "costs": [],
     "peopleDetails": [
       {
-        "name": "成人",
+        "name": "æäºº",
         "count": 2
       }
     ],
