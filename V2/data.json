@@ -82,25 +82,29 @@
         "id": "cost_1779936983267_0",
         "name": "地接款",
         "amount": 142100,
-        "_supplierId": "sup_11_1779936983266"
+        "_supplierId": "sup_11_1779936983266",
+        "paidAmount": 142100
       },
       {
         "id": "cost_1779936983268_1",
         "name": "代订费用",
         "amount": 4177,
-        "_supplierId": "sup_8_1779933933514"
+        "_supplierId": "sup_8_1779933933514",
+        "paidAmount": 4177
       },
       {
         "id": "cost_1779936983268_2",
         "name": "导服费",
         "amount": 2600,
-        "_supplierId": "sup_9_1779933933515"
+        "_supplierId": "sup_9_1779933933515",
+        "paidAmount": 2600
       },
       {
         "id": "cost_1779936983268_3",
         "name": "其他",
         "amount": 170.5,
-        "_supplierId": "sup_10_1779933933515"
+        "_supplierId": "sup_10_1779933933515",
+        "paidAmount": 170.5
       }
     ],
     "peopleDetails": [
