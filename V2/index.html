@@ -608,7 +608,7 @@
 <div class="main-area">
   <header class="main-header">
     <div class="page-title" id="pageTitle">📈 总览面板</div>
-    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250527f</small>
+    <small id="pageVer" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:8px;">v20250527g</small>
     <small id="filterStatus" style="font-size:9px;color:var(--text-muted);opacity:0.5;margin-left:6px;">等待筛选...</small>
     <div class="header-actions">
       <div style="position:relative;">
@@ -937,6 +937,21 @@ function utf8ToBase64(str) {
 
 /* 从 GitHub 加载数据 */
 var _githubLastError = null;
+/* 安全的 UTF-8 base64 解码（解决 atob 对中文乱码问题） */
+function safeAtob(base64) {
+  try {
+    var binary = atob(base64);
+    // 检测是否包含非 ASCII 字符（UTF-8 多字节）
+    for (var i = 0; i < binary.length; i++) {
+      if (binary.charCodeAt(i) > 127) return binary; // 已经是 Unicode 字符串
+    }
+    // 纯 ASCII → 转换为 UTF-8
+    var bytes = new Uint8Array(binary.length);
+    for (var j = 0; j < binary.length; j++) bytes[j] = binary.charCodeAt(j);
+    return new TextDecoder('utf-8').decode(bytes);
+  } catch(e) { console.warn('[safeAtob] 解码失败:', e.message); return ''; }
+}
+
 async function githubLoadData() {
   _githubLastError = null;
   try {
@@ -958,7 +973,7 @@ async function githubLoadData() {
       if (apiResp.ok) {
         var apiData = await apiResp.json();
         if (apiData && apiData.content && apiData.encoding === 'base64') {
-          var decoded = JSON.parse(atob(apiData.content.replace(/\s/g, '')));
+          var decoded = JSON.parse(safeAtob(apiData.content.replace(/\s/g, '')));
           if (Array.isArray(decoded)) {
             _githubLastError = null;
             console.log('[GitHub] API端点备用加载成功, ' + decoded.length + '条');
@@ -3439,10 +3454,10 @@ async function githubSaveData(projectsArray) {
 
     // 页面可见版本号（方便判断是否加载了最新代码）
     var verBadge = document.getElementById('pageVer');
-    if (verBadge) verBadge.textContent = 'v20250527f loaded ' + new Date().toLocaleTimeString();
+    if (verBadge) verBadge.textContent = 'v20250527g loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
-    console.log('[版本] v20250527f 已加载，供应商数据自动同步云端+修复图形明细消失');
+    console.log('[版本] v20250527g 已加载，safeAtob修复GitHub中文乱码+语法错误修复');
     addImportLog('系统启动（V3 GitHub版），已加载 ' + projects.length + ' 个团期数据，来源: ' + (dataSource === 'github' ? '🌐 GitHub' : '📁 本地'));
     if (window._githubError) {
       addImportLog('⚠️ GitHub云端异常: ' + window._githubError + ' | 使用本地数据兜底');
