@@ -527,9 +527,17 @@ async function githubSaveAll(projectsArray) {
     var fileInfo = getResp.ok ? await getResp.json() : {};
     var sha = fileInfo.sha;
 
+    // 嵌入供应商数据
+    var payload = projectsArray.length > 0 ? JSON.parse(JSON.stringify(projectsArray)) : [{}];
+    var suppliers = [];
+    try { suppliers = JSON.parse(localStorage.getItem('tour_suppliers') || '[]'); } catch(e) {}
+    if (suppliers.length > 0) {
+      payload[0]._suppliers = suppliers;
+    }
+
     var body = {
       message: 'Update data.json from admin panel',
-      content: utf8ToBase64(JSON.stringify(projectsArray, null, 2))
+      content: utf8ToBase64(JSON.stringify(payload, null, 2))
     };
     if (sha) body.sha = sha;
 
@@ -539,6 +547,10 @@ async function githubSaveAll(projectsArray) {
       body: JSON.stringify(body)
     });
     if (!putResp.ok) throw new Error('HTTP ' + putResp.status + ': ' + await putResp.text());
+
+    // ★ 保存成功后追加变更日志
+    appendChangeLog('save', 'admin面板保存数据', projectsArray.length).catch(function(){});
+
     return true;
   } catch(e) { console.error('GitHub save error:', e); return false; }
 }
@@ -568,6 +580,76 @@ function escHtml(s) {
 }
 
 function fmt(v) { return v ? '¥' + Number(v).toLocaleString() : '¥0'; }
+
+// ==================== 变更日志（版本回滚支持） ====================
+var GITHUB_CHANGELOG_RAW_URL = 'https://raw.githubusercontent.com/ww-ops2/pp3/main/V2/data_changelog.json';
+var GITHUB_CHANGELOG_API_URL = 'https://api.github.com/repos/ww-ops2/pp3/contents/V2/data_changelog.json';
+var _changelogCache = null;
+
+async function loadChangeLog() {
+  if (_changelogCache) return _changelogCache;
+  try {
+    var resp = await fetch(GITHUB_CHANGELOG_RAW_URL, { cache: 'no-cache' });
+    if (resp.ok) { _changelogCache = await resp.json(); if (!Array.isArray(_changelogCache)) _changelogCache = []; }
+    else { _changelogCache = []; }
+  } catch(e) { _changelogCache = []; }
+  return _changelogCache;
+}
+
+async function appendChangeLog(action, description, recordCount) {
+  try {
+    var log = await loadChangeLog();
+    var dataSha = '';
+    try {
+      var getResp = await fetch(GITHUB_API_URL, {
+        headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Accept': 'application/vnd.github+json' }
+      });
+      if (getResp.ok) { var info = await getResp.json(); dataSha = info.sha || ''; }
+    } catch(e) {}
+
+    var snapshot = '';
+    try {
+      var editorRaw = document.getElementById('jsonEditor').value.trim();
+      if (editorRaw) {
+        snapshot = utf8ToBase64(editorRaw);
+      }
+    } catch(e) {}
+
+    var entry = {
+      id: 'log_' + Date.now(),
+      time: new Date().toISOString(),
+      action: action,
+      description: description,
+      recordCount: recordCount,
+      dataSha: dataSha,
+      snapshot: snapshot
+    };
+
+    log.unshift(entry);
+    if (log.length > 50) log = log.slice(0, 50);
+
+    var clGetResp = await fetch(GITHUB_CHANGELOG_API_URL, {
+      headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Accept': 'application/vnd.github+json' }
+    });
+    var clFileInfo = clGetResp.ok ? await clGetResp.json() : {};
+    var clSha = clFileInfo.sha;
+
+    var clBody = {
+      message: 'Append changelog: ' + description,
+      content: utf8ToBase64(JSON.stringify(log, null, 2))
+    };
+    if (clSha) clBody.sha = clSha;
+
+    await fetch(GITHUB_CHANGELOG_API_URL, {
+      method: 'PUT',
+      headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Content-Type': 'application/json' },
+      body: JSON.stringify(clBody)
+    });
+
+    _changelogCache = log;
+    console.log('[变更日志] admin面板已记录: ' + description + ' (' + recordCount + '条)');
+  } catch(e) { console.warn('[变更日志] 保存失败（不影响主流程）:', e.message); }
+}
 
 // ==================== TAB 切换（延后执行） ====================
 // (在 DOMContentLoaded 中绑定)
