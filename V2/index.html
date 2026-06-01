@@ -384,6 +384,8 @@
   .pay-detail-table .bar-wrap { background:var(--border-light); border-radius:6px; height:6px; width:80px; margin-left:6px; overflow:hidden; display:inline-block; vertical-align:middle; }
   .pay-detail-table .bar-fill { height:100%; border-radius:6px; }
   @keyframes fadeIn { from{opacity:0;transform:translateY(-4px);} to{opacity:1;transform:translateY(0);} }
+  @keyframes toastIn { from{opacity:0;transform:translateX(-50%) translateY(-20px);} to{opacity:1;transform:translateX(-50%) translateY(0);} }
+  @keyframes toastOut { from{opacity:1;transform:translateX(-50%) translateY(0);} to{opacity:0;transform:translateX(-50%) translateY(-20px);} }
 
   /* Payment quick modal */
   #payModalOverlay { position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:300;display:none;align-items:center;justify-content:center; }
@@ -401,6 +403,21 @@
   .pay-sup-row .sup-input-wrap input:focus { border-color:var(--accent);outline:none; }
   .pay-modal-amount { display:flex;gap:10px;align-items:center;margin-bottom:14px; }
   .pay-modal-amount input { flex:1;padding:10px 14px;border-radius:8px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:16px;font-family:inherit; }
+
+  /* Receivable quick modal */
+  #recModalOverlay { position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);z-index:300;display:none;align-items:center;justify-content:center; }
+  #recModalOverlay.show { display:flex; }
+  #recModalBox { background:var(--bg-secondary);border:1px solid var(--border);border-radius:20px;padding:24px;width:90%;max-width:600px;max-height:85vh;overflow-y:auto; }
+  #recModalBox h3 { font-size:15px;margin-bottom:14px; }
+  .rec-income-row { display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border-light); }
+  .rec-income-row .rec-info { flex:1;min-width:0; }
+  .rec-income-row .rec-name { font-size:13px;font-weight:600;color:var(--text-primary); }
+  .rec-income-row .rec-receivable { font-size:13px;color:var(--danger);min-width:80px;text-align:right; }
+  .rec-income-row .rec-input-wrap { display:flex;align-items:center;gap:4px; }
+  .rec-income-row .rec-input-wrap span { font-size:11px;color:var(--info); }
+  .rec-income-row .rec-input-wrap input { width:90px;padding:6px 8px;border-radius:6px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:13px;font-family:inherit;text-align:right; }
+  .rec-income-row .rec-input-wrap input:focus { border-color:var(--accent);outline:none; }
+  .modal-save-bar { display:flex;justify-content:flex-end;gap:8px;margin-top:12px; }
 
   /* ===== PAGINATION ===== */
   .pagination { display: flex; justify-content: center; gap: 4px; margin-top: 12px; }
@@ -779,7 +796,7 @@
             <select id="receivableTypeFilter"><option value="all">全部产品线</option></select>
           </div>
         </div>
-        <div class="table-scroll"><table class="data-table" id="receivableTable"><thead><tr><th>团号</th><th>产品线</th><th>计调</th><th>应收金额</th><th>已收金额</th><th>未收金额</th><th>收款状态</th><th>出发日期</th></tr></thead><tbody></tbody></table></div>
+        <div class="table-scroll"><table class="data-table" id="receivableTable"><thead><tr><th>团号</th><th>产品线</th><th>计调</th><th>应收金额</th><th>已收金额</th><th>未收金额</th><th>收款状态</th><th>出发日期</th><th>操作</th></tr></thead><tbody></tbody></table></div>
         <div class="pagination" id="receivablePagination"></div>
       </div>
     </div>
@@ -804,6 +821,11 @@
       <!-- 付款登记弹窗 -->
       <div class="modal-overlay" id="payModalOverlay">
         <div class="modal" id="payModalBox"></div>
+      </div>
+
+      <!-- 收款登记弹窗 -->
+      <div class="modal-overlay" id="recModalOverlay">
+        <div class="modal" id="recModalBox"></div>
       </div>
 
       <!-- 下半部分：综合分析 -->
@@ -901,8 +923,25 @@
         </div>
       </div>
       <div class="panel" style="margin-top:16px;">
-        <div class="panel-header"><div class="panel-title"><span class="dot" style="background:var(--info);"></span>📋 导入日志</div></div>
-        <div id="importLog" style="font-size:12px;color:var(--text-muted);">暂无导入记录</div>
+        <div class="panel-header">
+          <div class="panel-title"><span class="dot" style="background:var(--info);"></span>📋 操作日志</div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-sm btn-outline" onclick="refreshChangeLogUI()" style="font-size:10px;padding:3px 8px;">🔄 刷新日志</button>
+            <button class="btn btn-sm btn-accent" id="toggleRollbackBtn" onclick="toggleRollbackPanel()" style="font-size:10px;padding:3px 8px;">⏪ 版本回滚</button>
+          </div>
+        </div>
+        <div id="importLog" style="font-size:12px;color:var(--text-muted);max-height:300px;overflow-y:auto;">暂无导入记录</div>
+      </div>
+
+      <!-- 版本回滚面板（默认隐藏） -->
+      <div class="panel" id="rollbackPanel" style="margin-top:16px;display:none;">
+        <div class="panel-header">
+          <div class="panel-title"><span class="dot" style="background:var(--warning);"></span>⏪ 版本回滚</div>
+          <span style="font-size:11px;color:var(--text-muted);">选择历史版本恢复数据</span>
+        </div>
+        <div id="rollbackList" style="font-size:12px;max-height:400px;overflow-y:auto;">
+          <div style="color:var(--text-muted);padding:16px;text-align:center;">加载中...</div>
+        </div>
       </div>
     </div>
 
@@ -1014,8 +1053,136 @@ async function githubSaveData(projectsArray) {
       body: JSON.stringify(body)
     });
     if (!putResp.ok) throw new Error('HTTP ' + putResp.status + ': ' + await putResp.text());
+
+    // ★ 数据保存成功后自动追加变更日志
+    await appendChangeLog('save', '数据保存', projectsArray.length);
+
     return true;
   } catch(e) { console.error('GitHub save error:', e); return false; }
+}
+
+/* ========== 数据变更日志系统（版本回滚用） ========== */
+var _changelogCache = null;
+var GITHUB_CHANGELOG_RAW_URL = 'https://raw.githubusercontent.com/ww-ops2/pp3/main/V2/data_changelog.json';
+var GITHUB_CHANGELOG_API_URL = 'https://api.github.com/repos/ww-ops2/pp3/contents/V2/data_changelog.json';
+
+/** 从 GitHub 加载变更日志 */
+async function loadChangeLog() {
+  if (_changelogCache) return _changelogCache;
+  try {
+    var resp = await fetch(GITHUB_CHANGELOG_RAW_URL, { cache: 'no-cache' });
+    if (resp.ok) {
+      _changelogCache = await resp.json();
+      if (!Array.isArray(_changelogCache)) _changelogCache = [];
+    } else { _changelogCache = []; }
+  } catch(e) { _changelogCache = []; }
+  return _changelogCache;
+}
+
+/** 追加一条变更日志并保存到 GitHub */
+async function appendChangeLog(action, description, recordCount) {
+  try {
+    var log = await loadChangeLog();
+    // 获取当前数据 SHA 用于回滚标识
+    var dataSha = '';
+    try {
+      var getResp = await fetch(GITHUB_API_URL, {
+        headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Accept': 'application/vnd.github+json' }
+      });
+      if (getResp.ok) { var info = await getResp.json(); dataSha = info.sha || ''; }
+    } catch(e) {}
+
+    // 读取当前数据快照（压缩版，用于回滚）
+    var snapshot = '';
+    try {
+      if (typeof projects !== 'undefined' && projects.length > 0) {
+        snapshot = utf8ToBase64(JSON.stringify(projects));
+      }
+    } catch(e) {}
+
+    var entry = {
+      id: 'log_' + Date.now(),
+      time: new Date().toISOString(),
+      action: action,
+      description: description,
+      recordCount: recordCount,
+      dataSha: dataSha,
+      snapshot: snapshot
+    };
+
+    // 只保留最近 50 条日志
+    log.unshift(entry);
+    if (log.length > 50) log = log.slice(0, 50);
+
+    // 保存到 GitHub
+    var clGetResp = await fetch(GITHUB_CHANGELOG_API_URL, {
+      headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Accept': 'application/vnd.github+json' }
+    });
+    var clFileInfo = clGetResp.ok ? await clGetResp.json() : {};
+    var clSha = clFileInfo.sha;
+
+    var clBody = {
+      message: 'Append changelog: ' + description,
+      content: utf8ToBase64(JSON.stringify(log, null, 2))
+    };
+    if (clSha) clBody.sha = clSha;
+
+    await fetch(GITHUB_CHANGELOG_API_URL, {
+      method: 'PUT',
+      headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Content-Type': 'application/json' },
+      body: JSON.stringify(clBody)
+    });
+
+    _changelogCache = log;
+    console.log('[变更日志] 已记录: ' + description + ' (' + recordCount + '条)');
+  } catch(e) {
+    console.warn('[变更日志] 保存失败（不影响主流程）:', e.message);
+  }
+}
+
+/** 从日志中回滚到指定版本 */
+async function rollbackToVersion(logId) {
+  var log = await loadChangeLog();
+  var entry = log.find(function(e) { return e.id === logId; });
+  if (!entry) { alert('未找到该版本记录'); return false; }
+  if (!entry.snapshot) { alert('该版本没有保存数据快照，无法回滚'); return false; }
+
+  try {
+    var decoded = JSON.parse(atob(entry.snapshot));
+    if (!Array.isArray(decoded)) throw new Error('快照数据格式错误');
+  } catch(e) {
+    // 尝试 UTF-8 解码
+    try {
+      var binary = atob(entry.snapshot);
+      var bytes = new Uint8Array(binary.length);
+      for (var i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+      var decoded = JSON.parse(new TextDecoder('utf-8').decode(bytes));
+      if (!Array.isArray(decoded)) throw new Error('快照数据格式错误');
+    } catch(e2) {
+      alert('快照数据解码失败: ' + e2.message);
+      return false;
+    }
+    return false;
+  }
+
+  if (!confirm('确定回滚到版本:\n' + entry.time + '\n' + entry.description + '\n\n此操作将覆盖当前云端数据！')) return false;
+
+  // 恢复数据
+  projects = decoded.map(p => normalizeProject(p));
+  window.TOUR_DATA = projects;
+
+  // 保存到 GitHub
+  var ok = await githubSaveData(projects);
+  if (ok) {
+    await appendChangeLog('rollback', '回滚到: ' + entry.description + ' (' + entry.time + ')', projects.length);
+    addImportLog('🔄 已回滚到版本: ' + entry.time + ' — ' + entry.description);
+    alert('✅ 回滚成功！数据已恢复到 ' + entry.time + ' 的版本');
+    renderCurrentPane();
+    return true;
+  } else {
+    alert('❌ 回滚失败：无法保存到云端');
+    return false;
+  }
 }
 
 (async function() {
@@ -1609,8 +1776,9 @@ async function githubSaveData(projectsArray) {
         <td class="amount-cost">${fmt(sumIncome(p)-received)}</td>
         <td><span class="status-chip status-${status}">${{paid:'已结清',partial:'部分收款',unpaid:'未收款'}[status]}</span></td>
         <td>${p.startDate||'-'}</td>
+        <td><button class="btn btn-sm btn-accent" onclick="event.stopPropagation();openRecModal('${p.id}')" style="font-size:10px;padding:2px 8px;">💳 登记</button></td>
       </tr>`;
-    }).join('') || '<tr><td colspan="8" style="text-align:center;padding:30px;color:var(--text-muted);">暂无应收账款数据</td></tr>';
+    }).join('') || '<tr><td colspan="9" style="text-align:center;padding:30px;color:var(--text-muted);">暂无应收账款数据</td></tr>';
 
     document.getElementById('receivablePagination').innerHTML = totalPages > 1
       ? Array.from({length:totalPages},(_,i)=>`<button class="${i+1===recPage?'active':''}" onclick="window._recPage=${i+1};window._renderReceivables()">${i+1}</button>`).join('')
@@ -1895,6 +2063,84 @@ async function githubSaveData(projectsArray) {
       renderPayables();
       renderSuppliers();
       showToast('✅ 付款已保存并同步至云端');
+    } else {
+      showToast('❌ 云端保存失败，请检查网络后重试');
+    }
+  };
+
+  // ==================== 收款登记弹窗（按收入项聚合） ====================
+  window.openRecModal = function(projId) {
+    var p = projects.find(function(x){return x.id===projId;});
+    if (!p) return;
+    var totalIncome = sumIncome(p);
+    var totalReceived = sumProjectReceipts(p.id);
+
+    var html = '<button class="close-btn" onclick="closeRecModal()">✕</button>';
+    html += '<h3>💳 登记收款 · '+escHtml(p.name)+'</h3>';
+    html += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">'+p.productType+' | 应收总额 '+fmt(totalIncome)+' | 已收合计 '+fmt(totalReceived)+'</div>';
+    html += '<div style="font-size:11px;color:var(--warning);margin-bottom:10px;">💡 直接修改每个收入项的"已收"金额，保存后自动同步到云端</div>';
+
+    (p.incomes||[]).forEach(function(i){
+      html += '<div class="rec-income-row">';
+      html += '<div class="rec-info"><div class="rec-name">'+escHtml(i.name||'未命名')+'</div></div>';
+      html += '<div class="rec-receivable">应收 '+fmt(i.amount||0)+'</div>';
+      html += '<div class="rec-input-wrap"><span>已收</span><input type="number" class="rec-income-input" data-income-id="'+i.id+'" value="'+(i.receivedAmount||0)+'" step="0.01" min="0"></div>';
+      html += '</div>';
+    });
+
+    html += '<div style="display:flex;justify-content:space-between;padding:10px 0;font-size:13px;font-weight:600;border-top:2px solid var(--border);margin-top:8px;">';
+    html += '<span style="color:var(--text-secondary);">已收合计</span>';
+    html += '<span id="recTotalPreview" style="color:var(--info);">'+fmt(totalReceived)+'</span>';
+    html += '</div>';
+    html += '<div class="modal-save-bar">';
+    html += '<button class="btn btn-outline" onclick="closeRecModal()">取消</button>';
+    html += '<button class="btn btn-accent" onclick="submitReceipt(\''+projId+'\')">💾 保存</button>';
+    html += '</div>';
+
+    document.getElementById('recModalBox').innerHTML = html;
+    document.getElementById('recModalOverlay').classList.add('show');
+
+    // 实时合计
+    var updateRecTotal = function(){
+      var t = 0;
+      document.querySelectorAll('.rec-income-input').forEach(function(inp){ t += parseFloat(inp.value)||0; });
+      var el = document.getElementById('recTotalPreview');
+      if (el) { el.textContent = fmt(t); el.style.color = t >= totalIncome ? 'var(--success)' : 'var(--info)'; }
+    };
+    document.querySelectorAll('.rec-income-input').forEach(function(inp){ inp.addEventListener('input', updateRecTotal); });
+  };
+
+  window.closeRecModal = function() { document.getElementById('recModalOverlay').classList.remove('show'); };
+
+  /** 保存收款（按收入项写入 receivedAmount → 同步云端） */
+  window.submitReceipt = async function(projId) {
+    var p = projects.find(function(x){return x.id===projId;});
+    if (!p) return;
+
+    // 遍历弹窗中每个收入项的输入框 → 写入 receivedAmount
+    document.querySelectorAll('.rec-income-input').forEach(function(inp){
+      var incomeId = inp.getAttribute('data-income-id');
+      var amt = parseFloat(inp.value) || 0;
+      var income = (p.incomes||[]).find(function(i){ return i.id === incomeId; });
+      if (income) income.receivedAmount = amt;
+    });
+
+    // 同步到云端 data.json
+    var ok = await githubSaveData(projects);
+    if (ok) {
+      // 云端保存成功 → 安全清除 localStorage 中的旧收款数据
+      try {
+        var oldRcpts = JSON.parse(localStorage.getItem('tour_receipts') || '[]');
+        if (oldRcpts.length > 0 && _legacyPaymentRestored) {
+          localStorage.removeItem('tour_payments');
+          localStorage.removeItem('tour_receipts');
+          _legacyPaymentRestored = false;
+          console.log('[保存] 云端已同步，已安全清除 localStorage 旧收款数据');
+        }
+      } catch(e){}
+      closeRecModal();
+      renderReceivables();
+      showToast('✅ 收款已保存并同步至云端');
     } else {
       showToast('❌ 云端保存失败，请检查网络后重试');
     }
@@ -2645,6 +2891,99 @@ async function githubSaveData(projectsArray) {
     }
   }
 
+  /** Toast 提示（屏幕顶部弹出） */
+  function showToast(msg, type) {
+    type = type || 'info';
+    var colors = { info:'#34d399', success:'#34d399', error:'#f87171', warning:'#fbbf24' };
+    var bg = colors[type] || colors.info;
+    var toast = document.createElement('div');
+    toast.textContent = msg;
+    toast.style.cssText = 'position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:9999;' +
+      'padding:10px 24px;border-radius:12px;font-size:14px;font-weight:600;color:#fff;' +
+      'background:' + bg + ';box-shadow:0 4px 20px rgba(0,0,0,0.3);' +
+      'animation:toastIn 0.3s ease, toastOut 0.3s ease 2.5s forwards;pointer-events:none;';
+    document.body.appendChild(toast);
+    setTimeout(function(){ if (toast.parentNode) toast.remove(); }, 3000);
+  }
+
+  /** 从 GitHub 加载变更日志并渲染到操作日志区域 */
+  async function refreshChangeLogUI() {
+    var logEl = document.getElementById('importLog');
+    if (!logEl) return;
+    logEl.innerHTML = '<div style="color:var(--text-muted);padding:8px;">⏳ 加载变更日志中...</div>';
+    try {
+      var changelog = await loadChangeLog();
+      if (!changelog || changelog.length === 0) {
+        logEl.innerHTML = '<div style="color:var(--text-muted);padding:8px;">暂无变更日志记录</div>';
+        return;
+      }
+      var html = '';
+      changelog.forEach(function(entry) {
+        var time = new Date(entry.time).toLocaleString('zh-CN');
+        var icon = entry.action === 'save' ? '💾' : entry.action === 'rollback' ? '🔄' : '📝';
+        var desc = entry.description || '未知操作';
+        var count = entry.recordCount ? ' (' + entry.recordCount + '条)' : '';
+        html += '<div style="padding:6px 0;border-bottom:1px solid var(--border-light);font-size:11px;">' +
+          '<span style="color:var(--text-muted);">' + time + '</span> ' +
+          icon + ' <strong>' + escHtml(desc) + '</strong>' +
+          '<span style="color:var(--text-muted);">' + count + '</span>' +
+          (entry.snapshot ? ' <span style="color:var(--success);font-size:10px;">[可回滚]</span>' : '') +
+          '</div>';
+      });
+      logEl.innerHTML = html;
+    } catch(e) {
+      logEl.innerHTML = '<div style="color:var(--danger);padding:8px;">❌ 加载日志失败: ' + escHtml(e.message) + '</div>';
+    }
+  }
+
+  /** 切换版本回滚面板的显示/隐藏 */
+  async function toggleRollbackPanel() {
+    var panel = document.getElementById('rollbackPanel');
+    var btn = document.getElementById('toggleRollbackBtn');
+    if (!panel || !btn) return;
+
+    var isVisible = panel.style.display !== 'none';
+    if (isVisible) {
+      panel.style.display = 'none';
+      btn.textContent = '⏪ 版本回滚';
+      return;
+    }
+
+    panel.style.display = 'block';
+    btn.textContent = '⏪ 收起';
+    var listEl = document.getElementById('rollbackList');
+    if (!listEl) return;
+    listEl.innerHTML = '<div style="color:var(--text-muted);padding:16px;text-align:center;">⏳ 加载版本历史...</div>';
+
+    try {
+      var changelog = await loadChangeLog();
+      if (!changelog || changelog.length === 0) {
+        listEl.innerHTML = '<div style="color:var(--text-muted);padding:16px;text-align:center;">暂无版本记录</div>';
+        return;
+      }
+      var html = '';
+      changelog.forEach(function(entry) {
+        var time = new Date(entry.time).toLocaleString('zh-CN');
+        var hasSnapshot = !!entry.snapshot;
+        var icon = entry.action === 'save' ? '💾' : entry.action === 'rollback' ? '🔄' : '📝';
+        var count = entry.recordCount ? entry.recordCount + '条' : '';
+        html += '<div style="display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-bottom:1px solid var(--border-light);">' +
+          '<div>' +
+            '<span style="color:var(--text-muted);font-size:10px;">' + time + '</span><br>' +
+            icon + ' <strong style="font-size:12px;">' + escHtml(entry.description) + '</strong>' +
+            '<span style="color:var(--text-muted);font-size:10px;"> ' + count + '</span>' +
+          '</div>' +
+          (hasSnapshot
+            ? '<button class="btn btn-sm btn-warning" onclick="rollbackToVersion(\'' + entry.id + '\')" style="font-size:10px;padding:3px 10px;">⬅ 回滚</button>'
+            : '<span style="font-size:10px;color:var(--text-muted);">无快照</span>') +
+          '</div>';
+      });
+      listEl.innerHTML = html;
+    } catch(e) {
+      listEl.innerHTML = '<div style="color:var(--danger);padding:16px;text-align:center;">❌ 加载失败: ' + escHtml(e.message) + '</div>';
+    }
+  }
+
   // ==================== PROJECT DETAIL MODAL (可编辑) ====================
   window._showProjectDetail = function(id) {
     const p = projects.find(x => x.id === id);
@@ -2898,6 +3237,7 @@ async function githubSaveData(projectsArray) {
   // Payables filters (V3: 使用月份滑块，不再需要下拉筛选)
   document.getElementById('payMonthAll').addEventListener('click', function() { payMonthFilter = 'all'; renderPayables(); });
   document.getElementById('payModalOverlay').addEventListener('click', function(e) { if (e.target===this) closePayModal(); });
+  document.getElementById('recModalOverlay').addEventListener('click', function(e) { if (e.target===this) closeRecModal(); });
 
   // 供应商新增
   document.getElementById('addSupBtn').addEventListener('click', function(){
