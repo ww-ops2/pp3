@@ -1072,13 +1072,13 @@
         "id": "inc_1778552792245_1",
         "name": "线上收入",
         "amount": 44977,
-        "receivedAmount": 0
+        "receivedAmount": 44977
       },
       {
         "id": "inc_1778552792245_2",
         "name": "线下收入",
         "amount": 26480,
-        "receivedAmount": 0
+        "receivedAmount": 26117.27
       },
       {
         "id": "inc_1778552792245_3",
