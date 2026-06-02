@@ -2108,11 +2108,13 @@ async function rollbackToVersion(logId) {
     html += '<div style="font-size:12px;color:var(--text-muted);margin-bottom:4px;">'+p.productType+' | 应收总额 '+fmt(totalIncome)+' | 已收合计 '+fmt(totalReceived)+'</div>';
     html += '<div style="font-size:11px;color:var(--warning);margin-bottom:10px;">💡 直接修改每个收入项的"已收"金额，保存后自动同步到云端</div>';
 
-    (p.incomes||[]).forEach(function(i){
+    (p.incomes||[]).forEach(function(i, idx){
+      // ★ 兼容缺少 id 的旧数据（如Excel导入），用数组索引作为 fallback
+      var incomeId = i.id || ('inc_'+p.id+'_'+idx);
       html += '<div class="rec-income-row">';
       html += '<div class="rec-info"><div class="rec-name">'+escHtml(i.name||'未命名')+'</div></div>';
       html += '<div class="rec-receivable">应收 '+fmt(i.amount||0)+'</div>';
-      html += '<div class="rec-input-wrap"><span>已收</span><input type="number" class="rec-income-input" data-income-id="'+i.id+'" value="'+(i.receivedAmount||0)+'" step="0.01" min="0"></div>';
+      html += '<div class="rec-input-wrap"><span>已收</span><input type="number" class="rec-income-input" data-income-id="'+incomeId+'" data-idx="'+idx+'" value="'+(i.receivedAmount||0)+'" step="0.01" min="0"></div>';
       html += '</div>';
     });
 
@@ -2148,9 +2150,16 @@ async function rollbackToVersion(logId) {
     // 遍历弹窗中每个收入项的输入框 → 写入 receivedAmount
     document.querySelectorAll('.rec-income-input').forEach(function(inp){
       var incomeId = inp.getAttribute('data-income-id');
+      var idx = parseInt(inp.getAttribute('data-idx'));
       var amt = parseFloat(inp.value) || 0;
+      // ★ 先按 id 精确匹配，兼容旧数据无 id 时按数组索引降级
       var income = (p.incomes||[]).find(function(i){ return i.id === incomeId; });
-      if (income) income.receivedAmount = amt;
+      if (!income && !isNaN(idx) && idx >= 0) income = (p.incomes||[])[idx];
+      if (income) {
+        income.receivedAmount = amt;
+        // ★ 如果收入项没有 id，自动补一个（确保下次能按 id 匹配）
+        if (!income.id) income.id = incomeId || ('inc_'+p.id+'_'+idx);
+      }
     });
 
     // 同步到云端 data.json
