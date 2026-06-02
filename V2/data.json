@@ -1170,37 +1170,16 @@
     "costs": [
       {
         "id": "cost_1778552799653_1",
-        "name": "车票款",
-        "amount": 0,
-        "_supplierId": "sup_3",
+        "name": "地接款",
+        "amount": 5628,
+        "_supplierId": "sup_13_1780395013638",
         "paidAmount": 0
       },
       {
         "id": "cost_1778552799653_2",
-        "name": "地接款",
-        "amount": 5628,
-        "_supplierId": "sup_1",
-        "paidAmount": 0
-      },
-      {
-        "id": "cost_1778552799653_3",
-        "name": "代订费用",
-        "amount": 0,
-        "_supplierId": "sup_3",
-        "paidAmount": 0
-      },
-      {
-        "id": "cost_1778552799653_4",
-        "name": "导服费用",
-        "amount": 0,
-        "_supplierId": "sup_4",
-        "paidAmount": 0
-      },
-      {
-        "id": "cost_1778552799653_5",
         "name": "其他费用",
-        "amount": 3,
-        "_supplierId": "sup_6",
+        "amount": 3.3,
+        "_supplierId": "sup_10_1780390671218",
         "paidAmount": 0
       }
     ],
@@ -1218,9 +1197,6 @@
         "count": 0
       }
     ],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "receivableStatus": "unpaid",
     "payableStatus": "unpaid"
   },
