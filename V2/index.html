@@ -1568,21 +1568,26 @@ async function rollbackToVersion(logId) {
     const excIncome = list.reduce((s,p)=>s+getEffectiveIncome(p,true),0);
     const excMargin = excIncome ? (totalGross/excIncome*100) : null;
 
-    // ★ 切位收入/成本汇总
-    const cutIncome = list.reduce((s,p) => s + (p.incomes||[]).filter(i=>i.name==='切位收入').reduce((ss,i)=>ss+(i.amount||0),0), 0);
-    const cutCost = list.reduce((s,p) => s + (p.costs||[]).filter(c=>c.name==='切位').reduce((ss,c)=>ss+(c.amount||0),0), 0);
-    const excInc = totalInc - cutIncome;
-    const excCost = totalCost - cutCost;
+    // ★ 切位收入汇总（切位成本 = 切位收入，因为切位是原价卖给同行，收支相等）
+    const cutAmount = list.reduce((s,p) => s + (p.incomes||[]).filter(i=>i.name==='切位收入').reduce((ss,i)=>ss+(i.amount||0),0), 0);
+    const excInc = totalInc - cutAmount;
+    const excCost = totalCost - cutAmount;
+    // 不含切位的毛利额不变，但毛利率分母变小所以会变大
+    const excGross = totalInc - totalCost;  // 毛利额不变
+    const excMarginRate = excInc ? (excGross/excInc*100) : null;
 
     const cards = [
       { cls:'income', label:'总收入', value: fmt(excludeKeWei ? excInc : totalInc), vcls:'income',
-        detail: excludeKeWei ? '(不含切位)' : '✂️ 切位: '+fmt(cutIncome),
+        detail: excludeKeWei ? '(不含切位)' : '✂️ 切位收入: '+fmt(cutAmount),
         clickable:true },
       { cls:'cost', label:'总成本', value: fmt(excludeKeWei ? excCost : totalCost), vcls:'cost',
-        detail: excludeKeWei ? '(不含切位)' : '已付: '+fmt(totalPaid)+' | ✂️切位:'+fmt(cutCost),
+        detail: excludeKeWei ? '(不含切位)' : '已付: '+fmt(totalPaid)+' | ✂️切位成本:'+fmt(cutAmount),
         clickable:true },
-      { cls:'gross', label:'毛利', value: fmt((excludeKeWei?excInc:totalInc) - (excludeKeWei?excCost:totalCost)), vcls:'gross', detail: '' },
-      { cls:'margin', label:'毛利率', value: fmtMargin(excludeKeWei?excMargin:totalMargin), vcls:'margin', detail: excludeKeWei?'不含切位':'含切位', clickable:true },
+      { cls:'gross', label:'毛利', value: fmt(excGross), vcls:'gross',
+        detail: excludeKeWei?'毛利额不变':'',
+        clickable:true },
+      { cls:'margin', label:'毛利率', value: fmtMargin(excludeKeWei?excMarginRate:totalMargin), vcls:'margin',
+        detail: excludeKeWei?'不含切位（分母更小→比率更高）':'含切位', clickable:true },
       { cls:'people', label:'成交人数', value: excludeKeWei?totalExPeople:totalPeople, vcls:'people', detail: excludeKeWei?'不含切位':'含切位', clickable:true },
       { cls:'', label:'应收未收', value: fmt(totalReceivable - totalReceived), vcls:'warning', detail: `应收:${fmt(totalReceivable)}` },
     ];
