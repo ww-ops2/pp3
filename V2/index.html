@@ -2768,19 +2768,20 @@ async function rollbackToVersion(logId) {
 
         // 解析收入（优先新格式，回退旧格式）
         function parseIncomes(row) {
+          var ts = Date.now();
           if (useNewIncome) {
-            var incs = [];
-            if (colMap.incomeOnline)  incs.push({ name: '线上收入', amount: parseFloat(row[colMap.incomeOnline]) || 0 });
-            if (colMap.incomeOffline) incs.push({ name: '线下收入', amount: parseFloat(row[colMap.incomeOffline]) || 0 });
-            if (colMap.incomeCutPos)  incs.push({ name: '切位收入', amount: parseFloat(row[colMap.incomeCutPos]) || 0 });
+            var incs = [], idx = 0;
+            if (colMap.incomeOnline)  incs.push({ id: 'inc_'+ts+'_'+(idx++), name: '线上收入', amount: parseFloat(row[colMap.incomeOnline]) || 0, receivedAmount: 0 });
+            if (colMap.incomeOffline) incs.push({ id: 'inc_'+ts+'_'+(idx++), name: '线下收入', amount: parseFloat(row[colMap.incomeOffline]) || 0, receivedAmount: 0 });
+            if (colMap.incomeCutPos)  incs.push({ id: 'inc_'+ts+'_'+(idx++), name: '切位收入', amount: parseFloat(row[colMap.incomeCutPos]) || 0, receivedAmount: 0 });
             return incs;
           }
           // 旧格式：名称:金额, 名称:金额
           var str = row[colMap.incomes];
           if (!str) return [];
-          return String(str).split(/[,，;；]/).filter(Boolean).map(function(s){
+          return String(str).split(/[,，;；]/).filter(Boolean).map(function(s, idx){
             var parts = s.trim().split(':');
-            return { name: (parts[0]||'').trim(), amount: parseFloat(parts[1]) || 0 };
+            return { id: 'inc_'+ts+'_'+idx, name: (parts[0]||'').trim(), amount: parseFloat(parts[1]) || 0, receivedAmount: 0 };
           }).filter(function(x){ return x.name; });
         }
 
