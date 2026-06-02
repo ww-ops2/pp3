@@ -5,55 +5,45 @@
     "productType": "越南",
     "operator": "",
     "startDate": "2026-01-01",
+    "remark": "",
     "incomes": [
       {
-        "id": "income_1778477803837",
         "name": "线上",
-        "amount": 1884355,
-        "receivedAmount": 1868771.5
+        "amount": 1868771.5
       }
     ],
     "costs": [
       {
-        "id": "cost_1778477812132",
+        "id": "cost_1780390671214_0",
         "name": "车票款",
         "amount": 360000,
-        "_supplierId": "sup_3",
-        "paidAmount": 0
+        "_supplierId": "sup_7_1780390671209"
       },
       {
-        "id": "cost_1778477818476",
+        "id": "cost_1780390671214_1",
         "name": "地接款",
         "amount": 679228,
-        "_supplierId": "sup_1",
-        "paidAmount": 0
+        "_supplierId": "sup_7_1780390671209"
       },
       {
-        "id": "cost_1778477844404",
+        "id": "cost_1780390671217_2",
         "name": "代订费用",
         "amount": 133287,
-        "_supplierId": "sup_3",
-        "paidAmount": 0
+        "_supplierId": "sup_8_1780390671214"
       },
       {
-        "id": "cost_1778477856660",
+        "id": "cost_1780390671218_3",
         "name": "导服费",
         "amount": 48200,
-        "_supplierId": "sup_4",
-        "paidAmount": 0
+        "_supplierId": "sup_9_1780390671217"
       },
       {
-        "id": "cost_1778477867292",
+        "id": "cost_1780390671218_4",
         "name": "其他",
         "amount": 5584,
-        "_supplierId": "sup_6",
-        "paidAmount": 0
+        "_supplierId": "sup_10_1780390671218"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -67,9 +57,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778468995018",
