@@ -2845,16 +2845,36 @@ async function rollbackToVersion(logId) {
           };
 
           if (existing) {
-            // 合并：保留已有的ID和已有数据，用导入数据覆盖对应字段
+            // 合并：保留已有的ID和收款/付款数据，用导入数据覆盖结构字段
             proj.id = existing.id;
             if (!proj.name) proj.name = existing.name;
             if (!proj.productType) proj.productType = existing.productType || '';
             if (!proj.operator) proj.operator = existing.operator || '';
             if (!proj.startDate) proj.startDate = existing.startDate || '';
             if (!proj.remark) proj.remark = existing.remark || '';
-            if (proj.incomes.length === 0) proj.incomes = (existing.incomes||[]).slice();
-            if (proj.costs.length === 0) proj.costs = (existing.costs||[]).slice();
+            // 保留收款数据：按收入项名称匹配，保留 receivedAmount
+            if (proj.incomes.length > 0) {
+              proj.incomes.forEach(function(inc){
+                var oldInc = (existing.incomes||[]).find(function(oi){ return oi.name === inc.name; });
+                if (oldInc) { inc.id = oldInc.id; inc.receivedAmount = oldInc.receivedAmount || 0; }
+                else { inc.id = 'income_'+Date.now()+'_'+Math.random().toString(36).slice(2,6); inc.receivedAmount = 0; }
+              });
+            } else {
+              proj.incomes = (existing.incomes||[]).slice();
+            }
+            // 保留付款数据：按成本项名称匹配，保留 paidAmount
+            if (proj.costs.length > 0) {
+              proj.costs.forEach(function(cst){
+                var oldCst = (existing.costs||[]).find(function(oc){ return oc.name === cst.name; });
+                if (oldCst) { cst.id = oldCst.id; cst.paidAmount = oldCst.paidAmount || 0; }
+                else { cst.paidAmount = 0; }
+              });
+            } else {
+              proj.costs = (existing.costs||[]).slice();
+            }
             if (proj.peopleDetails.length === 0) proj.peopleDetails = (existing.peopleDetails||[]).slice();
+            proj.receivableStatus = existing.receivableStatus || 'unpaid';
+            proj.payableStatus = existing.payableStatus || 'unpaid';
             var exIdx = projects.findIndex(function(p){ return p.id === existing.id; });
             projects[exIdx] = proj;
             updated++;
@@ -3090,20 +3110,47 @@ async function rollbackToVersion(logId) {
     container.insertAdjacentHTML('beforeend', h);
   };
 
-  // 保存详情修改到 Supabase
+  // 保存详情修改到云端（保留收款/付款数据不丢失）
   window.saveDetailToCloud = async function(origId) {
+    var origProj = projects.find(function(x){return x.id===origId}) || {};
+    var oldIncomes = origProj.incomes || [];
+    var oldCosts = origProj.costs || [];
     var incomes=[], costs=[], peopleDetails=[];
+
+    // 收入项：从编辑框读取，保留已有的 id 和 receivedAmount
+    var incIdx=0;
     document.querySelectorAll('#ed_incomes_list .sub-item').forEach(function(el){
       var n=el.querySelector('[data-inc-name]'), a=el.querySelector('[data-inc-amt]');
-      if(n&&n.value.trim()) incomes.push({name:n.value.trim(), amount:parseFloat(a.value)||0});
+      if(n&&n.value.trim()) {
+        var oldInc = oldIncomes[incIdx] || {};
+        incomes.push({
+          id: oldInc.id || ('income_'+Date.now()+'_'+incomes.length),
+          name: n.value.trim(),
+          amount: parseFloat(a.value)||0,
+          receivedAmount: oldInc.receivedAmount || 0
+        });
+      }
+      incIdx++;
     });
+
+    // 成本项：从编辑框读取，保留已有的 id 和 paidAmount
+    var costIdx=0;
     document.querySelectorAll('#ed_costs_list .sub-item').forEach(function(el){
       var n=el.querySelector('[data-cost-name]'), a=el.querySelector('[data-cost-amt]'), s=el.querySelector('[data-cost-sup]');
       if(n&&n.value.trim()) {
+        var oldCost = oldCosts[costIdx] || {};
         var supId = resolveSupplierId(s?s.value:''); // 自由输入 → 匹配已有或新建供应商
-        costs.push({id:'cost_'+Date.now()+'_'+costs.length, name:n.value.trim(), amount:parseFloat(a.value)||0, _supplierId:supId});
+        costs.push({
+          id: oldCost.id || ('cost_'+Date.now()+'_'+costs.length),
+          name: n.value.trim(),
+          amount: parseFloat(a.value)||0,
+          _supplierId: supId,
+          paidAmount: oldCost.paidAmount || 0
+        });
       }
+      costIdx++;
     });
+
     document.querySelectorAll('#ed_people_list .sub-item').forEach(function(el){
       var n=el.querySelector('[data-ppl-name]'), c=el.querySelector('[data-ppl-cnt]');
       if(n&&n.value.trim()) peopleDetails.push({name:n.value.trim(), count:parseInt(c.value)||0});
@@ -3112,7 +3159,9 @@ async function rollbackToVersion(logId) {
     var updated = { id: origId, name: document.getElementById('ed_name').value.trim(),
       productType: document.getElementById('ed_type').value.trim(), operator: document.getElementById('ed_op').value.trim(),
       startDate: document.getElementById('ed_start').value, remark: document.getElementById('ed_remark').value.trim(),
-      incomes: incomes, costs: costs, peopleDetails: peopleDetails };
+      incomes: incomes, costs: costs, peopleDetails: peopleDetails,
+      receivableStatus: origProj.receivableStatus || 'unpaid',
+      payableStatus: origProj.payableStatus || 'unpaid' };
 
     try {
       // 先在内存中更新
