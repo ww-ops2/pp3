@@ -1568,10 +1568,20 @@ async function rollbackToVersion(logId) {
     const excIncome = list.reduce((s,p)=>s+getEffectiveIncome(p,true),0);
     const excMargin = excIncome ? (totalGross/excIncome*100) : null;
 
+    // ★ 切位收入/成本汇总
+    const cutIncome = list.reduce((s,p) => s + (p.incomes||[]).filter(i=>i.name==='切位收入').reduce((ss,i)=>ss+(i.amount||0),0), 0);
+    const cutCost = list.reduce((s,p) => s + (p.costs||[]).filter(c=>c.name==='切位').reduce((ss,c)=>ss+(c.amount||0),0), 0);
+    const excInc = totalInc - cutIncome;
+    const excCost = totalCost - cutCost;
+
     const cards = [
-      { cls:'income', label:'总收入', value: fmt(totalInc), vcls:'income', detail: excIncome!==totalInc ? '切位: '+fmt(totalInc-excIncome): '' },
-      { cls:'cost', label:'总成本', value: fmt(totalCost), vcls:'cost', detail: `已付: ${fmt(totalPaid)}` },
-      { cls:'gross', label:'毛利', value: fmt(totalGross), vcls:'gross', detail: '' },
+      { cls:'income', label:'总收入', value: fmt(excludeKeWei ? excInc : totalInc), vcls:'income',
+        detail: excludeKeWei ? '(不含切位)' : '✂️ 切位: '+fmt(cutIncome),
+        clickable:true },
+      { cls:'cost', label:'总成本', value: fmt(excludeKeWei ? excCost : totalCost), vcls:'cost',
+        detail: excludeKeWei ? '(不含切位)' : '已付: '+fmt(totalPaid)+' | ✂️切位:'+fmt(cutCost),
+        clickable:true },
+      { cls:'gross', label:'毛利', value: fmt((excludeKeWei?excInc:totalInc) - (excludeKeWei?excCost:totalCost)), vcls:'gross', detail: '' },
       { cls:'margin', label:'毛利率', value: fmtMargin(excludeKeWei?excMargin:totalMargin), vcls:'margin', detail: excludeKeWei?'不含切位':'含切位', clickable:true },
       { cls:'people', label:'成交人数', value: excludeKeWei?totalExPeople:totalPeople, vcls:'people', detail: excludeKeWei?'不含切位':'含切位', clickable:true },
       { cls:'', label:'应收未收', value: fmt(totalReceivable - totalReceived), vcls:'warning', detail: `应收:${fmt(totalReceivable)}` },
