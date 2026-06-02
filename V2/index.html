@@ -796,6 +796,13 @@
             <select id="receivableTypeFilter"><option value="all">全部产品线</option></select>
           </div>
         </div>
+        <!-- 月份快捷筛选 -->
+        <div style="display:flex;align-items:center;gap:8px;padding:4px 16px 0;">
+          <span style="font-size:12px;font-weight:600;color:var(--text-secondary);">📅 月份筛选</span>
+          <button class="btn btn-sm btn-outline" id="recMonthAll" style="font-size:11px;padding:3px 10px;">全部</button>
+          <span style="font-size:11px;color:var(--text-muted);">← 左右滑动 →</span>
+        </div>
+        <div class="month-swiper" id="recMonthSwiper" style="padding:4px 16px 6px;"></div>
         <div class="table-scroll"><table class="data-table" id="receivableTable"><thead><tr><th>团号</th><th>产品线</th><th>计调</th><th>应收金额</th><th>已收金额</th><th>未收金额</th><th>收款状态</th><th>出发日期</th><th>操作</th></tr></thead><tbody></tbody></table></div>
         <div class="pagination" id="receivablePagination"></div>
       </div>
@@ -1746,9 +1753,30 @@ async function rollbackToVersion(logId) {
   };
 
   // ==================== MODULE 3: RECEIVABLES ====================
-  let recPage = 1, recStatusFilter = 'all', recTypeFilter = 'all';
+  let recPage = 1, recStatusFilter = 'all', recTypeFilter = 'all', recMonthFilter = 'all';
   function renderReceivables() {
-    let list = getFilteredProjects('receivables').filter(p => sumIncome(p) > 0);
+    const allList = getFilteredProjects('receivables').filter(p => sumIncome(p) > 0);
+    
+    // 月份快捷筛选按钮
+    const months = [...new Set(allList.map(p => p.startDate ? p.startDate.substring(0,7) : null).filter(Boolean))].sort();
+    var swiperHtml = '';
+    months.forEach(function(m) {
+      var parts = m.split('-');
+      var cnt = allList.filter(function(p){ return p.startDate && p.startDate.substring(0,7)===m; }).length;
+      var cls = (recMonthFilter === m) ? ' month-chip active' : ' month-chip';
+      swiperHtml += '<div class="' + cls + '" data-month="' + m + '">' +
+        parseInt(parts[0]) + '年' + parseInt(parts[1]) + '月<span class="chip-count">' + cnt + '个团期</span></div>';
+    });
+    document.getElementById('recMonthSwiper').innerHTML = swiperHtml;
+    document.querySelectorAll('#recMonthSwiper .month-chip').forEach(function(chip){
+      chip.addEventListener('click', function(){
+        recMonthFilter = this.getAttribute('data-month');
+        recPage = 1;
+        renderReceivables();
+      });
+    });
+    
+    let list = recMonthFilter === 'all' ? allList : allList.filter(p => p.startDate && p.startDate.substring(0,7) === recMonthFilter);
     if (recStatusFilter !== 'all') list = list.filter(p => getReceivableStatus(p) === recStatusFilter);
     if (recTypeFilter !== 'all') list = list.filter(p => p.productType === recTypeFilter);
 
@@ -3234,6 +3262,7 @@ async function rollbackToVersion(logId) {
   // Receivables filters
   document.getElementById('receivableStatusFilter').addEventListener('change', function() { recStatusFilter = this.value; recPage = 1; renderReceivables(); });
   document.getElementById('receivableTypeFilter').addEventListener('change', function() { recTypeFilter = this.value; recPage = 1; renderReceivables(); });
+  document.getElementById('recMonthAll').addEventListener('click', function() { recMonthFilter = 'all'; recPage = 1; renderReceivables(); });
   // Payables filters (V3: 使用月份滑块，不再需要下拉筛选)
   document.getElementById('payMonthAll').addEventListener('click', function() { payMonthFilter = 'all'; renderPayables(); });
   document.getElementById('payModalOverlay').addEventListener('click', function(e) { if (e.target===this) closePayModal(); });
