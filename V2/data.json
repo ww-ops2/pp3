@@ -997,15 +997,17 @@
       {
         "id": "inc_proj_1778552581701_0",
         "name": "线上收入",
-        "amount": 197226,
+        "amount": 197025.5,
         "receivedAmount": 0
       },
       {
+        "id": "income_1780394654559_1",
         "name": "线下收入",
         "amount": 0,
         "receivedAmount": 0
       },
       {
+        "id": "income_1780394654559_2",
         "name": "切位收入",
         "amount": 0,
         "receivedAmount": 0
@@ -1016,28 +1018,28 @@
         "id": "cost_1779786652648_0",
         "name": "地接款",
         "amount": 141160,
-        "_supplierId": "sup_11_1779784073557",
+        "_supplierId": "sup_11_1780394363465",
         "paidAmount": 0
       },
       {
         "id": "cost_1779786652648_1",
         "name": "代订费用",
         "amount": 4926.5,
-        "_supplierId": "sup_8_1779783999704",
+        "_supplierId": "sup_8_1780390671214",
         "paidAmount": 0
       },
       {
         "id": "cost_1779786652648_2",
         "name": "导服费用",
         "amount": 2800,
-        "_supplierId": "sup_9_1779783999705",
+        "_supplierId": "sup_9_1780390671217",
         "paidAmount": 0
       },
       {
         "id": "cost_1779786652648_3",
         "name": "其他费用",
         "amount": 302.2,
-        "_supplierId": "sup_10_1779783999705",
+        "_supplierId": "sup_10_1780390671218",
         "paidAmount": 0
       }
     ],
@@ -1055,9 +1057,6 @@
         "count": 0
       }
     ],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "receivableStatus": "unpaid",
     "payableStatus": "unpaid"
   },
