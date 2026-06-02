@@ -993,26 +993,35 @@ window.addSubItem = function(containerId, type) {
 };
 
 window.saveEditedProject = async function(origId) {
+  var origProj = currentData.find(function(x){return x.id===origId}) || {};
+  var oldIncomes = origProj.incomes || [];
+  var oldCosts = origProj.costs || [];
   var incomes = [], costs = [], peopleDetails = [];
 
-  // 收集 incomes
+  // 收集 incomes（保留已有的 id 和 receivedAmount）
+  var incIdx = 0;
   document.querySelectorAll('#ed_incomes_list .sub-item').forEach(function(el){
     var nameEl = el.querySelector('[data-inc-name]');
     var amtEl = el.querySelector('[data-inc-amt]');
     if(nameEl && nameEl.value.trim()) {
-      incomes.push({ id: 'inc_'+Date.now()+'_'+incomes.length, name: nameEl.value.trim(), amount: parseFloat(amtEl.value)||0 });
+      var oldInc = oldIncomes[incIdx] || {};
+      incomes.push({ id: oldInc.id || ('inc_'+Date.now()+'_'+incomes.length), name: nameEl.value.trim(), amount: parseFloat(amtEl.value)||0, receivedAmount: oldInc.receivedAmount || 0 });
     }
+    incIdx++;
   });
 
-  // 收集 costs
+  // 收集 costs（保留已有的 id 和 paidAmount）
+  var costIdx = 0;
   document.querySelectorAll('#ed_costs_list .sub-item').forEach(function(el){
     var nameEl = el.querySelector('[data-cost-name]');
     var amtEl = el.querySelector('[data-cost-amt]');
     var supEl = el.querySelector('[data-cost-sup]');
     if(nameEl && nameEl.value.trim()) {
+      var oldCost = oldCosts[costIdx] || {};
       var supId = resolveSupplierId(supEl?supEl.value:'');
-      costs.push({ id: 'cost_'+Date.now()+'_'+costs.length, name: nameEl.value.trim(), amount: parseFloat(amtEl.value)||0, _supplierId: supId });
+      costs.push({ id: oldCost.id || ('cost_'+Date.now()+'_'+costs.length), name: nameEl.value.trim(), amount: parseFloat(amtEl.value)||0, _supplierId: supId, paidAmount: oldCost.paidAmount || 0 });
     }
+    costIdx++;
   });
 
   // 收集 people
@@ -1033,7 +1042,9 @@ window.saveEditedProject = async function(origId) {
     remark: document.getElementById('ed_remark').value.trim(),
     incomes: incomes,
     costs: costs,
-    peopleDetails: peopleDetails
+    peopleDetails: peopleDetails,
+    receivableStatus: origProj.receivableStatus || 'unpaid',
+    payableStatus: origProj.payableStatus || 'unpaid'
   };
 
   // 更新内存中的数据
