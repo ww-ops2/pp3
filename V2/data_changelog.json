@@ -1,5 +1,14 @@
 [
   {
+    "id": "log_1780394974896",
+    "time": "2026-06-02T10:09:34.896Z",
+    "action": "save",
+    "description": "数据保存",
+    "recordCount": 32,
+    "dataSha": "6bd76828255b7786e70320cf2c00ff18263ecffe",
+    "snapshot": ""
+  },
+  {
     "id": "log_1780394941998",
     "time": "2026-06-02T10:09:01.998Z",
     "action": "save",
