@@ -144,7 +144,7 @@
       {
         "id": "inc_proj_1778469000914_0",
         "name": "线上",
-        "amount": 309171,
+        "amount": 309170.5,
         "receivedAmount": 309170.5
       }
     ],
@@ -153,28 +153,28 @@
         "id": "cost_1779937070316_0",
         "name": "地接款",
         "amount": 170520,
-        "_supplierId": "sup_7_1779933933509",
+        "_supplierId": "sup_7_1780390671209",
         "paidAmount": 170520
       },
       {
         "id": "cost_1779937070316_1",
         "name": "代订费用",
         "amount": 25962.5,
-        "_supplierId": "sup_8_1779933933514",
+        "_supplierId": "sup_8_1780390671214",
         "paidAmount": 25962.5
       },
       {
         "id": "cost_1779937070316_2",
         "name": "导服费",
         "amount": 7600,
-        "_supplierId": "sup_9_1779933933515",
+        "_supplierId": "sup_9_1780390671217",
         "paidAmount": 7600
       },
       {
         "id": "cost_1779937070316_3",
         "name": "其他",
         "amount": 800,
-        "_supplierId": "sup_10_1779933933515",
+        "_supplierId": "sup_10_1780390671218",
         "paidAmount": 800
       }
     ],
@@ -192,9 +192,6 @@
         "count": 0
       }
     ],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "receivableStatus": "unpaid",
     "payableStatus": "unpaid"
   },
