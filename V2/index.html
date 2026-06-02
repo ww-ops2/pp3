@@ -830,11 +830,6 @@
         <div class="modal" id="payModalBox"></div>
       </div>
 
-      <!-- 收款登记弹窗 -->
-      <div class="modal-overlay" id="recModalOverlay">
-        <div class="modal" id="recModalBox"></div>
-      </div>
-
       <!-- 下半部分：综合分析 -->
       <div class="pay-analysis-grid" id="payAnalysisArea"></div>
       <!-- KPI联动明细面板 -->
@@ -958,6 +953,11 @@
 <!-- MODAL OVERLAY -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal" id="modalBox"></div>
+</div>
+
+<!-- 收款登记弹窗（根级，独立于所有 module-pane，确保应收/应付/任意面板均可弹出） -->
+<div class="modal-overlay" id="recModalOverlay">
+  <div class="modal" id="recModalBox"></div>
 </div>
 
 <script src="gh-config.js?v=3"></script>
