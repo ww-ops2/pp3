@@ -130,48 +130,39 @@
     "productType": "越南",
     "operator": "",
     "startDate": "2026-01-01",
+    "remark": "",
     "incomes": [
       {
-        "id": "income_1778477955591",
         "name": "线上",
-        "amount": 309171,
-        "receivedAmount": 309170.5
+        "amount": 309170.5
       }
     ],
     "costs": [
       {
-        "id": "cost_1778477970253",
+        "id": "cost_1780390765621_0",
         "name": "地接款",
         "amount": 170520,
-        "_supplierId": "sup_1",
-        "paidAmount": 0
+        "_supplierId": "sup_7_1780390671209"
       },
       {
-        "id": "cost_1778477975292",
+        "id": "cost_1780390765621_1",
         "name": "代订费用",
         "amount": 25963,
-        "_supplierId": "sup_3",
-        "paidAmount": 0
+        "_supplierId": "sup_8_1780390671214"
       },
       {
-        "id": "cost_1778477980166",
+        "id": "cost_1780390765621_2",
         "name": "导服费",
         "amount": 7600,
-        "_supplierId": "sup_4",
-        "paidAmount": 0
+        "_supplierId": "sup_9_1780390671217"
       },
       {
-        "id": "cost_1778477984877",
+        "id": "cost_1780390765621_3",
         "name": "其他",
         "amount": 800,
-        "_supplierId": "sup_6",
-        "paidAmount": 0
+        "_supplierId": "sup_10_1780390671218"
       }
     ],
-    "profitItems": [],
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
     "peopleDetails": [
       {
         "name": "线上",
@@ -185,9 +176,7 @@
         "name": "切位",
         "count": 0
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778469008378",
