@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "id": "proj_1778468987860",
     "name": "YJMH-越南-20260110 南宁",
@@ -8,6 +8,7 @@
     "remark": "",
     "incomes": [
       {
+        "id": "inc_proj_1778468987860_0",
         "name": "线上",
         "amount": 1884355,
         "receivedAmount": 0
@@ -79,6 +80,7 @@
     "remark": "",
     "incomes": [
       {
+        "id": "inc_proj_1778468995018_0",
         "name": "线上",
         "amount": 191066,
         "receivedAmount": 0
@@ -143,6 +145,7 @@
     "remark": "",
     "incomes": [
       {
+        "id": "inc_proj_1778469000914_0",
         "name": "线上",
         "amount": 309171,
         "receivedAmount": 0
@@ -207,6 +210,7 @@
     "remark": "",
     "incomes": [
       {
+        "id": "inc_proj_1778469008378_0",
         "name": "线上",
         "amount": 60432,
         "receivedAmount": 0
@@ -929,6 +933,7 @@
     "remark": "",
     "incomes": [
       {
+        "id": "inc_proj_1778552573501_0",
         "name": "线上收入",
         "amount": 718121,
         "receivedAmount": 0
@@ -1003,6 +1008,7 @@
     "remark": "",
     "incomes": [
       {
+        "id": "inc_proj_1778552581701_0",
         "name": "线上收入",
         "amount": 197226,
         "receivedAmount": 0
@@ -1665,8 +1671,8 @@
     "remark": "",
     "incomes": [
       {
+        "id": "inc_proj_1778553394192_0",
         "name": "线上收入",
-        "amount": 44116,
         "receivedAmount": 0
       },
       {
