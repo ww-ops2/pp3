@@ -509,7 +509,15 @@ function changePassword() {
 }
 
 // ==================== GitHub API ====================
-function utf8ToBase64(str) { return btoa(unescape(encodeURIComponent(str))); }
+function utf8ToBase64(str) {
+  // ★ 使用 TextEncoder API 确保 UTF-8 编码正确
+  var bytes = new TextEncoder().encode(str);
+  var binStr = '';
+  for (var i = 0; i < bytes.length; i++) {
+    binStr += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binStr);
+}
 
 async function githubLoadAll() {
   try {
@@ -524,7 +532,8 @@ async function githubSaveAll(projectsArray) {
     var getResp = await fetch(GITHUB_API_URL, {
       headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Accept': 'application/vnd.github+json' }
     });
-    var fileInfo = getResp.ok ? await getResp.json() : {};
+    if (!getResp.ok) throw new Error('无法获取云端数据状态');
+    var fileInfo = await getResp.json();
     var sha = fileInfo.sha;
 
     // 嵌入供应商数据
@@ -537,15 +546,58 @@ async function githubSaveAll(projectsArray) {
 
     var body = {
       message: 'Update data.json from admin panel',
-      content: utf8ToBase64(JSON.stringify(payload, null, 2))
+      content: utf8ToBase64(JSON.stringify(payload, null, 2)),
+      sha: sha
     };
-    if (sha) body.sha = sha;
 
     var putResp = await fetch(GITHUB_API_URL, {
       method: 'PUT',
       headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     });
+
+    // ★ 冲突检测：409 Conflict → 自动拉取最新数据重试
+    if (putResp.status === 409) {
+      console.warn('[Admin Save] 检测到云端数据已被他人更新，自动拉取最新数据...');
+      var latestResp = await fetch(GITHUB_RAW_URL, { cache: 'no-cache' });
+      if (latestResp.ok) {
+        var latestData = await latestResp.json();
+        if (latestData && Array.isArray(latestData) && latestData.length > 0) {
+          // 重新获取最新 sha
+          var reGetResp = await fetch(GITHUB_API_URL, {
+            headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Accept': 'application/vnd.github+json' }
+          });
+          if (reGetResp.ok) {
+            var reFileInfo = await reGetResp.json();
+            var mergedPayload = JSON.parse(JSON.stringify(latestData));
+            for (var mi = 0; mi < projectsArray.length; mi++) {
+              var cur = projectsArray[mi];
+              var found = false;
+              for (var mj = 0; mj < mergedPayload.length; mj++) {
+                if (mergedPayload[mj].id === cur.id) { mergedPayload[mj] = cur; found = true; break; }
+              }
+              if (!found) mergedPayload.push(cur);
+            }
+            if (suppliers.length > 0) mergedPayload[0]._suppliers = suppliers;
+            var retryBody = {
+              message: 'Update data.json from admin panel (auto-merged)',
+              content: utf8ToBase64(JSON.stringify(mergedPayload, null, 2)),
+              sha: reFileInfo.sha
+            };
+            var retryResp = await fetch(GITHUB_API_URL, {
+              method: 'PUT',
+              headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Content-Type': 'application/json' },
+              body: JSON.stringify(retryBody)
+            });
+            if (!retryResp.ok) throw new Error('合并保存失败: HTTP ' + retryResp.status);
+            appendChangeLog('save', 'admin面板保存数据(自动合并)', mergedPayload.length).catch(function(){});
+            return true;
+          }
+        }
+      }
+      throw new Error('云端数据冲突，自动合并失败');
+    }
+
     if (!putResp.ok) throw new Error('HTTP ' + putResp.status + ': ' + await putResp.text());
 
     // ★ 保存成功后追加变更日志
@@ -599,21 +651,32 @@ async function loadChangeLog() {
 async function appendChangeLog(action, description, recordCount) {
   try {
     var log = await loadChangeLog();
+
+    // ★ 从云端拉取保存后的数据作为快照
     var dataSha = '';
+    var snapshot = '';
     try {
+      await new Promise(function(r) { setTimeout(r, 1500); });
+      var snapResp = await fetch(GITHUB_RAW_URL, { cache: 'no-cache' });
+      if (snapResp.ok) {
+        var snapData = await snapResp.json();
+        if (snapData && Array.isArray(snapData) && snapData.length > 0) {
+          snapshot = utf8ToBase64(JSON.stringify(snapData));
+        }
+      }
       var getResp = await fetch(GITHUB_API_URL, {
         headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Accept': 'application/vnd.github+json' }
       });
       if (getResp.ok) { var info = await getResp.json(); dataSha = info.sha || ''; }
     } catch(e) {}
 
-    var snapshot = '';
-    try {
-      var editorRaw = document.getElementById('jsonEditor').value.trim();
-      if (editorRaw) {
-        snapshot = utf8ToBase64(editorRaw);
-      }
-    } catch(e) {}
+    // 降级：使用编辑器内容作为快照
+    if (!snapshot) {
+      try {
+        var editorRaw = document.getElementById('jsonEditor').value.trim();
+        if (editorRaw) { snapshot = utf8ToBase64(editorRaw); }
+      } catch(e) {}
+    }
 
     var entry = {
       id: 'log_' + Date.now(),
