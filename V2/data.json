@@ -212,14 +212,14 @@
         "id": "cost_1779937483268_0",
         "name": "地接款",
         "amount": 43820,
-        "_supplierId": "sup_11_1780394363465",
+        "_supplierId": "sup_11_1780459018551",
         "paidAmount": 43820
       },
       {
         "id": "cost_1779937483268_1",
         "name": "其他",
         "amount": 44,
-        "_supplierId": "sup_10_1780390671218",
+        "_supplierId": "sup_10_1780458876311",
         "paidAmount": 44
       }
     ],
@@ -238,10 +238,7 @@
       }
     ],
     "receivableStatus": "unpaid",
-    "payableStatus": "unpaid",
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": []
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778478180812",
