@@ -1138,7 +1138,10 @@
       }
     ],
     "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    "payableStatus": "unpaid",
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": []
   },
   {
     "id": "proj_1778552799653",
@@ -1198,7 +1201,10 @@
       }
     ],
     "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    "payableStatus": "unpaid",
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": []
   },
   {
     "id": "proj_1778552804829",
@@ -1265,7 +1271,10 @@
       }
     ],
     "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    "payableStatus": "unpaid",
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": []
   },
   {
     "id": "proj_1778552809207",
@@ -1346,7 +1355,10 @@
       }
     ],
     "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    "payableStatus": "unpaid",
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": []
   },
   {
     "id": "proj_1778552813198",
@@ -1427,7 +1439,10 @@
       }
     ],
     "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    "payableStatus": "unpaid",
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": []
   },
   {
     "id": "proj_1778552819375",
@@ -1487,7 +1502,10 @@
       }
     ],
     "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    "payableStatus": "unpaid",
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": []
   },
   {
     "id": "proj_1778552824390",
@@ -1568,7 +1586,10 @@
       }
     ],
     "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    "payableStatus": "unpaid",
+    "_lockedIncomes": [],
+    "_lockedCosts": [],
+    "_lockedProfits": []
   },
   {
     "id": "proj_1778553394192",
