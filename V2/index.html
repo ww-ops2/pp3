@@ -978,7 +978,13 @@
 /* ---------- GitHub 数据存储（配置见 gh-config.js） ---------- */
 
 function utf8ToBase64(str) {
-  return btoa(unescape(encodeURIComponent(str)));
+  // ★ 使用 TextEncoder API 确保 UTF-8 编码正确（修复 unescape 导致的乱码问题）
+  var bytes = new TextEncoder().encode(str);
+  var binStr = '';
+  for (var i = 0; i < bytes.length; i++) {
+    binStr += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binStr);
 }
 
 /* 从 GitHub 加载数据 */
@@ -1032,36 +1038,93 @@ async function githubLoadData() {
   }
 }
 
-/* 保存完整 projects 数组到 GitHub data.json */
+/* 保存完整 projects 数组到 GitHub data.json（含乐观锁冲突检测） */
 async function githubSaveData(projectsArray) {
   try {
     var getResp = await fetch(GITHUB_API_URL, {
       headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Accept': 'application/vnd.github+json' }
     });
-    var fileInfo = getResp.ok ? await getResp.json() : {};
+    if (!getResp.ok) throw new Error('无法获取云端数据状态');
+    var fileInfo = await getResp.json();
     var sha = fileInfo.sha;
+
+    // ★ 乐观锁：构造 payload
+    var payload = projectsArray.length > 0 ? JSON.parse(JSON.stringify(projectsArray)) : [{}];
+    if (typeof suppliers !== 'undefined' && suppliers && suppliers.length > 0) {
+      payload[0]._suppliers = suppliers;
+    }
 
     var body = {
       message: 'Update data.json from web panel',
-      content: utf8ToBase64(JSON.stringify(projectsArray, null, 2))
+      content: utf8ToBase64(JSON.stringify(payload, null, 2)),
+      sha: sha
     };
-    // v20250527e: 将供应商数据嵌入 data.json 的 _suppliers 字段（跨设备共享）
-    if (typeof suppliers !== 'undefined' && suppliers && suppliers.length > 0) {
-      // 在 projects 数组的首项附加 _suppliers 元数据
-      var payload = projectsArray.length > 0 ? JSON.parse(JSON.stringify(projectsArray)) : [{}];
-      payload[0]._suppliers = suppliers;
-      body.content = utf8ToBase64(JSON.stringify(payload, null, 2));
-    }
-    if (sha) body.sha = sha;
 
     var putResp = await fetch(GITHUB_API_URL, {
       method: 'PUT',
       headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     });
+
+    // ★ 冲突检测：如果 sha 不匹配（409 Conflict），自动拉取最新数据并重试
+    if (putResp.status === 409) {
+      console.warn('[GitHub Save] 检测到云端数据已被他人更新，自动拉取最新数据...');
+      // 重新拉取云端最新数据
+      var latestResp = await fetch(GITHUB_RAW_URL, { cache: 'no-cache' });
+      if (latestResp.ok) {
+        var latestData = await latestResp.json();
+        if (latestData && Array.isArray(latestData) && latestData.length > 0) {
+          // 用云端最新数据作为基础，合并当前本地修改
+          window.TOUR_DATA = latestData;
+          // 重新获取 sha
+          var reGetResp = await fetch(GITHUB_API_URL, {
+            headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Accept': 'application/vnd.github+json' }
+          });
+          if (reGetResp.ok) {
+            var reFileInfo = await reGetResp.json();
+            // 用云端最新数据构造 payload（保留当前编辑的项目）
+            var mergedPayload = JSON.parse(JSON.stringify(latestData));
+            // 将当前 projectsArray 中的修改合并进去（基于 id 匹配）
+            for (var mi = 0; mi < projectsArray.length; mi++) {
+              var cur = projectsArray[mi];
+              var found = false;
+              for (var mj = 0; mj < mergedPayload.length; mj++) {
+                if (mergedPayload[mj].id === cur.id) {
+                  mergedPayload[mj] = cur;
+                  found = true;
+                  break;
+                }
+              }
+              if (!found) mergedPayload.push(cur); // 新增的项目
+            }
+            if (typeof suppliers !== 'undefined' && suppliers && suppliers.length > 0) {
+              mergedPayload[0]._suppliers = suppliers;
+            }
+            var retryBody = {
+              message: 'Update data.json from web panel (auto-merged)',
+              content: utf8ToBase64(JSON.stringify(mergedPayload, null, 2)),
+              sha: reFileInfo.sha
+            };
+            var retryResp = await fetch(GITHUB_API_URL, {
+              method: 'PUT',
+              headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Content-Type': 'application/json' },
+              body: JSON.stringify(retryBody)
+            });
+            if (!retryResp.ok) throw new Error('合并保存失败: HTTP ' + retryResp.status);
+            // 更新本地数据为合并后的版本
+            window.TOUR_DATA = mergedPayload;
+            projects = mergedPayload.map(function(p) { return normalizeProject(p); });
+            await appendChangeLog('save', '数据保存(自动合并)', mergedPayload.length);
+            return true;
+          }
+        }
+      }
+      throw new Error('云端数据冲突，自动合并失败');
+    }
+
     if (!putResp.ok) throw new Error('HTTP ' + putResp.status + ': ' + await putResp.text());
 
-    // ★ 数据保存成功后自动追加变更日志
+    // ★ 数据保存成功后自动追加变更日志（含完整快照）
     await appendChangeLog('save', '数据保存', projectsArray.length);
 
     return true;
@@ -1086,26 +1149,35 @@ async function loadChangeLog() {
   return _changelogCache;
 }
 
-/** 追加一条变更日志并保存到 GitHub */
+/** 追加一条变更日志并保存到 GitHub（含完整数据快照） */
 async function appendChangeLog(action, description, recordCount) {
   try {
     var log = await loadChangeLog();
-    // 获取当前数据 SHA 用于回滚标识
+
+    // ★ 从云端重新拉取保存后的数据作为快照（而非使用内存中可能过期的数据）
     var dataSha = '';
+    var snapshot = '';
     try {
+      // 短暂延迟等 GitHub CDN 刷新
+      await new Promise(function(r) { setTimeout(r, 1500); });
+      var snapResp = await fetch(GITHUB_RAW_URL, { cache: 'no-cache' });
+      if (snapResp.ok) {
+        var snapData = await snapResp.json();
+        if (snapData && Array.isArray(snapData) && snapData.length > 0) {
+          snapshot = utf8ToBase64(JSON.stringify(snapData));
+        }
+      }
+      // 同时获取最新 sha
       var getResp = await fetch(GITHUB_API_URL, {
         headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN, 'Accept': 'application/vnd.github+json' }
       });
       if (getResp.ok) { var info = await getResp.json(); dataSha = info.sha || ''; }
-    } catch(e) {}
+    } catch(e) { console.warn('[变更日志] 获取快照失败:', e.message); }
 
-    // 读取当前数据快照（压缩版，用于回滚）
-    var snapshot = '';
-    try {
-      if (typeof projects !== 'undefined' && projects.length > 0) {
-        snapshot = utf8ToBase64(JSON.stringify(projects));
-      }
-    } catch(e) {}
+    // 如果云端快照获取失败，降级使用内存数据
+    if (!snapshot && typeof projects !== 'undefined' && projects.length > 0) {
+      try { snapshot = utf8ToBase64(JSON.stringify(projects)); } catch(e) {}
+    }
 
     var entry = {
       id: 'log_' + Date.now(),
