@@ -3990,7 +3990,7 @@ async function rollbackToVersion(logId) {
 
     // 页面可见版本号（方便判断是否加载了最新代码）
     var verBadge = document.getElementById('pageVer');
-    if (verBadge) verBadge.textContent = 'v20260528a loaded ' + new Date().toLocaleTimeString();
+    if (verBadge) verBadge.textContent = 'v20260604260604171035 loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
     console.log('[版本] v20260528b 已加载，修复data.json编码乱码问题');
