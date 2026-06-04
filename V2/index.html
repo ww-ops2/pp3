@@ -861,6 +861,7 @@
           <input type="text" id="newSupName" placeholder="供应商名称" style="flex:1;min-width:140px;padding:7px 10px;border-radius:6px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:12px;font-family:inherit;">
           <input type="text" id="newSupCat" placeholder="供应类型(如地接/车票)" style="width:130px;padding:7px 10px;border-radius:6px;border:1px solid var(--border);background:var(--bg-input);color:var(--text-primary);font-size:12px;font-family:inherit;">
           <button class="btn btn-accent btn-sm" id="addSupBtn">＋ 新增</button>
+          <button class="btn btn-outline btn-sm" onclick="window._openCategoryModal()">📁 分类管理</button>
         </div>
         <div id="supplierEditList" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
       </div>
@@ -4022,6 +4023,7 @@ async function rollbackToVersion(logId) {
 
 </body>
 </html>
+
 
 
 
