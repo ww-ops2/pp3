@@ -592,7 +592,7 @@
 </head>
 <body>
 
-<!-- ===== SIDEBAR ===== -->
+<!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== SIDEBAR ===== -->
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-logo">
     <div class="icon">📊</div>
@@ -621,7 +621,7 @@
   </div>
 </aside>
 
-<!-- ===== MAIN AREA ===== -->
+<!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MAIN AREA ===== -->
 <div class="main-area">
   <header class="main-header">
     <div class="page-title" id="pageTitle">📈 总览面板</div>
@@ -718,7 +718,7 @@
 
   <div class="main-content">
 
-    <!-- ===== MODULE 1: DASHBOARD ===== -->
+    <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MODULE 1: DASHBOARD ===== -->
     <div class="module-pane active" id="pane-dashboard">
       <div class="kpi-grid" id="kpiGrid"></div>
       <div class="grid-21">
@@ -775,7 +775,7 @@
       </div>
     </div>
 
-    <!-- ===== MODULE 2: PRODUCT LINES ===== -->
+    <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MODULE 2: PRODUCT LINES ===== -->
     <div class="module-pane" id="pane-productLines">
       <div class="kpi-grid" id="productLineKPI"></div>
       <div class="panel">
@@ -785,7 +785,7 @@
       <div class="product-cards" id="productCards"></div>
     </div>
 
-    <!-- ===== MODULE 3: RECEIVABLES ===== -->
+    <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MODULE 3: RECEIVABLES ===== -->
     <div class="module-pane" id="pane-receivables">
       <div class="kpi-grid" id="receivableKPI"></div>
       <div class="panel">
@@ -796,7 +796,7 @@
             <select id="receivableTypeFilter"><option value="all">全部产品线</option></select>
           </div>
         </div>
-        <!-- 月份快捷筛选 -->
+        <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:月份快捷筛选 -->
         <div style="display:flex;align-items:center;gap:8px;padding:4px 16px 0;">
           <span style="font-size:12px;font-weight:600;color:var(--text-secondary);">📅 月份筛选</span>
           <button class="btn btn-sm btn-outline" id="recMonthAll" style="font-size:11px;padding:3px 10px;">全部</button>
@@ -808,11 +808,11 @@
       </div>
     </div>
 
-    <!-- ===== MODULE 4: PAYABLES (卡片+月度+分析) ===== -->
+    <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MODULE 4: PAYABLES (卡片+月度+分析) ===== -->
     <div class="module-pane" id="pane-payables">
       <div class="kpi-grid" id="payableKPI"></div>
 
-      <!-- 月份滑动选择器 -->
+      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:月份滑动选择器 -->
       <div class="panel" style="padding:12px 16px;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
           <span style="font-size:12px;font-weight:600;color:var(--text-secondary);">📅 选择月份</span>
@@ -822,21 +822,21 @@
         <div class="month-swiper" id="payMonthSwiper"></div>
       </div>
 
-      <!-- 团期应付卡片 -->
+      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:团期应付卡片 -->
       <div id="payCardArea" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;max-height:420px;overflow-y:auto;align-items:flex-start;"></div>
 
-      <!-- 付款登记弹窗 -->
+      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:付款登记弹窗 -->
       <div class="modal-overlay" id="payModalOverlay">
         <div class="modal" id="payModalBox"></div>
       </div>
 
-      <!-- 下半部分：综合分析 -->
+      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:下半部分：综合分析 -->
       <div class="pay-analysis-grid" id="payAnalysisArea"></div>
-      <!-- KPI联动明细面板 -->
+      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:KPI联动明细面板 -->
       <div id="payKPIDetailArea"></div>
     </div>
 
-    <!-- ===== MODULE 5: SUPPLIERS ===== -->
+    <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MODULE 5: SUPPLIERS ===== -->
     <div class="module-pane" id="pane-suppliers">
       <div class="kpi-grid" id="supplierKPI"></div>
       <div class="panel">
@@ -854,7 +854,7 @@
           <div class="hint">📊<br>应付分布图表</div>
         </div>
       </div>
-      <!-- 供应商增删改 -->
+      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:供应商增删改 -->
       <div class="panel" style="margin-top:14px;">
         <div class="panel-header"><div class="panel-title"><span class="dot" style="background:var(--warning);"></span>供应商库管理</div></div>
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px;">
@@ -865,11 +865,11 @@
         </div>
         <div id="supplierEditList" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
       </div>
-      <!-- datalist for supplier autocomplete -->
+      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:datalist for supplier autocomplete -->
       <datalist id="supplierList"></datalist>
     </div>
 
-    <!-- ===== MODULE 6: PROJECTS ===== -->
+    <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MODULE 6: PROJECTS ===== -->
     <div class="module-pane" id="pane-projects">
       <div class="panel">
         <div class="panel-header">
@@ -885,7 +885,7 @@
       </div>
     </div>
 
-    <!-- ===== MODULE 7: DATA IMPORT ===== -->
+    <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MODULE 7: DATA IMPORT ===== -->
     <div class="module-pane" id="pane-dataImport">
       <div class="grid-2">
         <div class="panel" style="text-align:center;">
@@ -936,7 +936,7 @@
         <div id="importLog" style="font-size:12px;color:var(--text-muted);max-height:300px;overflow-y:auto;">暂无导入记录</div>
       </div>
 
-      <!-- 版本回滚面板（默认隐藏） -->
+      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:版本回滚面板（默认隐藏） -->
       <div class="panel" id="rollbackPanel" style="margin-top:16px;display:none;">
         <div class="panel-header">
           <div class="panel-title"><span class="dot" style="background:var(--warning);"></span>⏪ 版本回滚</div>
@@ -948,15 +948,15 @@
       </div>
     </div>
 
-  </div><!-- /main-content -->
-</div><!-- /main-area -->
+  </div><!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:/main-content -->
+</div><!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:/main-area -->
 
-<!-- MODAL OVERLAY -->
+<!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:MODAL OVERLAY -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal" id="modalBox"></div>
 </div>
 
-<!-- 收款登记弹窗（根级，独立于所有 module-pane，确保应收/应付/任意面板均可弹出） -->
+<!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:收款登记弹窗（根级，独立于所有 module-pane，确保应收/应付/任意面板均可弹出） -->
 <div class="modal-overlay" id="recModalOverlay">
   <div class="modal" id="recModalBox"></div>
 </div>
