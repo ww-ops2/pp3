@@ -19,35 +19,35 @@
         "id": "cost_1779933933514_0",
         "name": "车票款",
         "amount": 360000,
-        "_supplierId": "sup_7_1780458876308",
+        "_supplierId": "sup_17_1780567779764",
         "paidAmount": 519614
       },
       {
         "id": "cost_1779933933514_1",
         "name": "地接款",
         "amount": 679228,
-        "_supplierId": "sup_7_1780458876308",
+        "_supplierId": "sup_17_1780567779764",
         "paidAmount": 519614
       },
       {
         "id": "cost_1779933933515_2",
         "name": "代订费用",
         "amount": 133286.5,
-        "_supplierId": "sup_8_1780458876310",
+        "_supplierId": "sup_18_1780567779767",
         "paidAmount": 133286.5
       },
       {
         "id": "cost_1779933933515_3",
         "name": "导服费",
         "amount": 48199.5,
-        "_supplierId": "sup_9_1780458876311",
+        "_supplierId": "sup_19_1780567779772",
         "paidAmount": 48199.5
       },
       {
         "id": "cost_1779933933515_4",
         "name": "其他",
         "amount": 5584,
-        "_supplierId": "sup_10_1780458876311",
+        "_supplierId": "sup_20_1780567779777",
         "paidAmount": 5584
       }
     ],
@@ -66,172 +66,7 @@
       }
     ],
     "receivableStatus": "unpaid",
-    "payableStatus": "unpaid",
-    "_lockedIncomes": [],
-    "_lockedCosts": [],
-    "_lockedProfits": [],
-    "_suppliers": [
-      {
-        "id": "sup_1",
-        "name": "南宁地接社",
-        "contact": "",
-        "phone": "",
-        "category": "地接",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_2",
-        "name": "哈尔滨地接社",
-        "contact": "",
-        "phone": "",
-        "category": "地接",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_3",
-        "name": "火车票代订",
-        "contact": "",
-        "phone": "",
-        "category": "车票",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_4",
-        "name": "导游服务公司",
-        "contact": "",
-        "phone": "",
-        "category": "导服",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_5",
-        "name": "邮轮代理",
-        "contact": "",
-        "phone": "",
-        "category": "邮轮",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_6",
-        "name": "其他供应商",
-        "contact": "",
-        "phone": "",
-        "category": "其他",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_7_1780390671209",
-        "name": "南宁火车票代订",
-        "contact": "",
-        "phone": "",
-        "category": "车票",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_8_1780390671214",
-        "name": "越南地接社",
-        "contact": "",
-        "phone": "",
-        "category": "地接",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_9_1780390671217",
-        "name": "代订服务公司",
-        "contact": "",
-        "phone": "",
-        "category": "代订",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_10_1780390671218",
-        "name": "导游服务",
-        "contact": "",
-        "phone": "",
-        "category": "导服",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_11_1780394363465",
-        "name": "其他",
-        "contact": "",
-        "phone": "",
-        "category": "其他",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_12_1780394939138",
-        "name": "西藏地接",
-        "contact": "",
-        "phone": "",
-        "category": "地接",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_13_1780395013638",
-        "name": "恩施地接",
-        "contact": "",
-        "phone": "",
-        "category": "地接",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_14_1780395060860",
-        "name": "西藏第二地接",
-        "contact": "",
-        "phone": "",
-        "category": "地接",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_15_1780395413117",
-        "name": "三峡地接",
-        "contact": "",
-        "phone": "",
-        "category": "地接",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_16_1780395413118",
-        "name": "三峡第二地接",
-        "contact": "",
-        "phone": "",
-        "category": "地接",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_17_1780567779764",
-        "name": "sup_7_1780458876308",
-        "contact": "",
-        "phone": "",
-        "category": "",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_18_1780567779767",
-        "name": "遇见青春（湖南）文化旅游有限公司",
-        "contact": "",
-        "phone": "",
-        "category": "",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_19_1780567779772",
-        "name": "导游",
-        "contact": "",
-        "phone": "",
-        "category": "",
-        "bankInfo": ""
-      },
-      {
-        "id": "sup_20_1780567779777",
-        "name": "保险",
-        "contact": "",
-        "phone": "",
-        "category": "",
-        "bankInfo": ""
-      }
-    ]
+    "payableStatus": "unpaid"
   },
   {
     "id": "proj_1778468995018",
