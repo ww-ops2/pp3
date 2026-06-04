@@ -961,7 +961,8 @@
 </div>
 
 <script src="gh-config.js?v=3"></script>
-<script src="data.js?v=3"></script>
+<script src="supplier-categories.js?v=2"></script>
+  <script src="data.js?v=3"></script>
 <script>
 /* ==========================================================================
    遇见美好 · 财务数据看板 V3 — 核心引擎 (Supabase 数据源)
@@ -1327,8 +1328,27 @@ async function rollbackToVersion(logId) {
 
   function saveSuppliers() {
     localStorage.setItem('tour_suppliers', JSON.stringify(suppliers));
-    // 同时标记需要同步到云端（下次 githubSaveData 时携带）
-    window._suppliersDirty = true;
+    localStorage.setItem('tour_supplier_categories', JSON.stringify(getAllSupplierCategories()));
+    
+    // ★ 自动触发云端同步（静默后台进行）
+    if (window.TOUR_DATA && Array.isArray(window.TOUR_DATA) && window.TOUR_DATA.length > 0) {
+      var payload = JSON.parse(JSON.stringify(window.TOUR_DATA));
+      payload[0]._suppliers = suppliers;
+      if (typeof githubSaveData === 'function') {
+        githubSaveData(payload).then(function(ok) {
+          if (ok) console.log('[供应商] 云端同步成功');
+        }).catch(function(err) { console.warn('[供应商] 云端同步失败:', err.message); });
+      }
+    }
+  }
+  
+  // 获取所有供应商分类（用于保存和恢复）
+  function getAllSupplierCategories() {
+    var cats = {};
+    suppliers.forEach(function(s) {
+      if (s.category && s.category !== '其他') cats[s.category] = true;
+    });
+    return cats;
   }
 
   // 根据供应商名称匹配已有ID，若无则新建
@@ -4002,3 +4022,14 @@ async function rollbackToVersion(logId) {
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
