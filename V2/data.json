@@ -65,6 +65,8 @@
         "count": 0
       }
     ],
+    "receivableStatus": "unpaid",
+    "payableStatus": "unpaid",
     "_suppliers": [
       {
         "id": "sup_1",
@@ -193,10 +195,32 @@
         "phone": "",
         "category": "地接",
         "bankInfo": ""
+      },
+      {
+        "name": "遇见青春（湖南）文化旅游有限公司",
+        "category": "代订",
+        "bankInfo": "",
+        "contact": "",
+        "id": "sup_17_1780567779760",
+        "phone": ""
+      },
+      {
+        "name": "导游",
+        "category": "导服",
+        "bankInfo": "",
+        "contact": "",
+        "id": "sup_18_1780567779767",
+        "phone": ""
+      },
+      {
+        "name": "保险",
+        "category": "其他",
+        "bankInfo": "",
+        "contact": "",
+        "id": "sup_19_1780567779772",
+        "phone": ""
       }
-    ],
-    "receivableStatus": "unpaid",
-    "payableStatus": "unpaid"
+    ]
   },
   {
     "id": "proj_1778468995018",
