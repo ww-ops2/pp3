@@ -1,0 +1,28 @@
+/* ==========================================================================
+   Warm Theme Override - 新增于2026-06-05
+   ========================================================================== */
+:root[data-theme="warm"] {
+  --bg-primary: #fff8f0;
+  --bg-secondary: #fff0e6;
+  --bg-card: #ffffff;
+  --bg-card-hover: #fef6ee;
+  --bg-input: #fffaf5;
+  --border: #ffd6b3;
+  --border-light: #ffcaa0;
+  --text-primary: #5d4037;
+  --text-secondary: #8d6e63;
+  --text-muted: #a1887f;
+  --accent: #ff9800;
+  --accent-light: #ffb74d;
+  --success: #4caf50;
+  --success-bg: #e8f5e9;
+  --danger: #f44336;
+  --danger-bg: #ffebee;
+  --warning: #ff5722;
+  --warning-bg: #fff3e0;
+  --info: #2196f3;
+  --info-bg: #e3f2fd;
+  --purple: #9c27b0;
+}
+#themeToggleBtn { position:absolute;top:10px;right:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:6px 12px;font-size:12px;cursor:pointer;color:var(--text-secondary);z-index:1000; }
+"#themeToggleBtn:hover { background:var(--bg-card-hover);color:var(--text-primary); }
