@@ -592,9 +592,9 @@
 </head>
 <body>
 
-<!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== SIDEBAR ===== -->
+<!-- ===== SIDEBAR ===== -->
 <aside class="sidebar" id="sidebar">
-  <div class="sidebar-logo">
+  <button id="themeToggleBtn" onclick="toggleTheme()" style="position:absolute;top:10px;right:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:6px 12px;font-size:12px;cursor:pointer;color:var(--text-secondary);">🌙</button><div class="sidebar-logo">
     <div class="icon">📊</div>
     <div class="text">遇见美好<span>财务数据看板 V3</span></div>
   </div>
@@ -621,7 +621,7 @@
   </div>
 </aside>
 
-<!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MAIN AREA ===== -->
+<!-- ===== MAIN AREA ===== -->
 <div class="main-area">
   <header class="main-header">
     <div class="page-title" id="pageTitle">📈 总览面板</div>
@@ -718,7 +718,7 @@
 
   <div class="main-content">
 
-    <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MODULE 1: DASHBOARD ===== -->
+    <!-- ===== MODULE 1: DASHBOARD ===== -->
     <div class="module-pane active" id="pane-dashboard">
       <div class="kpi-grid" id="kpiGrid"></div>
       <div class="grid-21">
@@ -775,7 +775,7 @@
       </div>
     </div>
 
-    <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MODULE 2: PRODUCT LINES ===== -->
+    <!-- ===== MODULE 2: PRODUCT LINES ===== -->
     <div class="module-pane" id="pane-productLines">
       <div class="kpi-grid" id="productLineKPI"></div>
       <div class="panel">
@@ -785,7 +785,7 @@
       <div class="product-cards" id="productCards"></div>
     </div>
 
-    <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MODULE 3: RECEIVABLES ===== -->
+    <!-- ===== MODULE 3: RECEIVABLES ===== -->
     <div class="module-pane" id="pane-receivables">
       <div class="kpi-grid" id="receivableKPI"></div>
       <div class="panel">
@@ -796,7 +796,7 @@
             <select id="receivableTypeFilter"><option value="all">全部产品线</option></select>
           </div>
         </div>
-        <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:月份快捷筛选 -->
+        <!-- 月份快捷筛选 -->
         <div style="display:flex;align-items:center;gap:8px;padding:4px 16px 0;">
           <span style="font-size:12px;font-weight:600;color:var(--text-secondary);">📅 月份筛选</span>
           <button class="btn btn-sm btn-outline" id="recMonthAll" style="font-size:11px;padding:3px 10px;">全部</button>
@@ -808,11 +808,11 @@
       </div>
     </div>
 
-    <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MODULE 4: PAYABLES (卡片+月度+分析) ===== -->
+    <!-- ===== MODULE 4: PAYABLES (卡片+月度+分析) ===== -->
     <div class="module-pane" id="pane-payables">
       <div class="kpi-grid" id="payableKPI"></div>
 
-      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:月份滑动选择器 -->
+      <!-- 月份滑动选择器 -->
       <div class="panel" style="padding:12px 16px;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
           <span style="font-size:12px;font-weight:600;color:var(--text-secondary);">📅 选择月份</span>
@@ -822,21 +822,21 @@
         <div class="month-swiper" id="payMonthSwiper"></div>
       </div>
 
-      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:团期应付卡片 -->
+      <!-- 团期应付卡片 -->
       <div id="payCardArea" style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;max-height:420px;overflow-y:auto;align-items:flex-start;"></div>
 
-      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:付款登记弹窗 -->
+      <!-- 付款登记弹窗 -->
       <div class="modal-overlay" id="payModalOverlay">
         <div class="modal" id="payModalBox"></div>
       </div>
 
-      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:下半部分：综合分析 -->
+      <!-- 下半部分：综合分析 -->
       <div class="pay-analysis-grid" id="payAnalysisArea"></div>
-      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:KPI联动明细面板 -->
+      <!-- KPI联动明细面板 -->
       <div id="payKPIDetailArea"></div>
     </div>
 
-    <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MODULE 5: SUPPLIERS ===== -->
+    <!-- ===== MODULE 5: SUPPLIERS ===== -->
     <div class="module-pane" id="pane-suppliers">
       <div class="kpi-grid" id="supplierKPI"></div>
       <div class="panel">
@@ -854,7 +854,7 @@
           <div class="hint">📊<br>应付分布图表</div>
         </div>
       </div>
-      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:供应商增删改 -->
+      <!-- 供应商增删改 -->
       <div class="panel" style="margin-top:14px;">
         <div class="panel-header"><div class="panel-title"><span class="dot" style="background:var(--warning);"></span>供应商库管理</div></div>
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px;">
@@ -865,11 +865,11 @@
         </div>
         <div id="supplierEditList" style="display:flex;flex-wrap:wrap;gap:6px;"></div>
       </div>
-      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:datalist for supplier autocomplete -->
+      <!-- datalist for supplier autocomplete -->
       <datalist id="supplierList"></datalist>
     </div>
 
-    <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MODULE 6: PROJECTS ===== -->
+    <!-- ===== MODULE 6: PROJECTS ===== -->
     <div class="module-pane" id="pane-projects">
       <div class="panel">
         <div class="panel-header">
@@ -885,7 +885,7 @@
       </div>
     </div>
 
-    <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:===== MODULE 7: DATA IMPORT ===== -->
+    <!-- ===== MODULE 7: DATA IMPORT ===== -->
     <div class="module-pane" id="pane-dataImport">
       <div class="grid-2">
         <div class="panel" style="text-align:center;">
@@ -936,7 +936,7 @@
         <div id="importLog" style="font-size:12px;color:var(--text-muted);max-height:300px;overflow-y:auto;">暂无导入记录</div>
       </div>
 
-      <!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:版本回滚面板（默认隐藏） -->
+      <!-- 版本回滚面板（默认隐藏） -->
       <div class="panel" id="rollbackPanel" style="margin-top:16px;display:none;">
         <div class="panel-header">
           <div class="panel-title"><span class="dot" style="background:var(--warning);"></span>⏪ 版本回滚</div>
@@ -948,21 +948,21 @@
       </div>
     </div>
 
-  </div><!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:/main-content -->
-</div><!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:/main-area -->
+  </div><!-- /main-content -->
+</div><!-- /main-area -->
 
-<!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:MODAL OVERLAY -->
+<!-- MODAL OVERLAY -->
 <div class="modal-overlay" id="modalOverlay">
   <div class="modal" id="modalBox"></div>
 </div>
 
-<!-- BUILD_TIMESTAMP: 2026-06-04 17:13:17 - CACHE_BUST:收款登记弹窗（根级，独立于所有 module-pane，确保应收/应付/任意面板均可弹出） -->
+<!-- 收款登记弹窗（根级，独立于所有 module-pane，确保应收/应付/任意面板均可弹出） -->
 <div class="modal-overlay" id="recModalOverlay">
   <div class="modal" id="recModalBox"></div>
 </div>
 
 <script src="gh-config.js?v=3"></script>
-<script src="supplier-categories.js?v=202606041700"></script>
+<script src="supplier-categories.js?v=2"></script>
   <script src="data.js?v=3"></script>
 <script>
 /* ==========================================================================
@@ -991,19 +991,25 @@ function utf8ToBase64(str) {
 
 /* 从 GitHub 加载数据 */
 var _githubLastError = null;
-/* 安全的 UTF-8 base64 解码（解决 atob 对中文乱码问题） */
+/* 安全的 UTF-8 base64 解码 - v20260529 修复版（解决中文乱码） */
 function safeAtob(base64) {
   try {
+    // 1. Base64 解码为二进制字符串
     var binary = atob(base64);
-    // 检测是否包含非 ASCII 字符（UTF-8 多字节）
-    for (var i = 0; i < binary.length; i++) {
-      if (binary.charCodeAt(i) > 127) return binary; // 已经是 Unicode 字符串
-    }
-    // 纯 ASCII → 转换为 UTF-8
+    
+    // 2. 将二进制字符串转换为字节数组
     var bytes = new Uint8Array(binary.length);
-    for (var j = 0; j < binary.length; j++) bytes[j] = binary.charCodeAt(j);
+    for (var i = 0; i < binary.length; i++) {
+      bytes[i] = binary.charCodeAt(i);
+    }
+    
+    // 3. 使用 TextDecoder 正确解码 UTF-8（始终使用，不判断）
     return new TextDecoder('utf-8').decode(bytes);
-  } catch(e) { console.warn('[safeAtob] 解码失败:', e.message); return ''; }
+  } catch(e) {
+    console.error('[safeAtob] UTF-8解码失败:', e.message);
+    // 降级方案：尝试直接返回（可能会有乱码）
+    try { return atob(base64); } catch(e2) { return ''; }
+  }
 }
 
 async function githubLoadData() {
@@ -1297,6 +1303,52 @@ async function rollbackToVersion(logId) {
 
   // 标记数据已就绪，供 init() 检测
   window._dataReady = true;
+
+  // ★ 自动刷新检测机制（每30秒检查一次云端是否有新数据）
+  if (dataSource === 'github') {
+    var _lastCheckTime = Date.now();
+    var _autoRefreshInterval = setInterval(async function() {
+      try {
+        var resp = await fetch(GITHUB_API_URL, {
+          headers: { 'Authorization': 'Bearer ' + GITHUB_TOKEN },
+          cache: 'no-cache'
+        });
+        
+        if (resp.ok) {
+          var info = await resp.json();
+          var cloudTime = new Date(info.commit ? info.commit.committer.date : 0);
+          var timeDiff = Date.now() - _lastCheckTime;
+          
+          // 如果云端数据比上次检查新，且超过60秒
+          if (cloudTime.getTime() > _lastCheckTime && timeDiff > 60000) {
+            console.log('[自动检测] 云端有新版本，准备刷新...');
+            
+            // 如果用户正在编辑，提示保存
+            if (document.querySelector('.modal.show')) {
+              if (confirm('检测到云端有新数据，但您正在编辑中。是否立即刷新？未保存的数据将丢失。')) {
+                location.reload();
+              }
+            } else {
+              showToast('🔔 检测到云端有新数据，自动刷新中...');
+              setTimeout(() => location.reload(), 2000);
+            }
+            
+            clearInterval(_autoRefreshInterval);
+          }
+        }
+      } catch(e) {
+        // 静默失败，不影响用户体验
+        console.debug('[自动刷新] 检查失败:', e.message);
+      }
+    }, 30000); // 30秒检查一次
+    
+    // 页面卸载时清理定时器
+    window.addEventListener('beforeunload', function() {
+      clearInterval(_autoRefreshInterval);
+    });
+    
+    console.log('[自动刷新] 已启用，每30秒检测一次云端更新');
+  }
 
   // ==================== 数据层 ====================
 
@@ -3858,7 +3910,23 @@ async function rollbackToVersion(logId) {
     });
   }
 
-  // ==================== INIT ====================
+  window.toggleTheme = function() {
+  var root = document.documentElement;
+  var isWarm = root.getAttribute('data-theme') === 'warm';
+  if (isWarm) {
+    root.removeAttribute('data-theme');
+    localStorage.setItem('theme', 'dark');
+    document.getElementById('themeToggleBtn').textContent = '🌙';
+  } else {
+    root.setAttribute('data-theme', 'warm');
+    localStorage.setItem('theme', 'warm');
+    document.getElementById('themeToggleBtn').textContent = '☀️';
+  }
+};
+
+// 加载保存的主题
+(function(){ var t = localStorage.getItem('theme'); if(t==='warm') document.documentElement.setAttribute('data-theme','warm'); })();
+// ==================== INIT ====================
   function init() {
     var initR = getPaneRange();
     document.getElementById('rangeStart').value = initR.start;
@@ -3990,7 +4058,7 @@ async function rollbackToVersion(logId) {
 
     // 页面可见版本号（方便判断是否加载了最新代码）
     var verBadge = document.getElementById('pageVer');
-    if (verBadge) verBadge.textContent = 'v20260604260604171035 loaded ' + new Date().toLocaleTimeString();
+    if (verBadge) verBadge.textContent = 'v20260528a loaded ' + new Date().toLocaleTimeString();
     var fs = document.getElementById('filterStatus');
     if (fs) fs.textContent = getPaneRange().start + '~' + getPaneRange().end;
     console.log('[版本] v20260528b 已加载，修复data.json编码乱码问题');
