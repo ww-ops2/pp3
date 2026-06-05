@@ -588,13 +588,35 @@
     .traffic-compact-row { grid-template-columns: 1fr; }
     .date-range-popover { left: 0; right: 0; transform: none; min-width: auto; }
   }
-</style>
+  :root[data-theme="warm"] {
+    --bg-primary: #fff8f0;
+    --bg-secondary: #fff0e6;
+    --bg-card: #ffffff;
+    --bg-card-hover: #fef6ee;
+    --bg-input: #fffaf5;
+    --border: #ffd6b3;
+    --border-light: #ffcaa0;
+    --text-primary: #5d4037;
+    --text-secondary: #8d6e63;
+    --text-muted: #a1887f;
+    --accent: #ff9800;
+    --accent-light: #ffb74d;
+    --success: #4caf50;
+    --success-bg: #e8f5e9;
+    --danger: #f44336;
+    --danger-bg: #ffebee;
+    --warning: #ff5722;
+    --warning-bg: #fff3e0;
+    --info: #2196f3;
+    --info-bg: #e3f2fd;
+    --purple: #9c27b0;
+  }</style>
 </head>
 <body>
 
 <!-- ===== SIDEBAR ===== -->
 <aside class="sidebar" id="sidebar">
-  <button id="themeToggleBtn" onclick="toggleTheme()" style="position:absolute;top:10px;right:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:6px 12px;font-size:12px;cursor:pointer;color:var(--text-secondary);">🌙</button><div class="sidebar-logo">
+  <button id="themeToggleBtn" onclick="toggleTheme()" style="position:fixed;top:10px;right:240px;background:var(--bg-card);border:1px solid var(--border);border-radius:20px;padding:6px 12px;font-size:12px;cursor:pointer;color:var(--text-secondary);">🌙</button><div class="sidebar-logo">
     <div class="icon">📊</div>
     <div class="text">遇见美好<span>财务数据看板 V3</span></div>
   </div>
@@ -716,7 +738,7 @@
     </div>
   </header>
 
-  <div class="main-content">
+  <div class="main-content"<button id="themeToggleBtn" onclick="toggleTheme()">🌙</button>>
 
     <!-- ===== MODULE 1: DASHBOARD ===== -->
     <div class="module-pane active" id="pane-dashboard">
@@ -962,8 +984,9 @@
 </div>
 
 <script src="gh-config.js?v=3"></script>
-<script src="supplier-categories.js?v=2"></script>
+
   <script src="data.js?v=3"></script>
+<script src="supplier-categories.js?v=3"></script>
 <script>
 /* ==========================================================================
    遇见美好 · 财务数据看板 V3 — 核心引擎 (Supabase 数据源)
@@ -3428,7 +3451,7 @@ async function rollbackToVersion(logId) {
     // 2️⃣ 本地刷新
     delete window.TOUR_DATA;
     const script = document.createElement('script');
-    script.src = 'data.js?t=' + Date.now();
+
     script.onload = () => {
       projects = (window.TOUR_DATA || []).map(p => normalizeProject(p));
       updateDataSourceBadge('local');
@@ -4087,7 +4110,18 @@ async function rollbackToVersion(logId) {
   init();
 
 })();
-</script>
+
+window.toggleTheme = function() {
+  var root = document.documentElement;
+  var isWarm = root.getAttribute('data-theme') === 'warm';
+  if (isWarm) {
+    root.removeAttribute('data-theme');
+    document.getElementById('themeToggleBtn').textContent = '🌙';
+  } else {
+    root.setAttribute('data-theme', 'warm');
+    document.getElementById('themeToggleBtn').textContent = '☀️';
+  }
+};</script>
 
 </body>
 </html>
